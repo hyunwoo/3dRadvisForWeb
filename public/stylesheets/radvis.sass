@@ -1,0 +1,121 @@
+@import "util"
+
+$nav-color: #fff
+$nav-height: 50px
+$tab-color: #ffffff
+$tab-menu-width: 50px
+$tab-menu-width-open: 180px
+$icon-font-size: 20px
+$border-color: #b5b5b5
+$tab-item-height : 45px
+$tab-item-color : #aaa
+
+$white-color : #fff
+$main-color: #007AFF
+
+$font-size-1: 12px
+$font-size-2: 14px
+$font-size-3: 16px
+
+$font-weight-7: 600
+
+
+.nav
+  position: absolute
+  top: 0
+  left: 0
+  width: 100vw
+  height: $nav-height
+  line-height: $nav-height
+  background-color: $nav-color
+  z-index: 2
+  border-bottom: solid 1px $border-color
+
+  .logo
+    position: absolute
+    width: $tab-menu-width
+    text-align: center
+    line-height: $nav-height
+    font-size: $icon-font-size
+    cursor: pointer
+    color: $main-color
+
+
+.tab
+  position: relative
+  left: 0
+  top: $nav-height
+  width: $tab-menu-width
+  height: 100vh
+  background-color: $tab-color
+  border-right: solid 1px $border-color
+  display: inline-block
+  transition-duration: 0.3s
+
+  .tabItemWrapper
+    width: 100%
+    height: $tab-item-height
+    line-height: $tab-item-height
+    font-size: $icon-font-size
+    color: $tab-item-color
+    border-bottom: solid 1px $border-color
+    text-align: center
+    cursor: pointer
+    position: relative
+
+    .tabItem
+      width: $tab-menu-width
+      position: relative
+      float: left
+      display: inline-block
+      height : inherit
+      line-height: inherit
+      vertical-align: middle
+      font-size: $icon-font-size
+    .tabItemName
+      position: absolute
+      height: inherit
+      top: 2px
+      left : $tab-menu-width - 5px
+      font-size: $font-size-2
+      display: inline-block
+      opacity: 0
+      transition: 0.3s
+      text-align: left
+      padding-left: 5px
+      font-weight: $font-weight-7
+
+  .tabBottom
+    position: absolute
+    bottom: $nav-height
+    left: 0
+    width: 100%
+    height: $tab-item-height
+    color: $white-color
+    background-color: $tab-item-color
+    text-align: center
+
+    .tabOpener
+      width: $tab-menu-width
+      height: inherit
+      line-height: $tab-item-height
+      text-align: center
+      font-size: $icon-font-size
+      cursor: pointer
+      transition: transform 0.3s
+
+
+  &.open
+    width: $tab-menu-width-open
+    .tabItemWrapper
+      .tabItemName
+        opacity: 1
+    .tabOpener
+      @include rotate(-180deg)
+      position: absolute
+      right: 0
+
+
+
+
+

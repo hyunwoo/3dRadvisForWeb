@@ -1,10 +1,26 @@
 extends layout
 block content
+    // soo
+    .nav
+        .logo.i.material-icons whatshot
+    .tab
+        .tabItemWrapper
+            .tabItem.i.material-icons border_left
+            .tabItemName Axis
+        .tabItemWrapper
+            .tabItem.i.material-icons share
+            .tabItemName Cluster
+        .tabItemWrapper
+            .tabItem.i.material-icons format_color_fill
+            .tabItemName Color
+        .tabBottom
+            .tabOpener.i.material-icons chevron_right
+
+
     .axis#AxisController
     .actions
         .options Axis
             .button#axisColorApplier ASDF
-
     #rendererRadvis
     //#rendererParallel
 
@@ -37,4 +53,16 @@ block content
             gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
         }
 
+    script.
+        $('.tabOpener').click(openTab);
+
+        function openTab(){
+            if(!$('.tab').hasClass('open')) $('.tab').addClass('open');
+            else $('.tab').removeClass('open');
+        }
+
     style.
+
+
+
+
