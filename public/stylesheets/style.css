@@ -3,7 +3,8 @@
   height: 100%;
   overflow-y: auto;
   position: absolute;
-  cursor: pointer; }
+  cursor: pointer;
+  opacity: 0; }
   .axis .item {
     background: #fff;
     width: 200px;
