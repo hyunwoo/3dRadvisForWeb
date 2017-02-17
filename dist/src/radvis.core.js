@@ -17,9 +17,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 // ** ���Ͽ� ������ �и��Ѵ� **
 
 var RadvisController = function () {
-    function RadvisController(scene, data) {
+    function RadvisController(element, data) {
         _classCallCheck(this, RadvisController);
 
+        var container = this.container = document.getElementById('rendererRadvis');
+        this.$ = $(this.container);
+        var $renderer = $('#rendererRadvis');
+        var width = this.width = $renderer.width();
+        var height = this.height = $renderer.height();
+        console.log(width, height);
+        var camera = this.camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
+        camera.position.z = 1500;
+        camera.position.y = 150;
+        camera.lookAt(0, 0, 0);
+
+        var scene = this.scene = new THREE.Scene();
+
+        // set Renderer
+        var renderer = this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height);
+        renderer.setClearColor(Setting.Radvis.Background);
+        renderer.gammaInput = true;
+        renderer.gammaOutput = true;
+
+        container.appendChild(renderer.domElement);
+        this.$canvas = $(renderer.domElement);
+
+        // Set Other
         var that = this;
         this.data = data;
         this.groupAxis = new THREE.Group();
@@ -120,6 +145,15 @@ var RadvisController = function () {
         scene.add(this.groupAxis);
 
         this.updateNodes();
+
+        //scene.add(group);
+        var controls = this.controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = true;
+        var stats = this.stats = new Stats();
+        $(stats.dom).attr('id', 'radvisStats');
+        container.appendChild(stats.dom);
+
+        this.render();
     }
 
     _createClass(RadvisController, [{
@@ -168,33 +202,24 @@ var RadvisController = function () {
     }, {
         key: 'updateAxis',
         value: function updateAxis() {
-            var activeAxisLength = _.filter(this.data.axis, function (d) {
-                return d.active;
-            }).length;
 
-            var cnt = 0;
-
-            var weightSum = _.sumBy(this.axises, function (d) {
-                return d.axis.weight;
+            var axisList = [];
+            _.forEach(this.axises, function (d) {
+                axisList.push(d);
             });
-            var weight = 0;
 
-            var that = this;
-            _.forEach(this.axises, function (axis) {
-                var rad = Setting.Radvis.Radius;
-                var color = new THREE.Color(Setting.Radvis.Axis.Color);
-                var x = Math.sin(Math.PI * 2 / activeAxisLength * cnt) * rad;
-                var z = Math.cos(Math.PI * 2 / activeAxisLength * cnt) * rad;
+            var sortedAxises = _.sortBy(axisList, function (axis) {
+                return axis.axis.index;
+            });
 
-                if (axis.axis.active) cnt++;else {
-                    rad = rad + 200;
-                    color = new THREE.Color(Setting.Radvis.Background);
-                    x = Math.sin(Math.PI * 2 / activeAxisLength * (cnt - .8)) * rad;
-                    z = Math.cos(Math.PI * 2 / activeAxisLength * (cnt - .8)) * rad;
-                }
+            var weightSum = _.sumBy(sortedAxises, function (axis) {
+                return axis.axis.active ? axis.axis.weight : 0;
+            });
 
-                axis.setPosition(x, z);
-                axis.setColor(color);
+            var weightCurrent = 0;
+            _.forEach(sortedAxises, function (axis) {
+                axis.updatePosition(weightCurrent, weightSum);
+                if (axis.axis.active) weightCurrent += axis.axis.weight;
             });
         }
     }, {
@@ -272,6 +297,35 @@ var RadvisController = function () {
             this.indices.push(lastIdx * 2, this.axisLength * 2 + 2);
             this.indices.push(lastIdx * 2 + 1, this.axisLength * 2 + 2 + 1);
         }
+    }, {
+        key: 'render',
+        value: function render() {
+            this.controls.update();
+            this.animate();
+            this.geometryBasket.attributes.position.needsUpdate = true;
+            this.geometryBasket.attributes.color.needsUpdate = true;
+
+            this.geometryNodes.attributes.position.needsUpdate = true;
+            this.geometryNodes.attributes.customColor.needsUpdate = true;
+            this.geometryNodes.attributes.size.needsUpdate = true;
+
+            _.forEach(this.axises, function (axis) {
+                axis.updateProjection();
+            });
+
+            this.renderer.render(this.scene, this.camera);
+            this.stats.update();
+            requestAnimationFrame(this.render.bind(this));
+        }
+    }], [{
+        key: 'projectPosition',
+        value: function projectPosition(camera, x, y, z, width, height) {
+            var p = new THREE.Vector3(x, y, z);
+            var vector = p.project(camera);
+            vector.x = (vector.x + 1) / 2 * width;
+            vector.y = -(vector.y - 1) / 2 * height;
+            return vector;
+        }
     }]);
 
     return RadvisController;
@@ -280,61 +334,6 @@ var RadvisController = function () {
 var __RadvisController = void 0;
 
 function createRadvis() {
-    var stats = void 0;
-    var renderer = void 0,
-        controls = void 0;
-    var group = void 0,
-        scene = void 0,
-        camera = void 0,
-        container = void 0;
-
-    function init() {
-        container = document.getElementById('rendererRadvis');
-
-        var $renderer = $('#rendererRadvis');
-        var width = $renderer.width(),
-            height = $renderer.height();
-
-        console.log(width, height);
-        camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
-        camera.position.z = 1500;
-        camera.position.y = 150;
-        camera.lookAt(0, 0, 0);
-
-        scene = new THREE.Scene();
-        __RadvisController = new RadvisController(scene, __data);
-        renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(width, height);
-        renderer.setClearColor(Setting.Radvis.Background);
-        renderer.gammaInput = true;
-        renderer.gammaOutput = true;
-        container.appendChild(renderer.domElement);
-        //scene.add(group);
-        controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableZoom = true;
-
-        stats = new Stats();
-        $(stats.dom).attr('id', 'radvisStats');
-        container.appendChild(stats.dom);
-    }
-
-    function render() {
-        controls.update();
-        __RadvisController.animate();
-        __RadvisController.geometryBasket.attributes.position.needsUpdate = true;
-        __RadvisController.geometryBasket.attributes.color.needsUpdate = true;
-
-        __RadvisController.geometryNodes.attributes.position.needsUpdate = true;
-        __RadvisController.geometryNodes.attributes.customColor.needsUpdate = true;
-        __RadvisController.geometryNodes.attributes.size.needsUpdate = true;
-
-        renderer.render(scene, camera);
-        stats.update();
-        requestAnimationFrame(render);
-    }
-
-    init();
-    render();
+    __RadvisController = new RadvisController('#', __data);
 }
 //# sourceMappingURL=radvis.core.js.map

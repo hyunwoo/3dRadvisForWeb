@@ -12,7 +12,34 @@
 // ** 기하와 정보를 분리한다 **
 
 class RadvisController {
-    constructor(scene, data) {
+    constructor(element, data) {
+        let container = this.container = document.getElementById('rendererRadvis');
+        this.$ = $(this.container);
+        const $renderer = $('#rendererRadvis');
+        const width = this.width = $renderer.width();
+        const height = this.height = $renderer.height();
+        console.log(width, height);
+        let camera = this.camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
+        camera.position.z = 1500;
+        camera.position.y = 150;
+        camera.lookAt(0, 0, 0);
+
+        let scene = this.scene = new THREE.Scene();
+
+
+        // set Renderer
+        let renderer = this.renderer = new THREE.WebGLRenderer({antialias: true});
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height);
+        renderer.setClearColor(Setting.Radvis.Background);
+        renderer.gammaInput = true;
+        renderer.gammaOutput = true;
+
+        container.appendChild(renderer.domElement);
+        this.$canvas = $(renderer.domElement);
+
+
+        // Set Other
         var that = this;
         this.data = data;
         this.groupAxis = new THREE.Group();
@@ -113,8 +140,19 @@ class RadvisController {
         scene.add(this.groupAxis);
 
         this.updateNodes();
-    }
 
+
+        //scene.add(group);
+        let controls = this.controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = true;
+        let stats = this.stats = new Stats();
+        $(stats.dom).attr('id', 'radvisStats');
+        container.appendChild(stats.dom);
+
+        this.render();
+
+
+    }
 
     animate() {
         let i;
@@ -157,38 +195,26 @@ class RadvisController {
     }
 
     updateAxis() {
-        var activeAxisLength = _.filter(this.data.axis, function (d) {
-            return d.active
-        }).length;
 
-        let cnt = 0;
-
-        const weightSum = _.sumBy(this.axises, function (d) {
-            return d.axis.weight
-        });
-        let weight = 0;
-
-        const that = this;
-        _.forEach(this.axises, function (axis) {
-            var rad = Setting.Radvis.Radius;
-            var color = new THREE.Color(Setting.Radvis.Axis.Color);
-            var x = Math.sin(Math.PI * 2 / activeAxisLength * cnt) * rad;
-            var z = Math.cos(Math.PI * 2 / activeAxisLength * cnt) * rad;
-
-            if (axis.axis.active) cnt++;
-            else {
-                rad = rad + 200;
-                color = new THREE.Color(Setting.Radvis.Background);
-                x = Math.sin(Math.PI * 2 / activeAxisLength * (cnt - .8)) * rad;
-                z = Math.cos(Math.PI * 2 / activeAxisLength * (cnt - .8)) * rad;
-            }
-
-            axis.setPosition(x, z);
-            axis.setColor(color);
+        const axisList = [];
+        _.forEach(this.axises, function (d) {
+            axisList.push(d);
         });
 
+        const sortedAxises = _.sortBy(axisList, function (axis) {
+            return axis.axis.index;
+        });
+
+        const weightSum = _.sumBy(sortedAxises, function (axis) {
+            return axis.axis.active ? axis.axis.weight : 0;
+        });
+
+        let weightCurrent = 0;
+        _.forEach(sortedAxises, function (axis) {
+            axis.updatePosition(weightCurrent, weightSum);
+            if (axis.axis.active) weightCurrent += axis.axis.weight;
+        });
     }
-
 
     updateNodes() {
         const that = this;
@@ -258,64 +284,40 @@ class RadvisController {
         this.indices.push(lastIdx * 2, this.axisLength * 2 + 2);
         this.indices.push(lastIdx * 2 + 1, this.axisLength * 2 + 2 + 1);
 
+
     }
 
+    render() {
+        this.controls.update();
+        this.animate();
+        this.geometryBasket.attributes.position.needsUpdate = true;
+        this.geometryBasket.attributes.color.needsUpdate = true;
 
+        this.geometryNodes.attributes.position.needsUpdate = true;
+        this.geometryNodes.attributes.customColor.needsUpdate = true;
+        this.geometryNodes.attributes.size.needsUpdate = true;
+
+        _.forEach(this.axises, function (axis) {
+            axis.updateProjection()
+        });
+
+        this.renderer.render(this.scene, this.camera);
+        this.stats.update();
+        requestAnimationFrame(this.render.bind(this));
+    }
+
+    static projectPosition(camera, x, y, z, width, height) {
+        var p = new THREE.Vector3(x, y, z);
+        var vector = p.project(camera);
+        vector.x = (vector.x + 1) / 2 * width;
+        vector.y = -(vector.y - 1) / 2 * height;
+        return vector;
+    }
 }
 
 let __RadvisController;
 
 
 function createRadvis() {
-    let stats;
-    let renderer, controls;
-    let group, scene, camera, container;
-
-    function init() {
-        container = document.getElementById('rendererRadvis');
-
-        const $renderer = $('#rendererRadvis');
-        const width = $renderer.width(), height = $renderer.height();
-
-        console.log(width, height);
-        camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
-        camera.position.z = 1500;
-        camera.position.y = 150;
-        camera.lookAt(0, 0, 0);
-
-        scene = new THREE.Scene();
-        __RadvisController = new RadvisController(scene, __data);
-        renderer = new THREE.WebGLRenderer({antialias: true});
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(width, height);
-        renderer.setClearColor(Setting.Radvis.Background);
-        renderer.gammaInput = true;
-        renderer.gammaOutput = true;
-        container.appendChild(renderer.domElement);
-        //scene.add(group);
-        controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableZoom = true;
-
-        stats = new Stats();
-        $(stats.dom).attr('id', 'radvisStats');
-        container.appendChild(stats.dom);
-    }
-
-    function render() {
-        controls.update();
-        __RadvisController.animate();
-        __RadvisController.geometryBasket.attributes.position.needsUpdate = true;
-        __RadvisController.geometryBasket.attributes.color.needsUpdate = true;
-
-        __RadvisController.geometryNodes.attributes.position.needsUpdate = true;
-        __RadvisController.geometryNodes.attributes.customColor.needsUpdate = true;
-        __RadvisController.geometryNodes.attributes.size.needsUpdate = true;
-
-        renderer.render(scene, camera);
-        stats.update();
-        requestAnimationFrame(render);
-    }
-
-    init();
-    render();
+    __RadvisController = new RadvisController('#', __data);
 }

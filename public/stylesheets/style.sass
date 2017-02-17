@@ -1,5 +1,5 @@
 .axis
-  z-index: 10000
+  z-index: 1
   height: 100%
   overflow-y: auto
   position: absolute
@@ -21,6 +21,7 @@
 #rendererRadvis
   position: absolute
   left: 0
+  top: 0
   width: 100vw
   height: 100vh
 
@@ -57,3 +58,15 @@ body
       background: #eee
       line-height: 25px
       color: #777
+
+.axisHeader
+  position: absolute
+  z-index: 10000
+  left: 0
+  top: 0
+  text-align: center
+  font-size: 8px
+  font-weight: 800
+  pointer-events: none
+  transition: opacity 0.3s
+  opacity: 0.6

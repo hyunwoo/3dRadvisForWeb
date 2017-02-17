@@ -7,10 +7,10 @@ $tab-menu-width: 50px
 $tab-menu-width-open: 180px
 $icon-font-size: 20px
 $border-color: #b5b5b5
-$tab-item-height : 45px
-$tab-item-color : #aaa
+$tab-item-height: 45px
+$tab-item-color: #aaa
 
-$white-color : #fff
+$white-color: #fff
 $main-color: #007AFF
 
 $font-size-1: 12px
@@ -19,16 +19,15 @@ $font-size-3: 16px
 
 $font-weight-7: 600
 
-
 .nav
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   width: 100vw
   height: $nav-height
   line-height: $nav-height
   background-color: $nav-color
-  z-index: 2
+  z-index: 1001
   border-bottom: solid 1px $border-color
 
   .logo
@@ -40,10 +39,10 @@ $font-weight-7: 600
     cursor: pointer
     color: $main-color
 
-
 .tab
-  position: relative
+  position: fixed
   left: 0
+  z-index: 1000
   top: $nav-height
   width: $tab-menu-width
   height: 100vh
@@ -68,7 +67,7 @@ $font-weight-7: 600
       position: relative
       float: left
       display: inline-block
-      height : inherit
+      height: inherit
       line-height: inherit
       vertical-align: middle
       font-size: $icon-font-size
@@ -76,7 +75,7 @@ $font-weight-7: 600
       position: absolute
       height: inherit
       top: 2px
-      left : $tab-menu-width - 5px
+      left: $tab-menu-width - 5px
       font-size: $font-size-2
       display: inline-block
       opacity: 0
@@ -103,7 +102,6 @@ $font-weight-7: 600
       font-size: $icon-font-size
       cursor: pointer
       transition: transform 0.3s
-
 
   &.open
     width: $tab-menu-width-open

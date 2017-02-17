@@ -7,7 +7,6 @@ class ParallelAxis {
         this.axis = axis;
         _.assign(this, stats);
 
-        this.geometry
     }
 
 
@@ -19,6 +18,7 @@ class ParallelAxis {
         this.controller.vertices[this.axis.index * 6 + 4] = this.controller.axisDestPosition[this.axis.index * 6 + 4] = this.controller.height / 2;
         this.controller.vertices[this.axis.index * 6 + 5] = this.controller.axisDestPosition[this.axis.index * 6 + 5] = 0;
     }
+
     setColor(color) {
         this.controller.axisDestColor[this.axis.index * 6] = color.r;
         this.controller.axisDestColor[this.axis.index * 6 + 1] = color.g;

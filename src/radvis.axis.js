@@ -8,7 +8,8 @@ class RadvisAxis {
         this.controller = controller;
         this.axis = axis;
         _.assign(this, stats);
-
+        // console.log(this.controller.$canvas);
+        this.$name = $('<div class="axisHeader">' + this.axis.name + '</div>').appendTo(controller.$);
     }
 
     setPosition(x, z) {
@@ -18,6 +19,42 @@ class RadvisAxis {
         this.controller.axisDestPosition[this.axis.index * 6 + 3] = x;
         this.controller.axisDestPosition[this.axis.index * 6 + 4] = Setting.Radvis.Height / 2;
         this.controller.axisDestPosition[this.axis.index * 6 + 5] = z;
+    }
+
+    updatePosition(weightCurrent, weightSum) {
+
+        let rad, color, x, z, ratio = (weightCurrent + this.axis.weight / 2) / weightSum;
+        console.log(this.axis.active);
+
+        if (this.axis.active) {
+            rad = Setting.Radvis.Radius;
+            color = new THREE.Color(Setting.Radvis.Axis.Color);
+            this.$name.css('opacity', 0.6)
+        } else {
+            rad = Setting.Radvis.Radius + 200;
+            color = new THREE.Color(Setting.Radvis.Background);
+            this.$name.css('opacity', 0.0)
+        }
+
+        x = Math.sin(Math.PI * 2 * ratio) * rad;
+        z = Math.cos(Math.PI * 2 * ratio) * rad;
+
+        this.setPosition(x, z);
+        this.setColor(color);
+
+    }
+
+    updateProjection() {
+        var vector = RadvisController.projectPosition(this.controller.camera,
+            this.controller.axisDestPosition[this.axis.index * 6],
+            this.controller.axisDestPosition[this.axis.index * 6 + 1],
+            this.controller.axisDestPosition[this.axis.index * 6 + 2],
+            this.controller.width,
+            this.controller.height
+        );
+
+        this.$name.css('left', vector.x - this.$name.width() / 2);
+        this.$name.css('top', vector.y);
     }
 
     setColor(color) {
@@ -43,6 +80,10 @@ class RadvisAxis {
             this.controller.axisDestPosition[this.axis.index * 6 + 4],
             this.controller.axisDestPosition[this.axis.index * 6 + 5],
         );
+    }
+
+    get topScreen() {
+
     }
 
 

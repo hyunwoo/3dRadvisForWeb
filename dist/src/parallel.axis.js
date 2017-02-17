@@ -14,8 +14,6 @@ var ParallelAxis = function () {
         this.controller = controller;
         this.axis = axis;
         _.assign(this, stats);
-
-        this.geometry;
     }
 
     _createClass(ParallelAxis, [{
