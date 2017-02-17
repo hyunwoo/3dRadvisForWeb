@@ -2,22 +2,30 @@
 
 $nav-color: #fff
 $nav-height: 50px
+
 $tab-color: #ffffff
 $tab-menu-width: 50px
 $tab-menu-width-open: 180px
+
 $icon-font-size: 20px
-$border-color: #b5b5b5
-$tab-item-height: 45px
-$tab-item-color: #aaa
+$tab-item-height: 50px
+$tab-item-color: #7c7c7c
+
+$setting-tab-width: 300px
 
 $white-color: #fff
-$main-color: #007AFF
+$main-color: #455A64
+$hover-color: #CFD8DC
+$border-color: #ccc
 
-$font-size-1: 12px
+$font-size-1: 13px
 $font-size-2: 14px
 $font-size-3: 16px
 
-$font-weight-7: 600
+$font-weight-7: 700
+$font-weight-6: 600
+$font-weight-4: 400
+$font-weight-2: 200
 
 .nav
   position: fixed
@@ -28,7 +36,7 @@ $font-weight-7: 600
   line-height: $nav-height
   background-color: $nav-color
   z-index: 1001
-  border-bottom: solid 1px $border-color
+  @include borderBottom($border-color)
 
   .logo
     position: absolute
@@ -39,81 +47,151 @@ $font-weight-7: 600
     cursor: pointer
     color: $main-color
 
-.tab
+
+.tabWrapper
   position: fixed
   left: 0
   z-index: 1000
-  top: $nav-height
-  width: $tab-menu-width
+  top: 0
   height: 100vh
-  background-color: $tab-color
-  border-right: solid 1px $border-color
-  display: inline-block
   transition-duration: 0.3s
 
-  .tabItemWrapper
-    width: 100%
-    height: $tab-item-height
-    line-height: $tab-item-height
-    font-size: $icon-font-size
-    color: $tab-item-color
-    border-bottom: solid 1px $border-color
-    text-align: center
-    cursor: pointer
+  .tab
     position: relative
+    vertical-align: top
+    width: $tab-menu-width
+    height: 100%
+    background-color: $tab-color
+    @include borderRight($border-color)
+    display: inline-block
+    transition-duration: 0.3s
+    box-sizing: border-box
+    padding-top: $nav-height
+    z-index: 999
 
-    .tabItem
-      width: $tab-menu-width
-      position: relative
-      float: left
-      display: inline-block
-      height: inherit
-      line-height: inherit
-      vertical-align: middle
-      font-size: $icon-font-size
-    .tabItemName
-      position: absolute
-      height: inherit
-      top: 2px
-      left: $tab-menu-width - 5px
-      font-size: $font-size-2
-      display: inline-block
-      opacity: 0
-      transition: 0.3s
-      text-align: left
-      padding-left: 5px
-      font-weight: $font-weight-7
-
-  .tabBottom
-    position: absolute
-    bottom: $nav-height
-    left: 0
-    width: 100%
-    height: $tab-item-height
-    color: $white-color
-    background-color: $tab-item-color
-    text-align: center
-
-    .tabOpener
-      width: $tab-menu-width
-      height: inherit
-      line-height: $tab-item-height
-      text-align: center
-      font-size: $icon-font-size
-      cursor: pointer
-      transition: transform 0.3s
-
-  &.open
-    width: $tab-menu-width-open
     .tabItemWrapper
+      width: 100%
+      height: $tab-item-height
+      line-height: $tab-item-height
+      font-size: $icon-font-size
+      color: $tab-item-color
+      text-align: center
+      cursor: pointer
+      position: relative
+
+      &.click
+        .selectBorder
+          opacity: 1
+
+      .selectBorder
+        opacity: 0
+        position: absolute
+        left: 0
+        top: 0
+        background-color: $main-color
+        width: 7px
+        height: 100%
+        transition-duration: 0.3s
+      .tabItem
+        width: $tab-menu-width
+        position: relative
+        float: left
+        display: inline-block
+        height: inherit
+        line-height: inherit
+        vertical-align: middle
+        font-size: $icon-font-size
       .tabItemName
-        opacity: 1
-    .tabOpener
-      @include rotate(-180deg)
+        position: absolute
+        height: inherit
+        top: 2px
+        left: $tab-menu-width - 5px
+        font-size: $font-size-2
+        display: inline-block
+        opacity: 0
+        transition: 0.3s
+        text-align: left
+        padding-left: 5px
+        font-weight: $font-weight-6
+      &:hover
+        background-color: $hover-color
+    .tabItemWrapper.first
+      color: $main-color
+      background-color: #eee
+
+    .tabBottom
       position: absolute
-      right: 0
+      bottom: 0
+      left: 0
+      width: 100%
+      height: $tab-item-height
+      color: $white-color
+      background-color: $main-color
+      text-align: center
 
+      .text
+        display: none
 
+      .tabOpener
+        width: $tab-menu-width
+        height: inherit
+        line-height: $tab-item-height
+        text-align: center
+        font-size: $icon-font-size
+        cursor: pointer
+        transition: transform 0.3s
+        font-weight: $font-weight-6
 
+    &.open
+      width: $tab-menu-width-open
+      .tabItemWrapper
+        .tabItemName
+          opacity: 1
+      .tabOpener
+        @include rotate(-180deg)
+        position: absolute
+        right: 0
+      .tabBottom
+        width: 100%
+        .text
+          line-height: $tab-item-height
+          position: absolute
+          top: 2px
+          left: 20px
+          font-size: $font-size-2
+          font-weight: $font-weight-2 !important
+          display: block
 
+  .settingTab
+    opacity: 0
+    pointer-events: none
+    transition: all .3s
+    position: absolute
+    display: inline-block
+    margin-left : -300px
+    width: $setting-tab-width
+    height: inherit
+    padding-top: $nav-height
+    background-color: $white-color
+    transition-duration: 0.3s
+    @include borderRight($border-color)
+
+    .title
+      @include borderBottom($border-color)
+      box-sizing: border-box
+      font-size: $font-size-2
+      font-weight: $font-weight-4
+      width: 100%
+      height: $tab-item-height
+      line-height: $tab-item-height
+      text-align: left
+      padding-left: 20px
+      background-color: $white-color
+      color: $main-color
+      padding-top: 2px
+
+  .settingTab.open
+    opacity: 1
+    margin-left : 0px
+    pointer-events: all
 

@@ -4,3 +4,9 @@
   -o-transform: rotate($degree)          /* Opera */
   -ms-transform: rotate($degree)         /* IE9 */
   transform: rotate($degree)             /* W3C compliant browsers */
+
+@mixin borderRight($borderColor)
+  border-right: solid 1px $borderColor
+
+@mixin borderBottom($borderColor)
+  border-bottom: solid 1px $borderColor
