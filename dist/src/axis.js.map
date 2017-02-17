@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/axis.js"],"names":["axis","index"],"mappings":";;AAAA;;;AAGA,SAASA,IAAT,CAAcC,KAAd,EAAqB;AACjB,OAAKA,KAAL,GAAaA,KAAb;AACH","file":"axis.js","sourcesContent":["/**\r\n * Created by hyunwoo on 2017-02-17.\r\n */\r\nfunction axis(index) {\r\n    this.index = index;\r\n}"]}

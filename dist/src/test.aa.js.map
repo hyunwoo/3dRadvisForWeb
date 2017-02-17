@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/test.aa.js"],"names":["aaa"],"mappings":";;AAAA;;;AAGA,IAAMA,MAAM,EAAZ","file":"test.aa.js","sourcesContent":["/**\r\n * Created by hyunwoo on 2017-02-15.\r\n */\r\nconst aaa = 10;"]}

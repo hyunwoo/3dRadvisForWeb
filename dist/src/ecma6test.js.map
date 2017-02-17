@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/ecma6test.js"],"names":["ABC","asdfasdf"],"mappings":";;;;AAAA;;;;IAIMA,G,GACF,eAAa;AAAA;AACZ,C;;AAGL,IAAIC,WAAW,IAAID,GAAJ,EAAf","file":"ecma6test.js","sourcesContent":["/**\r\n * Created by hyunwoo on 2017-02-15.\r\n */\r\n\r\nclass ABC {\r\n    constructor(){\r\n    }\r\n}\r\n\r\nlet asdfasdf = new ABC();"]}
