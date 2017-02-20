@@ -1,4 +1,5 @@
 @import "../util"
+@import "../values"
 
 .component
   &.test
@@ -93,12 +94,14 @@ input[type=range].slider
   &.slider:focus::-ms-fill-upper
     background: #eeeeed
 
-$slider-height: 4px
+$slider-height: 5px
 $point-size: 20px
+$point-size-half: $point-size/2
 $point-position: $point-size/2 - $slider-height/2
 $pin-size: 30px
 $pin-size-half: $pin-size / 2
-$pin-margin-y: $point-size + $point-size / 2
+$pin-margin-y: 1.414 * $pin-size
+$pin-num-width: 20px
 
 .slider
   width: 100%
@@ -115,8 +118,16 @@ $pin-margin-y: $point-size + $point-size / 2
     left: 0
     width: 100%
     height: $slider-height
-    background-color: #777777
+    background-color: $main-inv-color-1
+    border-radius: $slider-height/2
 
+  .bar
+    position: absolute
+    left : 0
+    background : $main-background-color
+    height : $slider-height
+    top : $point-position
+    border-radius: $slider-height/2
   .point
     pointer-events: none
     display: block
@@ -125,27 +136,38 @@ $pin-margin-y: $point-size + $point-size / 2
     height: inherit
     position: absolute
     left: 0
+    margin-left: -$point-size-half
     z-index: 2
-    background-color: red
+    background-color: $main-color
     cursor: inherit
-    .pin
-      pointer-events: none
+
+    .num
+      position: absolute
+      text-align: center
+      z-index: 1
       width: $pin-size
       height: $pin-size
-      border-radius: 50% 50% 50% 0
-      background: #89849b
-      position: absolute
-      left: 50%
-      top: 50%
-      margin: 0 0 0 -#{$pin-size-half}px
-      @include transformScaleRotate(0, 0, -45deg)
-      transition: all 0.3s
-      &.click
+      line-height: $pin-size
+      left: -($pin-size - $point-size)/2
+      top: -$pin-margin-y
+      font-size: $font-size-1
+      font-weight: $font-weight-7
+      @include transformScaleRotate(0, 0, 0)
+      transition: all 0.2s
+      color: $main-inv-color
+      .pin
+        pointer-events: none
+        width: $pin-size
+        height: $pin-size
+        background: $main-background-color
+        border-radius: 50% 50% 50% 0
+        top: 0
+        position: absolute
+        z-index: -1
         @include transformScaleRotate(1, 1, -45deg)
 
-/* Test result */
-.test-result
-  position: absolute
-  top: 10px
-  right: 10px
-  line-height: 1
+      &.click
+        @include transformScaleRotate(1, 1, 0)
+
+
+

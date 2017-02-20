@@ -4,7 +4,9 @@ block content
     .tpp
         .slider#slider-range
             .point
-                .pin
+                .num 30
+                    .pin
+            .bar
 
 
     style.
@@ -22,9 +24,11 @@ block content
 
         function ranger(id) {
             var range = document.getElementById(id);
+
             var $range = $(range);
             var core = $range.find('.point');
-            var pin = $range.find('.pin');
+            var num = $range.find('.num');
+            var bar = $range.find('.bar');
             var down = false;
             /*$range.draggable({
              containment : $('body'),
@@ -32,7 +36,7 @@ block content
              });*/
             $range.on('mousedown', function (e) {
                 down = true;
-                $(pin).addClass('click')
+                $(num).addClass('click')
                 updatePin(e);
                 return false;
             })
@@ -43,7 +47,7 @@ block content
             })
 
             $(document).on('mouseup', function (e) {
-                $(pin).removeClass('click')
+                $(num).removeClass('click')
                 down = false;
 
             })
@@ -52,6 +56,7 @@ block content
                 if (x < 0) x = 0;
                 else if (x > $range.width()) x = $range.width();
                 core.css('left', x);
+                bar.css('width',x);
             }
         }
 
