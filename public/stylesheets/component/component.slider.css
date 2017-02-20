@@ -1,0 +1,149 @@
+/* W3C compliant browsers */
+.component.test {
+  width: 300px;
+  position: fixed;
+  z-index: 10000000;
+  left: 100px;
+  top: 300px; }
+
+input[type=range].slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  margin: 3.85px 0; }
+  input[type=range].slider:focus {
+    outline: none; }
+  input[type=range].slider.slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5.3px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #dfdfdf;
+    border-radius: 0px; }
+  input[type=range].slider.slider::-webkit-slider-thumb {
+    box-shadow: none;
+    border: 0px solid #cecbff;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    background: #455a64;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -3.95px; }
+  input[type=range].slider.slider:focus::-webkit-slider-runnable-track {
+    background: #dfdfdf; }
+  input[type=range].slider.slider::-moz-range-track {
+    width: 100%;
+    height: 5.3px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #eeeeed;
+    border-radius: 0px;
+    border: 0.1px solid #ccccce; }
+  input[type=range].slider.slider::-moz-range-thumb {
+    box-shadow: none;
+    border: 0px solid #cecbff;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    background: rgba(136, 204, 221, 0.93);
+    cursor: pointer; }
+  input[type=range].slider.slider::-ms-track {
+    width: 100%;
+    height: 5.3px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent; }
+  input[type=range].slider.slider::-ms-fill-lower {
+    background: #eeeeed;
+    border: 0.1px solid #ccccce;
+    border-radius: 0px;
+    box-shadow: none; }
+  input[type=range].slider.slider::-ms-fill-upper {
+    background: #eeeeed;
+    border: 0.1px solid #ccccce;
+    border-radius: 0px;
+    box-shadow: none; }
+  input[type=range].slider.slider::-ms-thumb {
+    box-shadow: none;
+    border: 0px solid #cecbff;
+    width: 6px;
+    border-radius: 0;
+    background: rgba(136, 204, 221, 0.93);
+    cursor: pointer;
+    height: 5.3px; }
+  input[type=range].slider.slider:focus::-ms-fill-lower {
+    background: #eeeeed; }
+  input[type=range].slider.slider:focus::-ms-fill-upper {
+    background: #eeeeed; }
+
+.slider {
+  width: 100%;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  margin: 40px auto 1em; }
+  .slider:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 7.5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #CFD8DC;
+    border-radius: 2.5px; }
+  .slider .bar {
+    position: absolute;
+    left: 0;
+    background: #607d8b;
+    height: 5px;
+    top: 7.5px;
+    border-radius: 2.5px; }
+  .slider .point {
+    pointer-events: none;
+    display: block;
+    width: 20px !important;
+    border-radius: 50%;
+    height: inherit;
+    position: absolute;
+    left: 0;
+    margin-left: -10px;
+    z-index: 2;
+    background-color: #455A64;
+    cursor: inherit; }
+    .slider .point .num {
+      position: absolute;
+      text-align: center;
+      z-index: 1;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      left: -5px;
+      top: -42.42px;
+      font-size: 13px;
+      font-weight: 700;
+      -ms-transform: scale(0, 0) rotate(0);
+      -webkit-transform: scale(0, 0) rotate(0);
+      transform: scale(0, 0) rotate(0);
+      transition: all 0.2s;
+      color: #fff; }
+      .slider .point .num .pin {
+        pointer-events: none;
+        width: 30px;
+        height: 30px;
+        background: #607d8b;
+        border-radius: 50% 50% 50% 0;
+        top: 0;
+        position: absolute;
+        z-index: -1;
+        -ms-transform: scale(1, 1) rotate(-45deg);
+        -webkit-transform: scale(1, 1) rotate(-45deg);
+        transform: scale(1, 1) rotate(-45deg); }
+      .slider .point .num.click {
+        -ms-transform: scale(1, 1) rotate(0);
+        -webkit-transform: scale(1, 1) rotate(0);
+        transform: scale(1, 1) rotate(0); }
+
+/*# sourceMappingURL=component.slider.css.map */

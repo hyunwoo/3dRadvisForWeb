@@ -1,0 +1,222 @@
+/* W3C compliant browsers */
+.settingTab {
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .15s;
+  position: absolute;
+  display: inline-block;
+  margin-left: -50px;
+  width: 400px;
+  height: calc(100% - 50px);
+  background-color: #fff;
+  transition-duration: 0.3s;
+  border-right: solid 1px #e1e1e1; }
+  .settingTab .header-group {
+    background: #607d8b; }
+    .settingTab .header-group .title {
+      box-sizing: border-box;
+      font-size: 17px;
+      font-weight: 400;
+      width: 100%;
+      height: 45px;
+      line-height: 40px;
+      text-align: left;
+      padding: 2px 15px 0;
+      color: #fff;
+      position: relative; }
+    .settingTab .header-group .closer {
+      position: absolute;
+      right: 0;
+      color: #fff;
+      top: 2px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 17px;
+      float: right;
+      width: 40px;
+      text-align: center;
+      cursor: pointer; }
+    .settingTab .header-group .innerTab {
+      min-height: 35px;
+      line-height: 35px; }
+      .settingTab .header-group .innerTab .item {
+        cursor: pointer;
+        height: inherit;
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 15px;
+        color: #CFD8DC;
+        line-height: inherit;
+        position: relative;
+        font-size: 13px;
+        font-weight: 400; }
+      .settingTab .header-group .innerTab .item.active {
+        color: #fff; }
+        .settingTab .header-group .innerTab .item.active .border {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 3px;
+          width: 100%;
+          background: #fff; }
+      .settingTab .header-group .innerTab .item.disable {
+        text-decoration: line-through; }
+  .settingTab.open {
+    opacity: 1;
+    margin-left: 0 !important;
+    pointer-events: all; }
+  .settingTab .controller {
+    padding: 20px; }
+    .settingTab .controller .name {
+      margin-top: 5px;
+      font-size: 15px; }
+    .settingTab .controller .desc {
+      color: #777;
+      padding: 10px 0;
+      font-size: 13px; }
+  .settingTab .header {
+    height: 25px;
+    background: #455A64;
+    line-height: 25px;
+    font-size: 12px;
+    padding-left: 20px;
+    color: #fff; }
+  .settingTab .contents {
+    height: calc(100% - 40px * 2 - 35px - 5px); }
+    .settingTab .contents .graphic {
+      width: 100%;
+      height: 250px;
+      position: relative; }
+      .settingTab .contents .graphic .desc {
+        pointer-events: none;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        left: 0; }
+        .settingTab .contents .graphic .desc .head {
+          font-size: 15px;
+          line-height: 25px; }
+        .settingTab .contents .graphic .desc .body {
+          font-size: 13px;
+          line-height: 15px; }
+      .settingTab .contents .graphic .axis-controllers {
+        border-top: solid 1px #ccc;
+        height: 50px;
+        width: 100%;
+        position: absolute;
+        bottom: 0; }
+        .settingTab .contents .graphic .axis-controllers .axis-controller.slider {
+          padding: 0 10px;
+          box-sizing: border-box;
+          vertical-align: top;
+          display: inline-block;
+          width: calc((100% - 50px) / 3); }
+          .settingTab .contents .graphic .axis-controllers .axis-controller.slider .name {
+            padding-top: 5px;
+            font-size: 12px;
+            margin-bottom: -5px; }
+        .settingTab .contents .graphic .axis-controllers .axis-controller.clear {
+          display: inline-block;
+          vertical-align: top;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+          color: #455A64;
+          cursor: pointer; }
+          .settingTab .contents .graphic .axis-controllers .axis-controller.clear:hover {
+            color: #fff;
+            background: #455A64; }
+        .settingTab .contents .graphic .axis-controllers .axis-controller.arrows {
+          display: inline-block;
+          vertical-align: top;
+          width: 50px;
+          height: 50px; }
+          .settingTab .contents .graphic .axis-controllers .axis-controller.arrows .item {
+            cursor: pointer;
+            width: 100%;
+            height: 23px;
+            font-size: 14px;
+            background: #eee;
+            line-height: 23px;
+            text-align: center; }
+            .settingTab .contents .graphic .axis-controllers .axis-controller.arrows .item:hover {
+              background: #455A64;
+              color: #fff; }
+    .settingTab .contents .list {
+      height: 100%;
+      overflow-y: scroll; }
+      .settingTab .contents .list .item {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 10px;
+        font-size: 15px;
+        height: 45px;
+        line-height: 45px;
+        color: #737373;
+        border-bottom: solid 1px #eee; }
+        .settingTab .contents .list .item:hover {
+          background: #eee; }
+        .settingTab .contents .list .item.active {
+          border-left: solid 3px #455A64; }
+      .settingTab .contents .list.axis {
+        opacity: 1;
+        text-align: left;
+        width: 100%;
+        color: #737373; }
+        .settingTab .contents .list.axis .item {
+          cursor: pointer;
+          height: 40px;
+          line-height: 40px;
+          font-size: 13px; }
+          .settingTab .contents .list.axis .item .visible, .settingTab .contents .list.axis .item .invisible {
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            width: 30px;
+            font-size: inherit;
+            line-height: inherit; }
+          .settingTab .contents .list.axis .item .visible {
+            display: none; }
+          .settingTab .contents .list.axis .item .invisible {
+            color: #ccc;
+            display: inline-block; }
+          .settingTab .contents .list.axis .item.click .visible {
+            display: inline-block; }
+          .settingTab .contents .list.axis .item.click .invisible {
+            display: none; }
+          .settingTab .contents .list.axis .item .weight {
+            float: right;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 11px;
+            line-height: 20px;
+            background: #223444;
+            border-radius: 4px;
+            color: #fff;
+            padding: 0 6px;
+            margin-top: 10px;
+            height: 20px;
+            opacity: 0; }
+          .settingTab .contents .list.axis .item .setting {
+            float: right;
+            display: inline-block;
+            line-height: 40px;
+            vertical-align: top;
+            font-size: 11px; }
+          .settingTab .contents .list.axis .item .text {
+            display: inline-block;
+            vertical-align: top;
+            font-size: inherit;
+            line-height: inherit; }
+  .settingTab .bottom {
+    height: 40px;
+    background: #fafafa;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: solid 1px #e1e1e1; }
+
+/*# sourceMappingURL=tab.setting.css.map */

@@ -1,0 +1,157 @@
+/* W3C compliant browsers */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50px;
+  line-height: 50px;
+  background-color: #fff;
+  z-index: 1001;
+  border-bottom: solid 1px #e1e1e1; }
+  .nav .logo {
+    position: absolute;
+    width: 60px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #455A64; }
+
+.tabWrapper {
+  position: fixed;
+  left: 0;
+  z-index: 1000;
+  top: 0;
+  height: 100vh;
+  transition-duration: 0.3s;
+  padding-top: 50px;
+  box-sizing: border-box; }
+  .tabWrapper .sideTab {
+    position: relative;
+    vertical-align: top;
+    width: 60px;
+    height: 100%;
+    background-color: #ffffff;
+    border-right: solid 1px #e1e1e1;
+    display: inline-block;
+    transition-duration: 0.3s;
+    box-sizing: border-box;
+    z-index: 999; }
+    .tabWrapper .sideTab .spacer {
+      height: 5px; }
+    .tabWrapper .sideTab .separater {
+      height: 1px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      transition: height .3s;
+      border-top: solid 1px #ddd; }
+      .tabWrapper .sideTab .separater .text {
+        padding-left: 20px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 40px;
+        color: #aaa;
+        transition: opacity .3s;
+        opacity: 0; }
+    .tabWrapper .sideTab.open .separater {
+      border-top: solid 1px #fff;
+      height: 30px; }
+    .tabWrapper .sideTab.open .text {
+      transition: opacity .3s;
+      opacity: 1; }
+    .tabWrapper .sideTab .tabItemWrapper {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      color: #737373;
+      text-align: center;
+      cursor: pointer;
+      position: relative; }
+      .tabWrapper .sideTab .tabItemWrapper.click .selectBorder {
+        opacity: 1; }
+      .tabWrapper .sideTab .tabItemWrapper .selectBorder {
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #455A64;
+        width: 4px;
+        height: 100%;
+        transition-duration: 0.3s; }
+      .tabWrapper .sideTab .tabItemWrapper .tabItem {
+        width: 60px;
+        position: relative;
+        float: left;
+        display: inline-block;
+        height: inherit;
+        line-height: inherit;
+        vertical-align: middle;
+        font-size: 16px; }
+      .tabWrapper .sideTab .tabItemWrapper .tabItemName {
+        position: absolute;
+        height: inherit;
+        top: 2px;
+        left: 55px;
+        font-size: 13px;
+        display: inline-block;
+        opacity: 0;
+        transition: 0.3s;
+        text-align: left;
+        padding-left: 5px;
+        font-weight: 400; }
+      .tabWrapper .sideTab .tabItemWrapper:hover {
+        background-color: #CFD8DC; }
+    .tabWrapper .sideTab .tabItemWrapper.first {
+      color: #455A64;
+      background-color: #eee; }
+    .tabWrapper .sideTab .tabBottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: #fafafa;
+      color: #737373;
+      border-top: solid 1px #e1e1e1;
+      text-align: center; }
+      .tabWrapper .sideTab .tabBottom .text {
+        display: none; }
+      .tabWrapper .sideTab .tabBottom .tabOpener {
+        width: 60px;
+        height: inherit;
+        line-height: 40px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.3s;
+        font-weight: 600; }
+    .tabWrapper .sideTab.open {
+      width: 220px; }
+      .tabWrapper .sideTab.open .tabItemWrapper .tabItemName {
+        opacity: 1; }
+      .tabWrapper .sideTab.open .tabOpener {
+        -webkit-transform: rotate(-180deg);
+        /* Chrome and other webkit browsers */
+        -moz-transform: rotate(-180deg);
+        /* FF */
+        -o-transform: rotate(-180deg);
+        /* Opera */
+        -ms-transform: rotate(-180deg);
+        /* IE9 */
+        transform: rotate(-180deg);
+        position: absolute;
+        right: 0; }
+      .tabWrapper .sideTab.open .tabBottom {
+        width: 100%; }
+        .tabWrapper .sideTab.open .tabBottom .text {
+          line-height: 40px;
+          position: absolute;
+          top: 2px;
+          left: 20px;
+          font-size: 15px;
+          font-weight: 200 !important;
+          display: block; }
+
+/*# sourceMappingURL=tab.side.css.map */

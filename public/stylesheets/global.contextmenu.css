@@ -1,0 +1,74 @@
+.contextmenu-wrapper {
+  position: fixed;
+  z-index: 999999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  box-sizing: border-box; }
+  .contextmenu-wrapper.open {
+    display: block; }
+  .contextmenu-wrapper .contextmenu {
+    position: fixed;
+    z-index: 999999;
+    width: 200px;
+    background: #fff;
+    border: solid 1px #ccc; }
+    .contextmenu-wrapper .contextmenu .header {
+      box-sizing: border-box;
+      height: 25px;
+      width: 100%;
+      font-size: 12px;
+      padding-left: 15px;
+      line-height: 25px;
+      background: #dddddd;
+      color: #444444;
+      font-weight: 800; }
+    .contextmenu-wrapper .contextmenu .item {
+      min-height: 40px;
+      line-height: 40px;
+      padding-left: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background .15s; }
+      .contextmenu-wrapper .contextmenu .item:hover {
+        background: #666666;
+        color: #ffffff; }
+
+.context-window-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); }
+  .context-window-wrapper .context-window {
+    width: 600px;
+    background: #fff;
+    border: solid 1px #ccc;
+    margin: 20vh auto 0;
+    position: relative; }
+    .context-window-wrapper .context-window .header {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      font-size: 13px;
+      font-weight: 800;
+      background: #ccc;
+      text-align: center; }
+    .context-window-wrapper .context-window .closer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      line-height: 30px;
+      text-align: center;
+      width: 30px;
+      height: 30px; }
+    .context-window-wrapper .context-window .content {
+      background: #f00;
+      height: 200px; }
+
+/*# sourceMappingURL=global.contextmenu.css.map */
