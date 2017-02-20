@@ -12,14 +12,18 @@ block content
                 .tabItemName Overview
             .separater
                 .text Global Setting
-            .tabItemWrapper(for='SettingTabAxis')
+            .tabItemWrapper(for='SettingTabAxisVisibility')
                 .selectBorder
                 .tabItem.i.material-icons view_week
-                .tabItemName Axis
-            .tabItemWrapper(for='SettingTabNodes')
+                .tabItemName Axis Usage
+            .tabItemWrapper(for='SettingTabAxisGeometry')
+                .selectBorder
+                .tabItem.i.material-icons view_week
+                .tabItemName Axis Geometry
+            .tabItemWrapper(for='SettingTabNodesGeometry')
                 .selectBorder
                 .tabItem.i.material-icons toll
-                .tabItemName Node
+                .tabItemName Node Geometry
             .tabItemWrapper(for='SettingTabColor')
                 .selectBorder
                 .tabItem.i.material-icons format_color_fill
@@ -31,35 +35,10 @@ block content
             .tabBottom
                 .text foxtail ©
                 .tabOpener.i.material-icons chevron_right
-        .settingTab#SettingTabAxis.open
-            .title
-            .closer.i.material-icons(onclick='openSettingTab()') close
-            .graphic
-                .desc
-                    .head SIDAL 123
-                    .body SIGMA : !@#<br>Mean : @!#
-                .field
-                .axis-controllers
-                    .axis-controller.slider
-                        .name space
-                        .component
-                            input(type='range',data-name='power' min='1' max='50').slider#axis-controller-power
-                    .axis-controller.slider
-                        .name space
-                        .component
-                            input(type='range',data-name='spacing' min='1' max='50').slider#axis-controller-space
-                    .axis-controller.slider
-                        .name position
-                        .component
-                            input(type='range',data-name='spacing_center' min='0.1' max='0.9' step=0.1).slider#axis-controller-weight
-                    .axis-controller.clear.i.material-icons#axis-controller-clear refresh
-            .header Axis List
-            .list.axis
-                .item.click
-                    .visible.i.material-icons visibility
-                    .weight 3.2
-                    .text Testing Axis Argument
-        .settingTab#SettingTabNodes
+        include sidetab/axisUsage
+        include sidetab/axisGeometry
+
+        .settingTab#SettingTabNodesGeometry
             .title
             .closer.i.material-icons(onclick='openSettingTab()') close
             .controller

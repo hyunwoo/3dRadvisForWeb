@@ -1,0 +1,22 @@
+.settingTab#SettingTabAxisGeometry
+    .title
+    .closer.i.material-icons(onclick='openSettingTab()') close
+    .graphic
+        .desc
+            .head SIDAL 123
+            .body SIGMA : !@#<br>Mean : @!#
+        .field
+        .axis-controllers
+            .axis-controller.slider
+                .name space
+                .component
+                    input(type='range',data-name='power' min='1' max='50').slider#axis-controller-power
+            .axis-controller.slider
+                .name space
+                .component
+                    input(type='range',data-name='spacing' min='1' max='50').slider#axis-controller-space
+            .axis-controller.slider
+                .name position
+                .component
+                    input(type='range',data-name='spacing_center' min='0.1' max='0.9' step=0.1).slider#axis-controller-weight
+            .axis-controller.clear.i.material-icons#axis-controller-clear refresh

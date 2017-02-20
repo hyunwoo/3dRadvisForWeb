@@ -129,9 +129,8 @@ class DataSet {
 
 }
 
-function createAxisController() {
-    let $tabAxis = $('#SettingTabAxis')
-    let parent = $tabAxis.find('.list');
+
+function createAxisGeometry() {
     let graphicAxis = {
         $field: $tabAxis.find('.graphic'),
         $sliders: $tabAxis.find('input[type="range"]'),
@@ -142,64 +141,73 @@ function createAxisController() {
         }
     };
 
+
+    // create to
+    graphicAxis.desc.$head.html(d.name);
+    graphicAxis.desc.$body.html(d.stats.toString());
+
+    _.forEach(graphicAxis.$sliders, function (ranger) {
+        var $ranger = $(ranger);
+        console.log($ranger.attr('data-name'), d[$ranger.attr('data-name')]);
+        var val = d[$ranger.attr('data-name')];
+        $ranger.val(val == undefined ? 0 : val);
+    });
+
+
+    graphicAxis.$slider_clear.unbind();
+    graphicAxis.$slider_clear.click(function () {
+        console.log('clear')
+
+        _.forEach(graphicAxis.$sliders, function (ranger) {
+
+            var $ranger = $(ranger);
+            var key = $ranger.attr('data-name');
+            if (!_.isNil(Setting.Radvis.Axis.Controller[key]))
+                $ranger.val(Setting.Radvis.Axis.Controller[key]);
+        });
+
+        graphicAxis.$sliders.trigger('change');
+        __RadvisController.adjustAxis();
+
+    });
+
+    graphicAxis.$sliders.unbind();
+    graphicAxis.$sliders.on('change', function () {
+        var $this = $(this);
+        var key = $this.attr('data-name');
+        var value = Number($this.val());
+        if (!_.isNumber(value)) alert('?');
+        console.log(key, value);
+        d[key] = value;
+
+        __RadvisController.adjustAxis();
+    });
+
+}
+
+function createAxisVisibility() {
+    let $tabAxis = $('#SettingTabAxisVisibility')
+    let parent = $tabAxis.find('.list');
+
+
     _.forEach(__data.axis, function (d, i) {
         var $item = $('<div class="item click">' +
-            '<div class="visible i material-icons">visibility</div>' +
-            '<div class="invisible i material-icons">visibility_off</div>' +
+            '<div class="visible i material-icons">check_box</div>' +
+            '<div class="invisible i material-icons">check_box_outline_blank</div>' +
             // '<div class="spacing">1.0</div>' +
             '<div class="text">' + d.name + '</div>' +
             '</div>');
         $item.appendTo(parent);
 
-        $item.on('click', function (evt) {
+
+        $item.on('contextmenu', function (evt) {
             parent.find('.item').removeClass('active');
             parent.find('.setting').remove();
             $item.addClass('active');
             $('<div class="setting i material-icons">settings</div>').appendTo($item);
-
-            // create to
-            graphicAxis.desc.$head.html(d.name);
-            graphicAxis.desc.$body.html(d.stats.toString());
-
-            _.forEach(graphicAxis.$sliders, function (ranger) {
-                var $ranger = $(ranger);
-                console.log($ranger.attr('data-name'), d[$ranger.attr('data-name')]);
-                var val = d[$ranger.attr('data-name')];
-                $ranger.val(val == undefined ? 0 : val);
-            });
-
-
-            graphicAxis.$slider_clear.unbind();
-            graphicAxis.$slider_clear.click(function () {
-                console.log('clear')
-
-                _.forEach(graphicAxis.$sliders, function (ranger) {
-
-                    var $ranger = $(ranger);
-                    var key = $ranger.attr('data-name');
-                    if (!_.isNil(Setting.Radvis.Axis.Controller[key]))
-                        $ranger.val(Setting.Radvis.Axis.Controller[key]);
-                });
-
-                graphicAxis.$sliders.trigger('change');
-                __RadvisController.adjustAxis();
-
-            });
-
-            graphicAxis.$sliders.unbind();
-            graphicAxis.$sliders.on('change', function () {
-                var $this = $(this);
-                var key = $this.attr('data-name');
-                var value = Number($this.val());
-                if (!_.isNumber(value)) alert('?');
-                console.log(key, value);
-                d[key] = value;
-
-                __RadvisController.adjustAxis();
-            });
         });
 
-        $item.on('contextmenu', function (evt) {
+        $item.on('click', function (evt) {
             d.active = !$item.hasClass('click');
             if (!d.active) $item.removeClass('click');
             else $item.addClass('click');
@@ -212,7 +220,7 @@ function createAxisController() {
 
 $.get('/data/credos_testing.csv', function (data) {
     __data = new DataSet(data);
-    createAxisController();
+    createAxisVisibility();
     // Important! : Visualization Controlled based on Data
     createRadvis();
     // create2DViewer();
