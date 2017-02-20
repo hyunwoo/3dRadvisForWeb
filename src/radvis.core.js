@@ -178,10 +178,16 @@ class RadvisController {
 
     }
 
+    setNodePositionByVector(index, vector3) {
+        this.nodeDestPositions[index * 3] = vector3.x * Setting.Radvis.NodeScale;
+        this.nodeDestPositions[index * 3 + 1] = vector3.y * Setting.Radvis.NodeScale;
+        this.nodeDestPositions[index * 3 + 2] = vector3.z * Setting.Radvis.NodeScale;
+    }
+
     setNodePosition(index, x, y, z) {
-        this.nodeDestPositions[index * 3] = x;
-        this.nodeDestPositions[index * 3 + 1] = y;
-        this.nodeDestPositions[index * 3 + 2] = z;
+        this.nodeDestPositions[index * 3] = x * Setting.Radvis.NodeScale;
+        this.nodeDestPositions[index * 3 + 1] = y * Setting.Radvis.NodeScale;
+        this.nodeDestPositions[index * 3 + 2] = z * Setting.Radvis.NodeScale;
     }
 
     setNodeColor(index, r, g, b) {
@@ -191,7 +197,7 @@ class RadvisController {
     }
 
     setNodeSize(index, size) {
-        this.nodeDestSize[index] = size;
+        this.nodeSizes[index] = size * Setting.Radvis.NodeSize;
     }
 
     updateAxis() {
@@ -206,31 +212,52 @@ class RadvisController {
         });
 
         const weightSum = _.sumBy(sortedAxises, function (axis) {
-            return axis.axis.active ? axis.axis.weight : 0;
+            return axis.axis.active ? axis.axis.spacing : 0;
         });
 
         let weightCurrent = 0;
         _.forEach(sortedAxises, function (axis) {
+            if (axis.axis.active) weightCurrent += axis.axis.spacing * axis.axis.spacing_center;
             axis.updatePosition(weightCurrent, weightSum);
-            if (axis.axis.active) weightCurrent += axis.axis.weight;
+            if (axis.axis.active) weightCurrent += axis.axis.spacing * (1 - axis.axis.spacing_center);
         });
     }
 
     updateNodes() {
         const that = this;
+        // power sum
+
+        let powerSum = 0;
+        _.forEach(this.nodes[0], function (v, k) {
+            var axis = that.axises[k].axis;
+            if (!axis.active) return;
+            powerSum += axis.power;
+
+        });
+        console.log(powerSum);
+
+        //const powerSum = _.sumBy(that.axises[])
         _.map(this.nodes, function (node, i) {
-            var poses = [];
+
+            var position = new THREE.Vector3();
+
+            let x = 0, y = 0, z = 0;
             _.forEach(node, function (v, k) {
-                if (!that.axises[k].axis.active) return;
-                poses.push(that.axises[k].located(v))
+                let axis = that.axises[k].axis;
+                if (!axis.active) return;
+
+                let pos = that.axises[k].located(v);
+                // position.add(pos.multiplyScalar(axis.power));
+                x += pos.x * axis.power;
+                y += pos.y * axis.power;
+                z += pos.z * axis.power;
+
+
             });
-            var x = 0, y = 0, z = 0;
-            _.forEach(poses, function (p) {
-                x += p.x;
-                y += p.y;
-                z += p.z;
-            });
-            that.setNodePosition(i, x / poses.length, y / poses.length, z / poses.length);
+
+
+            that.setNodePosition(i, x / powerSum, y / powerSum, z / powerSum);
+            that.setNodeSize(i, 1);
         });
 
     }

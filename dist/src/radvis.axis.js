@@ -37,8 +37,7 @@ var RadvisAxis = function () {
                 color = void 0,
                 x = void 0,
                 z = void 0,
-                ratio = (weightCurrent + this.axis.weight / 2) / weightSum;
-            console.log(this.axis.active);
+                ratio = weightCurrent / weightSum;
 
             if (this.axis.active) {
                 rad = Setting.Radvis.Radius;
@@ -59,7 +58,7 @@ var RadvisAxis = function () {
     }, {
         key: 'updateProjection',
         value: function updateProjection() {
-            var vector = RadvisController.projectPosition(this.controller.camera, this.controller.axisDestPosition[this.axis.index * 6], this.controller.axisDestPosition[this.axis.index * 6 + 1], this.controller.axisDestPosition[this.axis.index * 6 + 2], this.controller.width, this.controller.height);
+            var vector = RadvisController.projectPosition(this.controller.camera, this.controller.vertices[this.axis.index * 6], this.controller.vertices[this.axis.index * 6 + 1], this.controller.vertices[this.axis.index * 6 + 2], this.controller.width, this.controller.height);
 
             this.$name.css('left', vector.x - this.$name.width() / 2);
             this.$name.css('top', vector.y);

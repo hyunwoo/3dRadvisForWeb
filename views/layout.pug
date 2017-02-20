@@ -6,6 +6,12 @@ html
         link(rel='stylesheet', href='/stylesheets/radvis.css')
         link(rel='stylesheet', href='/material-icons/css/material-icons.min.css')
         link(rel='stylesheet', href='/material-design-icons/iconfont/material-icons.css')
+        link(rel='stylesheet', href='/stylesheets/global.contextmenu.css')
+
+        link(rel='stylesheet', href='/stylesheets/component/component.slider.css')
+
+        script(src='/jquery/dist/jquery.min.js')
+
         script(src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js")
         script(src='/three/examples/js/libs/dat.gui.min.js')
         script(src='/three/build/three.min.js')
@@ -15,15 +21,29 @@ html
         script(src='/three/examples/js/libs/stats.min.js')
         script(src='/three/examples/js/controls/TrackballControls.js')
         script(src='/rx/dist/rx.all.js')
-        script(src='/jquery/dist/jquery.min.js')
         script(src='/firebase.wrapper.js')
         script(src='/lodash/lodash.min.js')
         script(src='/lodash-math/lodash.math.js')
 
+        // FONT
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        style.
+            body {
+                font-family: 'Roboto', sans-serif;
+            }
         // UI Components
+        script(src='/ui/mouseevent.global.js')
         //script(src='/simple-color-picker/src/index.js')
         //link(rel='stylesheet', href='/simple-color-picker/src/simple-color-picker.css')
 
-
+    //(oncontextmenu="return false")
     body
+        .contextmenu-wrapper
+            .contextmenu
+        //.context-window-wrapper
+            .context-window
+                .header AAA
+                .closer.i.material-icons close
+                .content.AxisSetting
+
         block content

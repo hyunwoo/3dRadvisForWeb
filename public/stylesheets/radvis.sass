@@ -4,14 +4,14 @@ $nav-color: #fff
 $nav-height: 50px
 
 $tab-color: #ffffff
-$tab-menu-width: 50px
-$tab-menu-width-open: 180px
+$tab-menu-width: 60px
+$tab-menu-width-open: 220px
 
-$icon-font-size: 20px
-$tab-item-height: 50px
-$tab-item-color: #7c7c7c
+$icon-font-size: 16px
+$tab-item-height: 40px
+$tab-item-color: #666
 
-$setting-tab-width: 300px
+$setting-tab-width: 400px
 
 $white-color: #fff
 $main-color: #455A64
@@ -21,6 +21,8 @@ $border-color: #ccc
 $font-size-1: 13px
 $font-size-2: 14px
 $font-size-3: 16px
+$font-size-4: 18px
+$font-size-5: 22px
 
 $font-weight-7: 700
 $font-weight-6: 600
@@ -47,7 +49,6 @@ $font-weight-2: 200
     cursor: pointer
     color: $main-color
 
-
 .tabWrapper
   position: fixed
   left: 0
@@ -55,7 +56,8 @@ $font-weight-2: 200
   top: 0
   height: 100vh
   transition-duration: 0.3s
-
+  padding-top: $nav-height
+  box-sizing: border-box
   .tab
     position: relative
     vertical-align: top
@@ -66,8 +68,33 @@ $font-weight-2: 200
     display: inline-block
     transition-duration: 0.3s
     box-sizing: border-box
-    padding-top: $nav-height
     z-index: 999
+
+    .spacer
+      height: 5px
+    .separater
+      height: 1px
+      margin-top: 5px
+      margin-bottom: 5px
+      transition: height .3s
+      //background : $main-color
+      @include borderTop(#ddd)
+      .text
+        padding-left: 20px
+        font-weight: 400
+        font-size: 12px
+        line-height: 40px
+        color: #aaa
+        transition: opacity .3s
+        opacity: 0
+    &.open
+      .separater
+        //background : $fff
+        @include borderTop(#fff)
+        height: 30px
+      .text
+        transition: opacity .3s
+        opacity: 1
 
     .tabItemWrapper
       width: 100%
@@ -89,7 +116,7 @@ $font-weight-2: 200
         left: 0
         top: 0
         background-color: $main-color
-        width: 7px
+        width: 4px
         height: 100%
         transition-duration: 0.3s
       .tabItem
@@ -106,13 +133,13 @@ $font-weight-2: 200
         height: inherit
         top: 2px
         left: $tab-menu-width - 5px
-        font-size: $font-size-2
+        font-size: $font-size-1
         display: inline-block
         opacity: 0
         transition: 0.3s
         text-align: left
         padding-left: 5px
-        font-weight: $font-weight-6
+        font-weight: $font-weight-4
       &:hover
         background-color: $hover-color
     .tabItemWrapper.first
@@ -165,33 +192,212 @@ $font-weight-2: 200
   .settingTab
     opacity: 0
     pointer-events: none
-    transition: all .3s
+    transition: all .15s
     position: absolute
     display: inline-block
-    margin-left : -300px
+    margin-left: -50px
     width: $setting-tab-width
     height: inherit
-    padding-top: $nav-height
     background-color: $white-color
     transition-duration: 0.3s
+
+    .closer
+      position: absolute
+      right: 0
+      top: 5px
+      height: $tab-item-height
+      line-height: $tab-item-height
+      font-size: $font-size-3
+      float: right
+      width: $tab-item-height
+      text-align: center
+      cursor: pointer
+
     @include borderRight($border-color)
+    &.open
+      opacity: 1
+      margin-left: 0 !important
+      pointer-events: all
 
     .title
-      @include borderBottom($border-color)
+      //@include borderBottom($border-color)
       box-sizing: border-box
-      font-size: $font-size-2
+      font-size: $font-size-3
       font-weight: $font-weight-4
       width: 100%
+      margin-top: 5px
       height: $tab-item-height
       line-height: $tab-item-height
       text-align: left
-      padding-left: 20px
+      padding-left: 10px
       background-color: $white-color
       color: $main-color
       padding-top: 2px
+      position: relative
 
-  .settingTab.open
-    opacity: 1
-    margin-left : 0px
-    pointer-events: all
+    .controller
+      padding: 20px
+      .name
+        margin-top: 5px
+        font-size: $font-size-2
+      .desc
+        color: #777
+        padding: 10px 0
+        font-size: $font-size-1
+    // modify h.hyunwoo
+    .graphic
+      .desc
+        pointer-events: none
+        padding: 10px
+        position: absolute
+        top: 0
+        left: 0
+        .head
+          font-size: 15px
+          line-height: 25px
+        .body
+          font-size: 13px
+          line-height: 15px
+
+      width: 100%
+      height: 250px
+      position: relative
+      .axis-controllers
+        @include borderTop(#ccc)
+        height: 50px
+        width: 100%
+        position: absolute
+        bottom: 0
+        .axis-controller.slider
+          .name
+            padding-top: 5px
+            font-size: 12px
+            margin-bottom: -5px
+          padding: 0 10px
+          box-sizing: border-box
+          vertical-align: top
+          display: inline-block
+          width: calc((100% - 50px) / 3)
+        .axis-controller.clear
+          display: inline-block
+          vertical-align: top
+          width: 50px
+          height: 50px
+          line-height: 50px
+          text-align: center
+          color: $main-color
+          cursor: pointer
+          &:hover
+            color: #fff
+            background: $main-color
+        .axis-controller.arrows
+          display: inline-block
+          vertical-align: top
+          width: 50px
+          height: 50px
+          .item
+            cursor: pointer
+            width: 100%
+            height: 23px
+            font-size: 14px
+            background: #eee
+            line-height: 23px
+            text-align: center
+            &:hover
+              background: $main-color
+              color: #fff
+
+    .header
+      height: 25px
+      background: $main-color
+      line-height: 25px
+      font-size: 12px
+      padding-left: 20px
+      color: #fff
+
+    .list
+      height: calc(100% - 425px)
+      overflow-y: scroll
+      .item
+        box-sizing: border-box
+        width: 100%
+        padding: 0 10px
+        font-size: 15px
+        height: 45px
+        line-height: 45px
+        color: #444
+        @include borderBottom(#eee)
+        &:hover
+          background: #eee
+        &.active
+          border-left: solid 3px $main-color
+      &.axis
+        $axis-controller-height: 40px
+        opacity: 1
+        text-align: left
+        width: 100%
+        .item
+          cursor: pointer
+          height: $axis-controller-height
+          line-height: $axis-controller-height
+          font-size: $font-size-1
+          .visible, .invisible
+            display: inline-block
+            vertical-align: top
+            text-align: center
+            width: 30px
+            font-size: inherit
+            line-height: inherit
+
+          .visible
+            display: none
+          .invisible
+            color: #ccc
+            display: inline-block
+
+          &.click
+            .visible
+              display: inline-block
+            .invisible
+              display: none
+
+          .weight
+            float: right
+            display: inline-block
+
+            vertical-align: top
+            font-size: 11px
+            line-height: $axis-controller-height - 20px
+            background: #223444
+            border-radius: 4px
+            color: #fff
+            padding: 0 6px
+            margin-top: 10px
+            height: $axis-controller-height - 20px
+            // testing
+            opacity: 0
+          .setting
+            float: right
+            display: inline-block
+            line-height: $axis-controller-height
+            vertical-align: top
+            font-size: 11px
+
+          .text
+            display: inline-block
+            vertical-align: top
+            font-size: inherit
+            line-height: inherit
+
+
+
+
+
+
+
+
+
+
+
+
 
