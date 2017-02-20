@@ -4,7 +4,7 @@ block content
     .nav
         .logo.i.material-icons whatshot
     .tabWrapper(oncontextmenu="return false")
-        .tab.open
+        .sideTab.open
             .spacer
             .tabItemWrapper
                 .selectBorder
@@ -35,10 +35,28 @@ block content
             .tabBottom
                 .text foxtail ©
                 .tabOpener.i.material-icons chevron_right
-        include sidetab/axisUsage
-        include sidetab/axisGeometry
+        .settingTab.open
+            .header-group
+                .title Axis
+                .closer.i.material-icons(onclick='openSettingTab()') close
+                .innerTab
+                    .item Usage
+                        .border
+                    .item Geometry
+                        .border
+                    .item Color
+                        .border
+                    .item Usage
+                        .border
+            .list.axis
+            .bottom
 
-        .settingTab#SettingTabNodesGeometry
+
+
+        //include sidetab/axisUsage
+        //include sidetab/axisGeometry
+
+        //.settingTab#SettingTabNodesGeometry
             .title
             .closer.i.material-icons(onclick='openSettingTab()') close
             .controller
@@ -53,7 +71,7 @@ block content
                     input(data='setting' type='range', data-name='Radvis NodeScale'
                     update='__RadvisController.updateNodes()' min='0' max='5' step=0.1 value=1.5).slider
                 .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        .settingTab#SettingTabColor
+        //.settingTab#SettingTabColor
             .title
 
     .actions
