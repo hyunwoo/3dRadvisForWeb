@@ -13,7 +13,9 @@ html
 
         link(rel='stylesheet', href='/stylesheets/component/component.slider.css')
 
+
         script(src='/jquery/dist/jquery.min.js')
+        script(src='/util.js')
 
         script(src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js")
         script(src='/three/examples/js/libs/dat.gui.min.js')
@@ -41,7 +43,7 @@ html
         //link(rel='stylesheet', href='/simple-color-picker/src/simple-color-picker.css')
 
     //(oncontextmenu="return false")
-    body
+    body(oncontextmenu="return false")
         .contextmenu-wrapper
             .contextmenu
         //.context-window-wrapper

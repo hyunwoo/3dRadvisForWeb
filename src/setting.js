@@ -10,10 +10,25 @@ let Setting = {
         Background: 0xffffff,
         Axis: {
             Color: 0xaaaaaa,
-            Controller: {
-                spacing: 5,
-                spacing_center: .5,
-                power: 5,
+            Geometry: {
+                spacing: {
+                    value: 5,
+                    type: 'slider',
+                    min: 1,
+                    max: 10,
+                },
+                spacing_center: {
+                    value: 5,
+                    type: 'slider',
+                    min: 1,
+                    max: 10,
+                },
+                power: {
+                    value: 5,
+                    type: 'slider',
+                    min: 1,
+                    max: 10,
+                },
             },
         },
         Geometry: {

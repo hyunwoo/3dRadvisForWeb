@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -9,30 +9,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var __data = void 0;
-var __Formatter = new function () {
-    /**
-     * @return {string}
-     */
-    this.number = function (val) {
-        if (_.isInteger(val)) {
-            return nFormatter(val);
-        } else {
-            return val.toFixed(2);
-        }
-    };
-
-    function nFormatter(num, digits) {
-        var si = [{ value: 1E18, symbol: "E" }, { value: 1E15, symbol: "P" }, { value: 1E12, symbol: "T" }, { value: 1E9, symbol: "G" }, { value: 1E6, symbol: "M" }, { value: 1E3, symbol: "k" }],
-            rx = /\.0+$|(\.[0-9]*[1-9])0+$/,
-            i;
-        for (i = 0; i < si.length; i++) {
-            if (num >= si[i].value) {
-                return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
-            }
-        }
-        return num.toFixed(digits).replace(rx, "$1");
-    }
-}();
 
 var DataAxis = function DataAxis(name, index, stats) {
     _classCallCheck(this, DataAxis);
@@ -45,6 +21,7 @@ var DataAxis = function DataAxis(name, index, stats) {
     this.index = index;
     this.stats = stats;
     this.power = 5;
+    this.highlight = false;
 };
 
 var DataSet = function () {
@@ -55,7 +32,7 @@ var DataSet = function () {
     }
 
     _createClass(DataSet, [{
-        key: "injectCsv",
+        key: 'injectCsv',
         value: function injectCsv(csv) {
             var rows = csv.split('\n');
             this.keys = rows[0].split(',');
@@ -112,7 +89,7 @@ var DataSet = function () {
             });
         }
     }], [{
-        key: "TransposData",
+        key: 'TransposData',
         value: function TransposData(matrix) {
             return _.map(matrix[0], function (col, i) {
                 return _.map(matrix, function (row) {

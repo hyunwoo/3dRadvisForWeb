@@ -5,7 +5,10 @@
       <w>firebase</w>
       <w>iconfont</w>
       <w>lodash</w>
+      <w>mousedown</w>
       <w>mouseevent</w>
+      <w>mousemove</w>
+      <w>mouseup</w>
       <w>radvis</w>
       <w>raycast</w>
       <w>renderers</w>

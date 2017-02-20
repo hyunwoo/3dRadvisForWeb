@@ -2,7 +2,7 @@ extends ../layout
 block content
 
     .tpp
-        .slider#slider-range
+        //.slider
             .point
                 .num 30
                     .pin
@@ -14,92 +14,24 @@ block content
             width: 300px;
             margin: 100px auto;
         }
+
+
     //<div class="range-slider" id="range-slider-1">
     //<span></span>
     //</div>
     //
     //<div class="test-result" id="test-result">0%</div>
-
+    script(src='/component/component.slider.js')
     script.
+        createSlide('.tpp', 0, 20, function (val) {
+            console.log(val);
+        });
 
-        function ranger(id) {
-            var range = document.getElementById(id);
+        createSlide('.tpp', 40, 80, function (val) {
+            console.log(val);
+        });
 
-            var $range = $(range);
-            var core = $range.find('.point');
-            var num = $range.find('.num');
-            var bar = $range.find('.bar');
-            var down = false;
-            /*$range.draggable({
-             containment : $('body'),
-             helper : 'clone',
-             });*/
-            $range.on('mousedown', function (e) {
-                down = true;
-                $(num).addClass('click')
-                updatePin(e);
-                return false;
-            })
+        createSlide('.tpp', 200, 20000, function (val) {
+            console.log(val);
+        });
 
-            $(document).on('mousemove', function (e) {
-                if (down) updatePin(e);
-
-            })
-
-            $(document).on('mouseup', function (e) {
-                $(num).removeClass('click')
-                down = false;
-
-            })
-            function updatePin(e) {
-                var x = e.originalEvent.clientX - $range.offset().left;
-                if (x < 0) x = 0;
-                else if (x > $range.width()) x = $range.width();
-                core.css('left', x);
-                bar.css('width',x);
-            }
-        }
-
-
-
-        function rangeSlider(id) {
-
-            var range = document.getElementById(id),
-                dragger = range.children[0],
-                draggerWidth = dragger.style.width, // width of your dragger
-                down = false,
-                rangeWidth, rangeLeft;
-
-            dragger.style.width = draggerWidth + 'px';
-            dragger.style.left = -draggerWidth + 'px';
-            dragger.style.marginLeft = (draggerWidth / 2) + 'px';
-
-
-            range.addEventListener("mousedown", function (e) {
-                rangeWidth = this.offsetWidth;
-                rangeLeft = this.offsetLeft;
-                down = true;
-                updateDragger(e);
-                return false;
-            });
-
-            document.addEventListener("mousemove", function (e) {
-                updateDragger(e);
-            });
-
-            document.addEventListener("mouseup", function () {
-                down = false;
-            });
-
-            function updateDragger(e) {
-                if (down && e.pageX >= rangeLeft && e.pageX <= (rangeLeft + rangeWidth)) {
-                    dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px';
-                }
-            }
-
-        }
-
-
-        // Run!
-
-        ranger('slider-range');

@@ -70,9 +70,9 @@ const __UI = {
             $item.click(function () {
                 _.forEach($headerItems, function (v) {
                     v.removeClass('active');
-                    createContentView(viewId);
                 });
                 $item.addClass('active');
+                createContentView(viewId);
             })
         });
         $headerItems[0].trigger('click');
@@ -92,35 +92,96 @@ const __UI = {
         let parent = $('<div class="list axis"></div>').appendTo($tabAxis);
 
         _.forEach(__data.axis, function (d, i) {
-            var $item = $('<div class="item click">' +
+            var $item = $('<div class="item">' +
                 '<div class="visible i material-icons">check_box</div>' +
                 '<div class="invisible i material-icons">check_box_outline_blank</div>' +
                 // '<div class="spacing">1.0</div>' +
                 '<div class="text">' + d.name + '</div>' +
                 '</div>');
+
             $item.appendTo(parent);
 
+            if (d.active) $item.addClass('click');
 
-            $item.on('contextmenu', function (evt) {
-                parent.find('.item').removeClass('active');
-                parent.find('.setting').remove();
-                $item.addClass('active');
-                $('<div class="setting i material-icons">settings</div>').appendTo($item);
-            });
+
+            /*$item.on('contextmenu', function (evt) {
+             parent.find('.item').removeClass('active');
+             parent.find('.setting').remove();
+             $item.addClass('active');
+             $('<div class="setting i material-icons">settings</div>').appendTo($item);
+             });*/
 
             $item.on('click', function (evt) {
                 d.active = !$item.hasClass('click');
                 if (!d.active) $item.removeClass('click');
                 else $item.addClass('click');
-
                 __RadvisController.adjustAxis();
             });
 
         });
     },
-
     createAxisGeometry: function () {
 
+        let graphicAxis = {};
+
+        // $sliders: this.$field.find('input[type="range"]'),
+        //     $slider_clear: this.$field.find('#axis-controller-clear'),
+        //     desc: {
+        //     $head: this.$field.find('.desc .head'),
+        //         $body: this.$field.find('.desc .body'),
+        // }
+
+        graphicAxis.$field = $('.graphic').appendTo(__UI['$settingTab']['$contents']);
+        $('<div class="controller">' +
+            '<div class="name"></div>' +
+            '<div class="component"></div>' +
+            /**/'<input class="slider" data="setting" type="range" data-name="Radvis NodeSize"' +
+            'update="__RadvisController.updateNodes()" min="5" max="100" step=0.1/>' +
+            '<div class="desc"></div>' +
+            '</div>'
+        ).appendTo(__UI['$settingTab']['$contents']);
+
+        // create to
+        //graphicAxis.desc.$head.html(d.name);
+        //graphicAxis.desc.$body.html(d.stats.toString());
+
+        return;
+
+        _.forEach(graphicAxis.$sliders, function (ranger) {
+            var $ranger = $(ranger);
+            console.log($ranger.attr('data-name'), d[$ranger.attr('data-name')]);
+            var val = d[$ranger.attr('data-name')];
+            $ranger.val(val == undefined ? 0 : val);
+        });
+
+        graphicAxis.$slider_clear.unbind();
+        graphicAxis.$slider_clear.click(function () {
+            console.log('clear')
+
+            _.forEach(graphicAxis.$sliders, function (ranger) {
+
+                var $ranger = $(ranger);
+                var key = $ranger.attr('data-name');
+                if (!_.isNil(Setting.Radvis.Axis.Controller[key]))
+                    $ranger.val(Setting.Radvis.Axis.Controller[key]);
+            });
+
+            graphicAxis.$sliders.trigger('change');
+            __RadvisController.adjustAxis();
+
+        });
+
+        graphicAxis.$sliders.unbind();
+        graphicAxis.$sliders.on('change', function () {
+            var $this = $(this);
+            var key = $this.attr('data-name');
+            var value = Number($this.val());
+            if (!_.isNumber(value)) alert('?');
+            console.log(key, value);
+            d[key] = value;
+
+            __RadvisController.adjustAxis();
+        });
     },
 
     createNodeGeometry: function () {

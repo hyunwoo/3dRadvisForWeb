@@ -60,6 +60,32 @@ block content
         //include sidetab/axisUsage
         //include sidetab/axisGeometry
 
+        .settingTab.open
+            .header-group
+                .title
+                .closer.i.material-icons(onclick='openSettingTab()') close
+                .innerTab
+                    .item.active Usage
+                        .border
+                    .item Geometry
+                        .border
+                    .item.disable Color
+                        .border
+            .contents
+                .graphics
+                .controller
+                    .name Node Size
+                    .component
+                        input(data='setting' type='range', data-name='Radvis NodeSize'
+                        update='__RadvisController.updateNodes()' min='5' max='100' step=0.1).slider
+                    .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                .controller
+                    .name Position Scaling
+                    .component
+                        input(data='setting' type='range', data-name='Radvis NodeScale'
+                        update='__RadvisController.updateNodes()' min='0' max='5' step=0.1 value=1.5).slider
+                    .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+
         //.settingTab#SettingTabNodesGeometry
             .title
             .closer.i.material-icons(onclick='openSettingTab()') close
