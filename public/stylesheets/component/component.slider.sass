@@ -94,3 +94,71 @@ input[type=range].slider
 
 
 
+$sliderTrack-height: 4px
+$sliderCore-size: 14px
+$sliderCore-position: $sliderCore-size/2 - $sliderTrack-height/2
+$pin-size: 20px
+
+
+
+.pin
+  width: $pin-size
+  height: $pin-size
+  border-radius: 50% 50% 50% 0
+  background: #89849b
+  position: absolute
+  left: 50%
+  top: 50%
+  margin: -30px 0 0 -10px
+  animation-name: bounce
+  animation-fill-mode: both
+  animation-duration: 1s
+  -ms-transform: scale(0, 0)
+  -webkit-transform: scale(0, 0)
+  transform: scale(0, 0)
+
+
+.pin.click
+
+  -ms-transform: scale(1, 1)  rotate(-45deg)
+  -webkit-transform: scale(1, 1)  rotate(-45deg)
+  transform: scale(1, 1)  rotate(-45deg)
+
+
+.sliderTrack
+  width: 100%
+  height: $sliderCore-size
+  position: relative
+  cursor: pointer
+  margin: $pin-size+10px auto 1em
+  //background-color: #223444
+
+.sliderTrack:before
+  content: ""
+  display: block
+  position: absolute
+  top: $sliderCore-position
+  left: 0
+  width: 100%
+  height: $sliderTrack-height
+  background-color: #777777
+
+.sliderTrack
+  .sliderCore
+    display: block
+    width: $sliderCore-size !important
+    border-radius: 50%
+    height: inherit
+    position: absolute
+    left: 0
+    z-index: 2
+    background-color: red
+    cursor: inherit
+
+
+/* Test result */
+.test-result
+  position: absolute
+  top: 10px
+  right: 10px
+  line-height: 1

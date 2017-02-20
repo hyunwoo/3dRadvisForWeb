@@ -1,6 +1,101 @@
 extends ../layout
 block content
 
-    .component
-        input(type='range')
 
+    .sliderTrack#slider-range
+        .sliderCore
+            .pin
+
+
+    //<div class="range-slider" id="range-slider-1">
+    //<span></span>
+    //</div>
+    //
+    //<div class="test-result" id="test-result">0%</div>
+
+    script.
+
+        function ranger(id) {
+
+            var range = document.getElementById(id);
+            var $range = $(range);
+            var core = $range.find('.sliderCore');
+            var pin = $range.find('.pin');
+            var down = false;
+
+            /*$range.draggable({
+                containment : $('body'),
+                helper : 'clone',
+            });*/
+
+            $range.on('mousedown', function (e) {
+                down = true;
+                $(pin).addClass('click')
+                updatePin(e);
+                return false;
+            })
+
+            $(document).on('mousemove', function (e) {
+                if(down) updatePin(e);
+
+            })
+
+            $(document).on('mouseup', function (e) {
+                $(pin).removeClass('click')
+                down = false;
+
+            })
+
+            function updatePin(e) {
+                if(down) {
+
+                    if(e.offsetX > 0 && e.offsetX < $range.width())core.css('left', e.offsetX);
+                }
+                else down = false;
+                console.log(e)
+            }
+        }
+
+
+
+        function rangeSlider(id) {
+
+            var range = document.getElementById(id),
+                dragger = range.children[0],
+                draggerWidth = dragger.style.width, // width of your dragger
+                down = false,
+                rangeWidth, rangeLeft;
+
+            dragger.style.width = draggerWidth + 'px';
+            dragger.style.left = -draggerWidth + 'px';
+            dragger.style.marginLeft = (draggerWidth / 2) + 'px';
+
+
+            range.addEventListener("mousedown", function (e) {
+                rangeWidth = this.offsetWidth;
+                rangeLeft = this.offsetLeft;
+                down = true;
+                updateDragger(e);
+                return false;
+            });
+
+            document.addEventListener("mousemove", function (e) {
+                updateDragger(e);
+            });
+
+            document.addEventListener("mouseup", function () {
+                down = false;
+            });
+
+            function updateDragger(e) {
+                if (down && e.pageX >= rangeLeft && e.pageX <= (rangeLeft + rangeWidth)) {
+                    dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px';
+                }
+            }
+
+        }
+
+
+        // Run!
+
+        ranger('slider-range');
