@@ -5,7 +5,14 @@ block content
         .logo.i.material-icons whatshot
     .tabWrapper(oncontextmenu="return false")
         .sideTab.open
+            .tabBottom
+                .text foxtail ©
+                .tabOpener.i.material-icons chevron_right
+        //.sideTab.open
             .spacer
+            .tabBottom
+                .text foxtail ©
+                .tabOpener.i.material-icons chevron_right
             .tabItemWrapper
                 .selectBorder
                 .tabItem.i.material-icons home
@@ -32,23 +39,20 @@ block content
                 .text Cluster Analytics
             .separater
                 .text Time Series Setting
-            .tabBottom
-                .text foxtail ©
-                .tabOpener.i.material-icons chevron_right
-        .settingTab.open
+
+        .settingTab
             .header-group
                 .title Axis
-                .closer.i.material-icons(onclick='openSettingTab()') close
+                .closer.i.material-icons close
                 .innerTab
-                    .item Usage
+                    .item.active Usage
                         .border
                     .item Geometry
                         .border
-                    .item Color
+                    .item.disable Color
                         .border
-                    .item Usage
-                        .border
-            .list.axis
+            .contents
+                .list.axis
             .bottom
 
 
@@ -110,33 +114,7 @@ block content
         }
 
     script.
-        $('.tabOpener').click(openTab);
 
-        function openTab(){
-            if(!$('.tab').hasClass('open')) $('.tab').addClass('open');
-            else $('.tab').removeClass('open');
-        }
-
-        $('.tabItemWrapper').click(openSettingTab)
-
-        function openSettingTab(){
-            $('.tabItemWrapper').removeClass('click')
-            var $this = $(this);
-            $this.addClass('click')
-            var $target = $('#'+$this.attr('for'));
-            console.log($target);
-
-
-            if(!$target.hasClass('open')) {
-                $('.settingTab').removeClass('open');
-                $target.addClass('open');
-                $target.find('.title').html($this.find('.tabItemName').html())
-            } else {
-                $('.settingTab').removeClass('open');
-                $this.removeClass('click')
-            }
-
-        }
 
     style.
 

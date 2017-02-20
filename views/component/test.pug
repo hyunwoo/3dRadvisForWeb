@@ -1,12 +1,17 @@
 extends ../layout
 block content
 
+    .tpp
+        .slider#slider-range
+            .point
+                .pin
 
-    .sliderTrack#slider-range
-        .sliderCore
-            .pin
 
-
+    style.
+        .tpp {
+            width: 300px;
+            margin: 100px auto;
+        }
     //<div class="range-slider" id="range-slider-1">
     //<span></span>
     //</div>
@@ -16,18 +21,15 @@ block content
     script.
 
         function ranger(id) {
-
             var range = document.getElementById(id);
             var $range = $(range);
-            var core = $range.find('.sliderCore');
+            var core = $range.find('.point');
             var pin = $range.find('.pin');
             var down = false;
-
             /*$range.draggable({
-                containment : $('body'),
-                helper : 'clone',
-            });*/
-
+             containment : $('body'),
+             helper : 'clone',
+             });*/
             $range.on('mousedown', function (e) {
                 down = true;
                 $(pin).addClass('click')
@@ -36,7 +38,7 @@ block content
             })
 
             $(document).on('mousemove', function (e) {
-                if(down) updatePin(e);
+                if (down) updatePin(e);
 
             })
 
@@ -45,14 +47,11 @@ block content
                 down = false;
 
             })
-
             function updatePin(e) {
-                if(down) {
-
-                    if(e.offsetX > 0 && e.offsetX < $range.width())core.css('left', e.offsetX);
-                }
-                else down = false;
-                console.log(e)
+                var x = e.originalEvent.clientX - $range.offset().left;
+                if (x < 0) x = 0;
+                else if (x > $range.width()) x = $range.width();
+                core.css('left', x);
             }
         }
 

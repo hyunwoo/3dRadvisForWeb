@@ -64,6 +64,8 @@ $inner-tab-height: 35px
           height: 3px
           width: 100%
           background: $main-inv-color
+      .item.disable
+        text-decoration: line-through
 
   @include borderRight($border-color)
   &.open
@@ -151,87 +153,89 @@ $inner-tab-height: 35px
     padding-left: 20px
     color: #fff
 
-  .list
+  .contents
     height: calc(100% - #{$tab-item-height} * 2 - #{$inner-tab-height} - 5px)
-    overflow-y: scroll
-    .item
-      box-sizing: border-box
-      width: 100%
-      padding: 0 10px
-      font-size: 15px
-      height: 45px
-      line-height: 45px
-      color: $tab-item-color
-      @include borderBottom(#eee)
-      &:hover
-        background: #eee
-      &.active
-        border-left: solid 3px $main-color
-    &.axis
-      $axis-controller-height: 40px
-      opacity: 1
-      text-align: left
-      width: 100%
-      color: $tab-item-color
+    .list
+      height: 100%
+      overflow-y: scroll
       .item
-        cursor: pointer
-        height: $axis-controller-height
-        line-height: $axis-controller-height
-        font-size: $font-size-1
-        .visible, .invisible
-          display: inline-block
-          vertical-align: top
-          text-align: center
-          width: 30px
-          font-size: inherit
-          line-height: inherit
-
-        .visible
-          display: none
-        .invisible
-          color: #ccc
-          display: inline-block
-
-        &.click
-          .visible
-            display: inline-block
-          .invisible
-            display: none
-
-        .weight
-          float: right
-          display: inline-block
-
-          vertical-align: top
-          font-size: 11px
-          line-height: $axis-controller-height - 20px
-          background: #223444
-          border-radius: 4px
-          color: #fff
-          padding: 0 6px
-          margin-top: 10px
-          height: $axis-controller-height - 20px
-          // testing
-          opacity: 0
-        .setting
-          float: right
-          display: inline-block
+        box-sizing: border-box
+        width: 100%
+        padding: 0 10px
+        font-size: 15px
+        height: 45px
+        line-height: 45px
+        color: $tab-item-color
+        @include borderBottom(#eee)
+        &:hover
+          background: #eee
+        &.active
+          border-left: solid 3px $main-color
+      &.axis
+        $axis-controller-height: 40px
+        opacity: 1
+        text-align: left
+        width: 100%
+        color: $tab-item-color
+        .item
+          cursor: pointer
+          height: $axis-controller-height
           line-height: $axis-controller-height
-          vertical-align: top
-          font-size: 11px
+          font-size: $font-size-1
+          .visible, .invisible
+            display: inline-block
+            vertical-align: top
+            text-align: center
+            width: 30px
+            font-size: inherit
+            line-height: inherit
 
-        .text
-          display: inline-block
-          vertical-align: top
-          font-size: inherit
-          line-height: inherit
+          .visible
+            display: none
+          .invisible
+            color: #ccc
+            display: inline-block
+
+          &.click
+            .visible
+              display: inline-block
+            .invisible
+              display: none
+
+          .weight
+            float: right
+            display: inline-block
+
+            vertical-align: top
+            font-size: 11px
+            line-height: $axis-controller-height - 20px
+            background: #223444
+            border-radius: 4px
+            color: #fff
+            padding: 0 6px
+            margin-top: 10px
+            height: $axis-controller-height - 20px
+            // testing
+            opacity: 0
+          .setting
+            float: right
+            display: inline-block
+            line-height: $axis-controller-height
+            vertical-align: top
+            font-size: 11px
+
+          .text
+            display: inline-block
+            vertical-align: top
+            font-size: inherit
+            line-height: inherit
   .bottom
-    height : $tab-item-height
-    background : #fafafa
+    height: $tab-item-height
+    background: #fafafa
     position: absolute
-    bottom : 0
+    bottom: 0
     left: 0
-    width : 100%
+    width: 100%
     @include borderTop($border-color)
 
 

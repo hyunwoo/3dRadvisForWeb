@@ -175,37 +175,13 @@ function createAxisGeometry() {
     });
 }
 
-function createAxisVisibility() {
-    var $tabAxis = $('#SettingTabAxisVisibility');
-    var parent = $tabAxis.find('.list');
-
-    _.forEach(__data.axis, function (d, i) {
-        var $item = $('<div class="item click">' + '<div class="visible i material-icons">check_box</div>' + '<div class="invisible i material-icons">check_box_outline_blank</div>' +
-        // '<div class="spacing">1.0</div>' +
-        '<div class="text">' + d.name + '</div>' + '</div>');
-        $item.appendTo(parent);
-
-        $item.on('contextmenu', function (evt) {
-            parent.find('.item').removeClass('active');
-            parent.find('.setting').remove();
-            $item.addClass('active');
-            $('<div class="setting i material-icons">settings</div>').appendTo($item);
-        });
-
-        $item.on('click', function (evt) {
-            d.active = !$item.hasClass('click');
-            if (!d.active) $item.removeClass('click');else $item.addClass('click');
-
-            __RadvisController.adjustAxis();
-        });
-    });
-}
-
 $.get('/data/credos_testing.csv', function (data) {
     __data = new DataSet(data);
-    createAxisVisibility();
+    //createAxisVisibility();
     // Important! : Visualization Controlled based on Data
     createRadvis();
+    __UI.injectData(__data);
+    __UI.createSideTab();
     // create2DViewer();
     //createParallel();
 });
