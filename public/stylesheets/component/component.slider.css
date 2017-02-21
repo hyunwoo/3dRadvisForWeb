@@ -5,7 +5,7 @@
 
 .component {
   position: relative;
-  padding: 20px; }
+  padding: 20px 20px 40px 20px; }
   .component .name {
     position: relative;
     top: 0;
@@ -54,7 +54,7 @@
     .component .slider .bar {
       position: absolute;
       left: 0;
-      background: #607d8b;
+      background: #2973FF;
       height: 3px;
       top: 4.5px;
       border-radius: 1.5px; }
@@ -68,17 +68,17 @@
       left: 0;
       margin-left: -6px;
       z-index: 2;
-      background-color: #455A64;
+      background-color: #286fe8;
       cursor: inherit; }
       .component .slider .point .num {
         position: absolute;
         text-align: center;
         z-index: 1;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        left: -9px;
-        top: -42.42px;
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        left: -7px;
+        top: -36.764px;
         font-size: 13px;
         font-weight: 700;
         -ms-transform: scale(0, 0) rotate(0);
@@ -88,9 +88,9 @@
         color: #fff; }
         .component .slider .point .num .pin {
           pointer-events: none;
-          width: 30px;
-          height: 30px;
-          background: #607d8b;
+          width: 26px;
+          height: 26px;
+          background: rgba(0, 0, 0, 0.6);
           border-radius: 50% 50% 50% 0;
           top: 0;
           position: absolute;

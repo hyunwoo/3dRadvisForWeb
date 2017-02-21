@@ -6,9 +6,8 @@
   width: 100vw;
   height: 50px;
   line-height: 50px;
-  background-color: #fff;
-  z-index: 1001;
-  border-bottom: solid 1px #e1e1e1; }
+  background-color: #286fe8;
+  z-index: 1001; }
   .nav .logo {
     position: absolute;
     width: 60px;
@@ -16,7 +15,7 @@
     line-height: 50px;
     font-size: 16px;
     cursor: pointer;
-    color: #455A64; }
+    color: #fff; }
 
 .tabWrapper {
   position: fixed;
@@ -76,7 +75,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        background-color: #455A64;
+        background-color: #286fe8;
         width: 4px;
         height: 100%;
         transition-duration: 0.3s; }
@@ -104,7 +103,7 @@
       .tabWrapper .sideTab .tabItemWrapper:hover {
         background-color: #CFD8DC; }
     .tabWrapper .sideTab .tabItemWrapper.first {
-      color: #455A64;
+      color: #286fe8;
       background-color: #eee; }
     .tabWrapper .sideTab .tabBottom {
       position: absolute;

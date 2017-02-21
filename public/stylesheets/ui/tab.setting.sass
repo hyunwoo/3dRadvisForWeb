@@ -189,13 +189,16 @@ $inner-tab-height: 35px
             vertical-align: top
             text-align: center
             width: 30px
-            font-size: inherit
+            font-size: $icon-font-size-1
             line-height: inherit
+            padding-right: 4px
+            font-weight: $font-weight-1 !important
 
           .visible
             display: none
+            color: $active-item-color
           .invisible
-            color: #ccc
+            color: $inactive-item-color
             display: inline-block
 
           &.click

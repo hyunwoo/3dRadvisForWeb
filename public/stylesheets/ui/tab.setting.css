@@ -7,13 +7,13 @@
   position: absolute;
   display: inline-block;
   margin-left: -50px;
-  width: 370px;
+  width: 330px;
   height: calc(100% - 50px);
   background-color: #fff;
   transition-duration: 0.3s;
   border-right: solid 1px #e1e1e1; }
   .settingTab .header-group {
-    background: #607d8b; }
+    background: #2973FF; }
     .settingTab .header-group .title {
       box-sizing: border-box;
       font-size: 17px;
@@ -77,7 +77,7 @@
       font-size: 13px; }
   .settingTab .header {
     height: 25px;
-    background: #455A64;
+    background: #286fe8;
     line-height: 25px;
     font-size: 12px;
     padding-left: 20px;
@@ -126,11 +126,11 @@
           height: 50px;
           line-height: 50px;
           text-align: center;
-          color: #455A64;
+          color: #286fe8;
           cursor: pointer; }
           .settingTab .contents .graphic .axis-controllers .axis-controller.clear:hover {
             color: #fff;
-            background: #455A64; }
+            background: #286fe8; }
         .settingTab .contents .graphic .axis-controllers .axis-controller.arrows {
           display: inline-block;
           vertical-align: top;
@@ -145,7 +145,7 @@
             line-height: 23px;
             text-align: center; }
             .settingTab .contents .graphic .axis-controllers .axis-controller.arrows .item:hover {
-              background: #455A64;
+              background: #286fe8;
               color: #fff; }
     .settingTab .contents .list {
       height: 100%;
@@ -162,7 +162,7 @@
         .settingTab .contents .list .item:hover {
           background: #eee; }
         .settingTab .contents .list .item.active {
-          border-left: solid 3px #455A64; }
+          border-left: solid 3px #286fe8; }
       .settingTab .contents .list.axis {
         opacity: 1;
         text-align: left;
@@ -178,10 +178,13 @@
             vertical-align: top;
             text-align: center;
             width: 30px;
-            font-size: inherit;
-            line-height: inherit; }
+            font-size: 16px;
+            line-height: inherit;
+            padding-right: 4px;
+            font-weight: 100 !important; }
           .settingTab .contents .list.axis .item .visible {
-            display: none; }
+            display: none;
+            color: #494949; }
           .settingTab .contents .list.axis .item .invisible {
             color: #ccc;
             display: inline-block; }

@@ -93,8 +93,8 @@ const __UI = {
 
         _.forEach(__data.axis, function (d, i) {
             var $item = $('<div class="item">' +
-                '<div class="visible i material-icons">check_box</div>' +
-                '<div class="invisible i material-icons">check_box_outline_blank</div>' +
+                '<div class="visible i material-icons">radio_button_checked</div>' +
+                '<div class="invisible i material-icons">radio_button_unchecked</div>' +
                 // '<div class="spacing">1.0</div>' +
                 '<div class="text">' + d.name + '</div>' +
                 '</div>');
