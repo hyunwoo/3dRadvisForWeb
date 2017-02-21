@@ -19,12 +19,11 @@ function createComponentSlider(parent, option, onChange) {
     var num = $('<div class="num">30' + '<div class="pin"></div>' + '</div>').appendTo(core);
 
     var bar = $('<div class="bar"></div>').appendTo($range);
-
+    var currentValue = 0;
     __ComponentUtil.createOptions($range, ['min', 'max'], option);
 
-    var currentValue = 0;
-
     component.appendTo($(parent));
+
     var down = false;
     $range.on('mousedown', function (e) {
         down = true;
@@ -47,15 +46,21 @@ function createComponentSlider(parent, option, onChange) {
         var x = e.originalEvent.clientX - $range.offset().left;
         if (x < 0) x = 0;else if (x > $range.width()) x = $range.width();
         var width = $range.width();
-        currentValue = x / width * (option.max - option.min) + option.min;
+        var currentValue = x / width * (option.max - option.min) + option.min;
+
+        setDisplayObjects(x, currentValue);
+    }
+
+    function setDisplayObjects(x, currentValue) {
         num.contents().filter(function () {
             return this.nodeType == 3;
         })[0].nodeValue = __Formatter.number(Math.floor(currentValue));
-
         //num.text(currentValue);
         core.css('left', x);
         bar.css('width', x);
     }
+
+    setDisplayObjects(50, option.value);
 }
 
 // Run!

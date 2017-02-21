@@ -1,7 +1,7 @@
 extends ../layout
 block content
 
-    .tpp
+    .sliderWrapper
         //.component
             .name Slider Name
             .slider
@@ -14,34 +14,27 @@ block content
 
             .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
-    style.
-        .tpp {
-            width: 300px;
-            margin: 100px auto;
-        }
+    .dropDonwWrapper
+        .component
+            .name Dropdown Name
+            .dropDown
+                .content DropDown list
+                .arrow.i.material-icons arrow_drop_down
+            .dropDownList
+
+            .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
 
-    //<div class="range-slider" id="range-slider-1">
-    //<span></span>
-    //</div>
-    //
-    //<div class="test-result" id="test-result">0%</div>
+
+
     script.
-        createComponentSlider('.tpp', {
+        createComponentSlider('.sliderWrapper', {
             name: 'Slider Name',
             desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             min: 20,
             max: 100,
-            current: 30,
+            value: 50,
         }, function (val) {
-            console.log(val);
-        });
-
-        createComponentSlider('.tpp', 40, 80, function (val) {
-            console.log(val);
-        });
-
-        createComponentSlider('.tpp', 200, 20000, function (val) {
             console.log(val);
         });
 

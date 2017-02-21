@@ -1,0 +1,44 @@
+@import "../util"
+@import "../values"
+
+.dropDonwWrapper
+  width: 300px
+  margin: 100px auto
+
+$dropDown-height: 38px
+$dropDown-padding: 10px
+
+.component
+  .dropDown
+    position: relative
+    width: 100%
+    height: $dropDown-height
+    line-height: $dropDown-height
+    background-color: #fff
+    margin: 20px auto
+    cursor: default
+    border: solid 2px $main-color
+
+    .dropDownList
+      margin-top: 2px
+      width: 100%
+      height: 100px
+      background-color: #f00
+
+    .content
+      font-size: $font-size-1
+      font-weight: $font-weight-7
+      padding-left: $dropDown-padding
+      line-height: inherit
+      color: $tab-item-color
+
+    .arrow
+      position: absolute
+      top: 0
+      right: $dropDown-padding
+      line-height: inherit
+      font-size: $icon-font-size-3
+      color: $main-color
+
+
+

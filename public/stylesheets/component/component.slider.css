@@ -1,4 +1,8 @@
 /* W3C compliant browsers */
+.sliderWrapper {
+  width: 300px;
+  margin: 100px auto; }
+
 .component {
   position: relative;
   padding: 20px; }
@@ -13,7 +17,7 @@
     bottom: 0;
     left: 0;
     font-size: 13px;
-    color: #737373; }
+    color: #575757; }
   .component .slider {
     width: 100%;
     height: 12px;
@@ -26,13 +30,13 @@
       top: 16px;
       left: 0;
       font-size: 13px;
-      color: #737373; }
+      color: #575757; }
     .component .slider .max {
       top: 16px;
       position: absolute;
       right: 0;
       font-size: 13px;
-      color: #737373; }
+      color: #575757; }
     .component .slider:before {
       content: "";
       display: block;
