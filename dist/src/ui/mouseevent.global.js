@@ -58,7 +58,6 @@ $(function () {
 });
 $(document).bind("mousedown", function (evt) {
     evt = evt.originalEvent;
-    return;
     if (evt.which == 3) {
         var $target = $(evt.target);
         console.log($target);
