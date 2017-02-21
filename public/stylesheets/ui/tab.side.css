@@ -68,8 +68,10 @@
       text-align: center;
       cursor: pointer;
       position: relative; }
-      .tabWrapper .sideTab .tabItemWrapper.click .selectBorder {
-        opacity: 1; }
+      .tabWrapper .sideTab .tabItemWrapper.click {
+        color: #286fe8; }
+        .tabWrapper .sideTab .tabItemWrapper.click .selectBorder {
+          opacity: 1; }
       .tabWrapper .sideTab .tabItemWrapper .selectBorder {
         opacity: 0;
         position: absolute;
@@ -101,7 +103,7 @@
         padding-left: 5px;
         font-weight: 400; }
       .tabWrapper .sideTab .tabItemWrapper:hover {
-        background-color: #CFD8DC; }
+        background-color: #ebf6ff; }
     .tabWrapper .sideTab .tabItemWrapper.first {
       color: #286fe8;
       background-color: #eee; }
