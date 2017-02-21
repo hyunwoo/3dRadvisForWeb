@@ -12,7 +12,7 @@ $pin-num-width: 20px
 
 .component
   position: relative
-  padding: 0 20px
+  padding: 20px
 
   .name
     position: relative
@@ -33,7 +33,7 @@ $pin-num-width: 20px
     position: relative
     cursor: pointer
     margin: $point-size auto 30px
-
+    left: 0
     .min
       position: absolute
       top: $point-size + 4px
@@ -73,7 +73,8 @@ $pin-num-width: 20px
       border-radius: 50%
       height: inherit
       position: absolute
-      left: -$point-size-half
+      left: 0
+      margin-left: -$point-size-half
       z-index: 2
       background-color: $main-color
       cursor: inherit

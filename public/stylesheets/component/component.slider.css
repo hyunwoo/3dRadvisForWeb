@@ -1,7 +1,7 @@
 /* W3C compliant browsers */
 .component {
   position: relative;
-  padding: 0 20px; }
+  padding: 20px; }
   .component .name {
     position: relative;
     top: 0;
@@ -19,7 +19,8 @@
     height: 12px;
     position: relative;
     cursor: pointer;
-    margin: 12px auto 30px; }
+    margin: 12px auto 30px;
+    left: 0; }
     .component .slider .min {
       position: absolute;
       top: 16px;
@@ -56,7 +57,8 @@
       border-radius: 50%;
       height: inherit;
       position: absolute;
-      left: -6px;
+      left: 0;
+      margin-left: -6px;
       z-index: 2;
       background-color: #455A64;
       cursor: inherit; }
