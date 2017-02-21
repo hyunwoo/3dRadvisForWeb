@@ -1,44 +1,82 @@
 @import "../util"
 @import "../values"
 
-.dropDonwWrapper
+.dropDownWrapper
   width: 300px
   margin: 100px auto
 
-$dropDown-height: 38px
+$dropDown-height: 42px
+$dropDown-list-height: $dropDown-height - 2px
 $dropDown-padding: 10px
+$dropDown-content-color: #5e5e5e
+
 
 .component
+  position: relative
   .dropDown
     position: relative
+    box-sizing: border-box
     width: 100%
     height: $dropDown-height
     line-height: $dropDown-height
     background-color: #fff
-    margin: 20px auto
+    margin: 10px auto 15px
     cursor: default
     border: solid 2px $main-color
 
-    .dropDownList
-      margin-top: 2px
-      width: 100%
-      height: 100px
-      background-color: #f00
 
     .content
       font-size: $font-size-1
       font-weight: $font-weight-7
       padding-left: $dropDown-padding
       line-height: inherit
-      color: $tab-item-color
+      color: $main-color
 
     .arrow
       position: absolute
-      top: 0
+      top: -1px
       right: $dropDown-padding
       line-height: inherit
       font-size: $icon-font-size-3
       color: $main-color
+      @include rotate(0deg)
+
+    .dropDownList
+      position: absolute
+      top: $dropDown-height + 2px
+      left: -2px
+      width: calc(100% + 2px)
+      border: solid 1px $main-color
+      font-size: $font-size-1
+      font-weight: $font-weight-4
+      color: $tab-item-color
+      background-color: #ffffff
+      z-index: 1
+      overflow-y: hidden
+      height: 0
+      pointer-events: none
+      opacity: 0
+      transition: 0.17s
+
+      .list
+        box-sizing: border-box
+        width: 100%
+        height: $dropDown-height
+        line-height: $dropDown-list-height
+        padding-left: $dropDown-padding
+        cursor: pointer
+        &:hover
+          background-color: #eee
+    &.click
+      .dropDownList
+        height : 200px
+        opacity: 1
+        pointer-events: all
+
+      .arrow
+        @include rotate(180deg)
+
+
 
 
 

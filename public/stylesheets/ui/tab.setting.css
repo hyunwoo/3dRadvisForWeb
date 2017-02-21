@@ -154,7 +154,7 @@
         font-size: 15px;
         height: 45px;
         line-height: 45px;
-        color: #575757;
+        color: #737373;
         border-bottom: solid 1px #eee; }
         .settingTab .contents .list .item:hover {
           background: #eee; }
@@ -164,7 +164,7 @@
         opacity: 1;
         text-align: left;
         width: 100%;
-        color: #575757; }
+        color: #737373; }
         .settingTab .contents .list.axis .item {
           cursor: pointer;
           height: 40px;

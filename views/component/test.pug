@@ -14,13 +14,17 @@ block content
 
             .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
-    .dropDonwWrapper
-        .component
+    .dropDownWrapper
+        //.component
             .name Dropdown Name
             .dropDown
                 .content DropDown list
                 .arrow.i.material-icons arrow_drop_down
-            .dropDownList
+                .dropDownList
+                    .list List Example 1
+                    .list List Example 2
+                    .list List Example 3
+
 
             .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
@@ -34,6 +38,15 @@ block content
             min: 20,
             max: 100,
             value: 50,
+        }, function (val) {
+            console.log(val);
+        });
+
+        createComponentDropDown('.dropDownWrapper', {
+            name: 'Slider Name',
+            desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            listItem: ['List Example 1', 'List Example 2', 'List Example 3'],
+            selected: 'List Example 2',
         }, function (val) {
             console.log(val);
         });
