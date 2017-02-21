@@ -2,7 +2,8 @@
  * Created by hyunwoo on 2017-02-20.
  */
 function createSlide(parent, min, max, onChange) {
-    var $range = $('<div class="slider"></div>');
+    var component = $('<div class="component"></div>');
+    var $range = $('<div class="slider"></div>').appendTo(component);
     var core = $('<div class="point"></div>').appendTo($range);
     var num = $('<div class="num">30' +
         '<div class="pin"></div>' +
@@ -10,7 +11,7 @@ function createSlide(parent, min, max, onChange) {
     var bar = $('<div class="bar"></div>').appendTo($range);
     var currentValue = 0;
 
-    $range.appendTo($(parent));
+    component.appendTo($(parent));
     var down = false;
     $range.on('mousedown', function (e) {
         down = true;
@@ -29,7 +30,6 @@ function createSlide(parent, min, max, onChange) {
         if (down)
             onChange(currentValue);
         down = false;
-
 
     });
     function updatePin(e) {
