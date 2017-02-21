@@ -18,8 +18,10 @@ var __UI = {
         __UI['$settingTab']['$bottom'] = $('.settingTab .bottom');
 
         _.forEach(__UI.SideTab, function (v) {
+            var $item = void 0;
             if (!_.isNil(v.Type) && v.Type == 'Button') {
-                var $item = $('<div class="tabItemWrapper">' + '<div class="selectBorder"></div>' + '<div class="tabItem i material-icons">' + v.Icon + '</div>' + '<div class="tabItemName">' + v.Name + '</div>' + '</div>').appendTo($sideTab);
+                $item = $('<div class="tabItemWrapper">' + '<div class="selectBorder"></div>' + '<div class="tabItem i material-icons">' + v.Icon + '</div>' + '<div class="tabItemName">' + v.Name + '</div>' + '</div>').appendTo($sideTab);
+
                 $item['_data'] = v;
                 $item.click(function () {
                     if ($item.hasClass('click')) {
@@ -33,10 +35,13 @@ var __UI = {
                     }
                 });
             } else {
-                var _$item = $('<div class="' + v.Type + '"></div>');
-                if (!_.isNil(v.Text)) $('<div class="text">' + v.Text + '</div>').appendTo(_$item);
-                _$item.appendTo($sideTab);
+                $item = $('<div class="' + v.Type + '"></div>');
+                if (!_.isNil(v.Text)) $('<div class="text">' + v.Text + '</div>').appendTo($item);
+                $item.appendTo($sideTab);
             }
+
+            console.log('append class', v.AppendClass);
+            if (!_.isNil(v.AppendClass)) $item.addClass(v.AppendClass);
         });
         __UI['$settingTab']['$header'].find('.closer').click(function () {
             $('.tabItemWrapper').removeClass('click');
@@ -91,6 +96,10 @@ var __UI = {
 
             if (d.active) $item.addClass('click');
 
+            __ContextMenu.addContextItem($item, 'aa', function () {});
+            __ContextMenu.addContextItem($item, 'bb', function () {});
+            __ContextMenu.addContextItem($item, 'cc', function () {});
+
             /*$item.on('contextmenu', function (evt) {
              parent.find('.item').removeClass('active');
              parent.find('.setting').remove();
@@ -134,7 +143,6 @@ var __UI = {
                 v.value = val;
             });
         });
-
         $head.html(axisName);
         $body.html(currentAxis.stats.toString());
     },
@@ -163,7 +171,7 @@ function clickSideTabItem() {}
         Type: 'spacer'
     });
     __UI.SideTab.push({
-        Type: 'Button', Name: 'Overview', Icon: 'home'
+        Type: 'Button', Name: 'Overview', Icon: 'home', AppendClass: 'overview'
     });
     __UI.SideTab.push({
         Type: 'separater', Text: 'Global Setting'

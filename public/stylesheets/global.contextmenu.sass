@@ -1,5 +1,6 @@
 @import "values"
 
+$context-menu-header-size: 30px
 .contextmenu-wrapper
   // must top
   position: fixed
@@ -20,25 +21,25 @@
     border: solid 1px #ccc
     .header
       box-sizing: border-box
-      height: 25px
+      height: $context-menu-header-size
       width: 100%
-      font-size: 12px
-      padding-left: 15px
-      line-height: 25px
-      background: #dddddd
-      color: #444444
-      font-weight: 800
+      font-size: $font-size-1
+      padding-left: 10px
+      line-height: $context-menu-header-size
+      background: $main-background-color
+      color: $main-inv-color
+      font-weight: $font-weight-4
 
     .item
-      min-height: 40px
-      line-height: 40px
+      min-height: 30px
+      line-height: 30px
       padding-left: 10px
-      font-size: 20px
+      font-size: $font-size-1
       cursor: pointer
+      color : $active-item-color
       transition: background .15s
       &:hover
-        background: #666666
-        color: #ffffff
+        background: $hover-color
 
 .context-window-wrapper
   position: fixed

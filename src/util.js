@@ -7,7 +7,7 @@ let __Formatter = new function () {
      */
     this.number = function (val) {
         if (_.isInteger(val)) {
-            return nFormatter(val,1);
+            return nFormatter(val, 1);
         } else {
             return val.toFixed(2);
         }

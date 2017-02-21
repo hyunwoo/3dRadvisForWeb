@@ -104,8 +104,7 @@
         font-weight: 400; }
       .tabWrapper .sideTab .tabItemWrapper:hover {
         background-color: #ebf6ff; }
-    .tabWrapper .sideTab .tabItemWrapper.first {
-      color: #286fe8;
+    .tabWrapper .sideTab .tabItemWrapper.overview {
       background-color: #eee; }
     .tabWrapper .sideTab .tabBottom {
       position: absolute;

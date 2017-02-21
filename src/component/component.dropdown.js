@@ -18,7 +18,6 @@ function createComponentDropDown(parent, option, onChange){
         var item =  $('<div class="listItem">' + d +'</div>');
         item.appendTo($dropDownList);
         item.click(clickList)
-
     });
 
     __ComponentUtil.createDesc(component, option);

@@ -17,24 +17,24 @@
     border: solid 1px #ccc; }
     .contextmenu-wrapper .contextmenu .header {
       box-sizing: border-box;
-      height: 25px;
+      height: 30px;
       width: 100%;
-      font-size: 12px;
-      padding-left: 15px;
-      line-height: 25px;
-      background: #dddddd;
-      color: #444444;
-      font-weight: 800; }
-    .contextmenu-wrapper .contextmenu .item {
-      min-height: 40px;
-      line-height: 40px;
+      font-size: 13px;
       padding-left: 10px;
-      font-size: 20px;
+      line-height: 30px;
+      background: #2973FF;
+      color: #fff;
+      font-weight: 400; }
+    .contextmenu-wrapper .contextmenu .item {
+      min-height: 30px;
+      line-height: 30px;
+      padding-left: 10px;
+      font-size: 13px;
       cursor: pointer;
+      color: #494949;
       transition: background .15s; }
       .contextmenu-wrapper .contextmenu .item:hover {
-        background: #666666;
-        color: #ffffff; }
+        background: #ebf6ff; }
 
 .context-window-wrapper {
   position: fixed;
