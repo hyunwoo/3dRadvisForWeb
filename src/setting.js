@@ -8,32 +8,57 @@ let Setting = {
         NodeSize: 10,
         NodeScale: 1.5,
         Background: 0xffffff,
-        Axis: {
-            Color: 0xaaaaaa,
-            Geometry: { // controller
-                spacing: {
+        Node: {
+            Geometry: { // component
+                size: {
                     value: 5,
                     type: 'slider',
+                    name: 'Node Size',
+                    desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    min: 1,
+                    max: 20,
+                    step: 0.1
+                },
+                scaling: {
+                    value: 2,
+                    type: 'slider',
+                    name: 'Node Position Scaling',
+                    desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    min: 0,
+                    max: 10,
+                    step: 0.1
+                },
+            },
+        },
+        Axis: {
+            Color: 0xaaaaaa,
+            Geometry: { // component
+                spacing: {
+                    value: 2,
+                    type: 'slider',
                     name: 'Axis Spacing',
-                    desc : 'asdf',
+                    desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
                     min: 1,
                     max: 10,
+                    step: 0.1
                 },
                 spacing_center: {
                     value: 5,
                     type: 'slider',
                     name: 'Axis Center In Space',
-                    desc : 'asdf',
+                    desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
                     min: 1,
-                    max: 10,
+                    max: 9,
+                    step: 0.1
                 },
                 power: {
-                    value: 5,
+                    value: 3,
                     type: 'slider',
                     name: 'Axis Center Power',
-                    desc : 'asdf',
+                    desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
                     min: 1,
-                    max: 10,
+                    max: 25,
+                    step: 0.1
                 },
             },
         },

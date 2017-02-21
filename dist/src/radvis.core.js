@@ -183,16 +183,16 @@ var RadvisController = function () {
     }, {
         key: 'setNodePositionByVector',
         value: function setNodePositionByVector(index, vector3) {
-            this.nodeDestPositions[index * 3] = vector3.x * Setting.Radvis.NodeScale;
-            this.nodeDestPositions[index * 3 + 1] = vector3.y * Setting.Radvis.NodeScale;
-            this.nodeDestPositions[index * 3 + 2] = vector3.z * Setting.Radvis.NodeScale;
+            this.nodeDestPositions[index * 3] = vector3.x * Setting.Radvis.Node.Geometry.scaling.value;
+            this.nodeDestPositions[index * 3 + 1] = vector3.y * Setting.Radvis.Node.Geometry.scaling.value;
+            this.nodeDestPositions[index * 3 + 2] = vector3.z * Setting.Radvis.Node.Geometry.scaling.value;
         }
     }, {
         key: 'setNodePosition',
         value: function setNodePosition(index, x, y, z) {
-            this.nodeDestPositions[index * 3] = x * Setting.Radvis.NodeScale;
-            this.nodeDestPositions[index * 3 + 1] = y * Setting.Radvis.NodeScale;
-            this.nodeDestPositions[index * 3 + 2] = z * Setting.Radvis.NodeScale;
+            this.nodeDestPositions[index * 3] = x * Setting.Radvis.Node.Geometry.scaling.value;
+            this.nodeDestPositions[index * 3 + 1] = y * Setting.Radvis.Node.Geometry.scaling.value;
+            this.nodeDestPositions[index * 3 + 2] = z * Setting.Radvis.Node.Geometry.scaling.value;
         }
     }, {
         key: 'setNodeColor',
@@ -204,7 +204,7 @@ var RadvisController = function () {
     }, {
         key: 'setNodeSize',
         value: function setNodeSize(index, size) {
-            this.nodeSizes[index] = size * Setting.Radvis.NodeSize;
+            this.nodeSizes[index] = size * Setting.Radvis.Node.Geometry.size.value;
         }
     }, {
         key: 'updateAxis',
@@ -225,9 +225,9 @@ var RadvisController = function () {
 
             var weightCurrent = 0;
             _.forEach(sortedAxises, function (axis) {
-                if (axis.axis.active) weightCurrent += axis.axis.spacing * axis.axis.spacing_center;
+                if (axis.axis.active) weightCurrent += axis.axis.spacing * axis.axis.spacing_center * 0.1;
                 axis.updatePosition(weightCurrent, weightSum);
-                if (axis.axis.active) weightCurrent += axis.axis.spacing * (1 - axis.axis.spacing_center);
+                if (axis.axis.active) weightCurrent += axis.axis.spacing * (1 - axis.axis.spacing_center * 0.1);
             });
         }
     }, {
@@ -242,7 +242,7 @@ var RadvisController = function () {
                 if (!axis.active) return;
                 powerSum += axis.power;
             });
-            console.log(powerSum);
+            console.log('axis power sum : ', powerSum);
 
             //const powerSum = _.sumBy(that.axises[])
             _.map(this.nodes, function (node, i) {

@@ -15,9 +15,8 @@ function createComponentDropDown(parent, option, onChange){
     var $dropDownList = $dropDown.find('.dropDownList');
 
     _.forEach(option.listItem, function(d){
-        var item =  $('<div class="list">' + d +'</div>');
+        var item =  $('<div class="listItem">' + d +'</div>');
         item.appendTo($dropDownList);
-
         item.click(clickList)
 
     });
@@ -32,7 +31,7 @@ function createComponentDropDown(parent, option, onChange){
         var target = $(this);
         if(!target.hasClass('click')){
             target.addClass('click');
-            $dropDownList.css('height', option.listItem.length * 40)
+            $dropDownList.css('height', option.listItem.length * 42)
         }
         else{
             target.removeClass('click');

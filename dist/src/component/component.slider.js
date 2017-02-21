@@ -5,7 +5,6 @@
  */
 function createComponentSlider(parent, option, onChange) {
 
-    console.log('comp slider', option);
     if (_.isNil(option.min) || _.isNil(option.max)) {
         console.error('Slider Min or Max not defined');
         return false;
@@ -38,7 +37,9 @@ function createComponentSlider(parent, option, onChange) {
 
     $(document).on('mouseup', function () {
         $(num).removeClass('click');
-        if (down) onChange(Math.floor(currentValue));
+        if (down) {
+            onChange(Math.floor(currentValue));
+        }
         down = false;
     });
 
@@ -46,7 +47,7 @@ function createComponentSlider(parent, option, onChange) {
         var x = e.originalEvent.clientX - $range.offset().left;
         if (x < 0) x = 0;else if (x > $range.width()) x = $range.width();
         var width = $range.width();
-        var currentValue = x / width * (option.max - option.min) + option.min;
+        currentValue = x / width * (option.max - option.min) + option.min;
 
         setDisplayObjects(x, currentValue);
     }
@@ -60,7 +61,7 @@ function createComponentSlider(parent, option, onChange) {
         bar.css('width', x);
     }
 
-    setDisplayObjects(50, option.value);
+    setDisplayObjects((option.value - option.min) / (option.max - option.min) * $range.width(), option.value);
 }
 
 // Run!

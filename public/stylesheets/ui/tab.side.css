@@ -128,7 +128,7 @@
         transition: transform 0.3s;
         font-weight: 600; }
     .tabWrapper .sideTab.open {
-      width: 220px; }
+      width: 200px; }
       .tabWrapper .sideTab.open .tabItemWrapper .tabItemName {
         opacity: 1; }
       .tabWrapper .sideTab.open .tabOpener {

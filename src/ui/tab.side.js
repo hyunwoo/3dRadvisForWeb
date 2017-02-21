@@ -4,9 +4,9 @@
 
 const __UI = {
     SideTab: [],
-    __data: {},
+    _data: {},
     injectData: function (data) {
-        this.__data = data;
+        this._data = data;
     },
     createSideTab: function () {
         var $sideTab = __UI['$sideTab'] = $('.sideTab');
@@ -79,7 +79,6 @@ const __UI = {
 
         // Create Contents
         function createContentView(id) {
-            __UI.$settingTab.$contents.empty();
             console.log(id);
             __UI[id]();
         }
@@ -88,6 +87,7 @@ const __UI = {
 
     },
     createAxisUsage: function () {
+        __UI.$settingTab.$contents.empty();
         let $tabAxis = __UI['$settingTab']['$contents'];
         let parent = $('<div class="list axis"></div>').appendTo($tabAxis);
 
@@ -121,69 +121,52 @@ const __UI = {
         });
     },
     createAxisGeometry: function (axisName) {
-
-        let graphicAxis = {};
-
-        // $sliders: this.$field.find('input[type="range"]'),
-        //     $slider_clear: this.$field.find('#axis-controller-clear'),
-        //     desc: {
-        //     $head: this.$field.find('.desc .head'),
-        //         $body: this.$field.find('.desc .body'),
-        // }
-
-
+        __UI.$settingTab.$contents.empty();
+        if (_.isNil(axisName)) axisName = __data.numericKeys[0];
+        var currentAxis = __UI._data.findAxis(axisName);
         var $contents = __UI['$settingTab']['$contents'];
-        var $graphic = $('.graphic').appendTo($contents);
+
+        // Add Dropdown
+        createComponentDropDown($contents, {
+            name: 'Axis Selector',
+            desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            listItem: _.map(__UI._data.axis, function (d) {
+                return d.name;
+            }),
+            selected: axisName,
+        }, __UI.createAxisGeometry);
+
+        var $graphic = $('<div class="graphic"></div>').appendTo($contents);
+        var $desc = $('<div class="desc"></div>').appendTo($graphic);
+        var $head = $('<div class="head"></div>').appendTo($desc);
+        var $body = $('<div class="body"></div>').appendTo($desc);
+
+
         _.forEach(Setting.Radvis.Axis.Geometry, function (v, k) {
-            console.log(k, v);
+            v.value = currentAxis[k];
             createComponentSlider($contents, v, function (val) {
-                console.log(val)
+                currentAxis[k] = val;
+                __RadvisController.adjustAxis();
+                v.value = val;
             });
         });
 
-        // create to
-        //graphicAxis.desc.$head.html(d.name);
-        //graphicAxis.desc.$body.html(d.stats.toString());
-        return;
-
-        _.forEach(graphicAxis.$sliders, function (ranger) {
-            var $ranger = $(ranger);
-            console.log($ranger.attr('data-name'), d[$ranger.attr('data-name')]);
-            var val = d[$ranger.attr('data-name')];
-            $ranger.val(val == undefined ? 0 : val);
-        });
-
-        graphicAxis.$slider_clear.unbind();
-        graphicAxis.$slider_clear.click(function () {
-            console.log('clear')
-
-            _.forEach(graphicAxis.$sliders, function (ranger) {
-
-                var $ranger = $(ranger);
-                var key = $ranger.attr('data-name');
-                if (!_.isNil(Setting.Radvis.Axis.Controller[key]))
-                    $ranger.val(Setting.Radvis.Axis.Controller[key]);
-            });
-
-            graphicAxis.$sliders.trigger('change');
-            __RadvisController.adjustAxis();
-
-        });
-
-        graphicAxis.$sliders.unbind();
-        graphicAxis.$sliders.on('change', function () {
-            var $this = $(this);
-            var key = $this.attr('data-name');
-            var value = Number($this.val());
-            if (!_.isNumber(value)) alert('?');
-            console.log(key, value);
-            d[key] = value;
-
-            __RadvisController.adjustAxis();
-        });
+        $head.html(axisName);
+        $body.html(currentAxis.stats.toString())
     },
 
     createNodeGeometry: function () {
+        __UI.$settingTab.$contents.empty();
+        var $contents = __UI['$settingTab']['$contents'];
+
+        _.forEach(Setting.Radvis.Node.Geometry, function (v) {
+            createComponentSlider($contents, v, function (val) {
+                //__RadvisController.adjustAxis();
+                v.value = val;
+                console.log(Setting.Radvis.Node.Geometry);
+                __RadvisController.updateNodes();
+            });
+        });
 
     }
 };
@@ -225,7 +208,6 @@ function clickSideTabItem() {
         Name: 'Node',
         Icon: 'toll',
         Tabs: {
-            Usage: "createNodeGeometry",
             Geometry: 'createNodeGeometry',
         }
     });

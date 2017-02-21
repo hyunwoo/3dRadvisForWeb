@@ -24,16 +24,18 @@ $pin-num-width: 20px
     left: 0
     font-size: $font-size-1
     font-weight: $font-weight-7
+    pointer-events: none
   .desc
     position: relative
     bottom: 0
     left: 0
     font-size: $font-size-1
     color: $tab-item-color
+    pointer-events: none
 
   .slider
     width: 100%
-    height: $point-size
+    height: $point-size * 2
     position: relative
     cursor: pointer
     margin: $point-size auto 30px
@@ -44,12 +46,14 @@ $pin-num-width: 20px
       left: 0
       font-size: $font-size-1
       color: $tab-item-color
+      pointer-events: none
     .max
       top: $point-size + 4px
       position: absolute
       right: 0
       font-size: $font-size-1
       color: $tab-item-color
+      pointer-events: none
 
     &:before
       content: ""
@@ -64,10 +68,10 @@ $pin-num-width: 20px
 
     .bar
       position: absolute
-      left : 0
-      background : $main-background-color
-      height : $slider-height
-      top : $point-position
+      left: 0
+      background: $main-background-color
+      height: $slider-height
+      top: $point-position
       border-radius: $slider-height/2
 
     .point
@@ -75,7 +79,7 @@ $pin-num-width: 20px
       display: block
       width: $point-size !important
       border-radius: 50%
-      height: inherit
+      height: $point-size
       position: absolute
       left: 0
       margin-left: -$point-size-half
