@@ -2,12 +2,17 @@ extends ../layout
 block content
 
     .tpp
-        //.component
+        .component
+            .name Slider Name
             .slider
                 .point
                     .num 30
                         .pin
                 .bar
+                .min 20
+                .max 100
+
+            .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
     style.
         .tpp {
@@ -23,15 +28,21 @@ block content
     //<div class="test-result" id="test-result">0%</div>
     script(src='/component/component.slider.js')
     script.
-        createSlide('.tpp', 0, 20, function (val) {
+
+        createComponentSlider('.tpp', {
+            name: 'Slider Name',
+            desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            min: 20,
+            max: 100
+        }, function (val) {
             console.log(val);
         });
 
-        createSlide('.tpp', 40, 80, function (val) {
+        createComponentSlider('.tpp', 40, 80, function (val) {
             console.log(val);
         });
 
-        createSlide('.tpp', 200, 20000, function (val) {
+        createComponentSlider('.tpp', 200, 20000, function (val) {
             console.log(val);
         });
 

@@ -3,12 +3,16 @@
 /**
  * Created by hyunwoo on 2017-02-20.
  */
-function createSlide(parent, min, max, onChange) {
+function createComponentSlider(parent, option, onChange) {
     var component = $('<div class="component"></div>');
+    var name = $('<div class="name">' + option.name + '</div>').appendTo(component);
+    var desc = $('<div class="desc">' + option.desc + '</div>').appendTo(component);
     var $range = $('<div class="slider"></div>').appendTo(component);
     var core = $('<div class="point"></div>').appendTo($range);
     var num = $('<div class="num">30' + '<div class="pin"></div>' + '</div>').appendTo(core);
     var bar = $('<div class="bar"></div>').appendTo($range);
+    var min = $('<div class="min">' + option.min + '</div>').appendTo($range);
+    var max = $('<div class="max">' + option.max + '</div>').appendTo($range);
     var currentValue = 0;
 
     component.appendTo($(parent));
