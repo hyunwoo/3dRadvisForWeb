@@ -3,6 +3,7 @@
  */
 function createComponentSlider(parent, option, onChange) {
 
+    console.log('comp slider', option);
     if (_.isNil(option.min) || _.isNil(option.max)) {
         console.error('Slider Min or Max not defined');
         return false;

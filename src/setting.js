@@ -10,22 +10,28 @@ let Setting = {
         Background: 0xffffff,
         Axis: {
             Color: 0xaaaaaa,
-            Geometry: {
+            Geometry: { // controller
                 spacing: {
                     value: 5,
                     type: 'slider',
+                    name: 'Axis Spacing',
+                    desc : 'asdf',
                     min: 1,
                     max: 10,
                 },
                 spacing_center: {
                     value: 5,
                     type: 'slider',
+                    name: 'Axis Center In Space',
+                    desc : 'asdf',
                     min: 1,
                     max: 10,
                 },
                 power: {
                     value: 5,
                     type: 'slider',
+                    name: 'Axis Center Power',
+                    desc : 'asdf',
                     min: 1,
                     max: 10,
                 },

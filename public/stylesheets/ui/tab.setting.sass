@@ -95,6 +95,9 @@ $inner-tab-height: 35px
   .contents
     height: calc(100% - #{$tab-item-height} * 2 - #{$inner-tab-height} - 5px)
     .graphic
+      width: 100%
+      height: 250px
+      position: relative
       .desc
         pointer-events: none
         padding: 10px
@@ -108,9 +111,6 @@ $inner-tab-height: 35px
           font-size: 13px
           line-height: 15px
 
-      width: 100%
-      height: 250px
-      position: relative
       .axis-controllers
         @include borderTop(#ccc)
         height: 50px

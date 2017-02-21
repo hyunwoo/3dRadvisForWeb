@@ -120,7 +120,7 @@ const __UI = {
 
         });
     },
-    createAxisGeometry: function () {
+    createAxisGeometry: function (axisName) {
 
         let graphicAxis = {};
 
@@ -131,20 +131,19 @@ const __UI = {
         //         $body: this.$field.find('.desc .body'),
         // }
 
-        graphicAxis.$field = $('.graphic').appendTo(__UI['$settingTab']['$contents']);
-        $('<div class="controller">' +
-            '<div class="name"></div>' +
-            '<div class="component"></div>' +
-            /**/'<input class="slider" data="setting" type="range" data-name="Radvis NodeSize"' +
-            'update="__RadvisController.updateNodes()" min="5" max="100" step=0.1/>' +
-            '<div class="desc"></div>' +
-            '</div>'
-        ).appendTo(__UI['$settingTab']['$contents']);
+
+        var $contents = __UI['$settingTab']['$contents'];
+        var $graphic = $('.graphic').appendTo($contents);
+        _.forEach(Setting.Radvis.Axis.Geometry, function (v, k) {
+            console.log(k, v);
+            createComponentSlider($contents, v, function (val) {
+                console.log(val)
+            });
+        });
 
         // create to
         //graphicAxis.desc.$head.html(d.name);
         //graphicAxis.desc.$body.html(d.stats.toString());
-
         return;
 
         _.forEach(graphicAxis.$sliders, function (ranger) {
