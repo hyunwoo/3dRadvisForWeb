@@ -2,7 +2,7 @@ extends ../layout
 block content
 
     .tpp
-        .component
+        //.component
             .name Slider Name
             .slider
                 .point
@@ -26,14 +26,13 @@ block content
     //</div>
     //
     //<div class="test-result" id="test-result">0%</div>
-    script(src='/component/component.slider.js')
     script.
-
         createComponentSlider('.tpp', {
             name: 'Slider Name',
             desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             min: 20,
-            max: 100
+            max: 100,
+            current: 30,
         }, function (val) {
             console.log(val);
         });
