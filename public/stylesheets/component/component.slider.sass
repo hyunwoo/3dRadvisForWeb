@@ -1,8 +1,8 @@
 @import "../util"
 @import "../values"
 
-$slider-height: 5px
-$point-size: 20px
+$slider-height: 3px
+$point-size: 12px
 $point-size-half: $point-size/2
 $point-position: $point-size/2 - $slider-height/2
 $pin-size: 30px
@@ -12,16 +12,18 @@ $pin-num-width: 20px
 
 .component
   position: relative
+  padding: 0 20px
+
   .name
     position: relative
     top: 0
-    left: -$point-size-half
-    font-size: $font-size-2
-    font-weight: $font-weight-4
+    left: 0
+    font-size: $font-size-1
+    font-weight: $font-weight-7
   .desc
     position: relative
     bottom: 0
-    left: -$point-size-half
+    left: 0
     font-size: $font-size-1
     color: $tab-item-color
 
@@ -35,7 +37,7 @@ $pin-num-width: 20px
     .min
       position: absolute
       top: $point-size + 4px
-      left: -$point-size-half + 2px
+      left: 0
       font-size: $font-size-1
       color: $tab-item-color
     .max
@@ -63,6 +65,7 @@ $pin-num-width: 20px
       height : $slider-height
       top : $point-position
       border-radius: $slider-height/2
+
     .point
       pointer-events: none
       display: block
@@ -70,8 +73,7 @@ $pin-num-width: 20px
       border-radius: 50%
       height: inherit
       position: absolute
-      left: 0
-      margin-left: -$point-size-half
+      left: -$point-size-half
       z-index: 2
       background-color: $main-color
       cursor: inherit
