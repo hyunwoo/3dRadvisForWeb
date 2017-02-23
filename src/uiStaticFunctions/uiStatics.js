@@ -3,7 +3,7 @@
  */
 const __UIStatic = new function () {
     var that = this;
-
+    var $Nav = $('.nav');
     var $Toast = $('#toast');
     var toastTimeout;
     this.Toast = {
@@ -26,8 +26,7 @@ const __UIStatic = new function () {
     $Toast.on('mouseover', this.Toast.removeTimeout);
     $Toast.find('.closer').click(that.Toast.close);
 
-
-    var $Dialog = $('.dialogWrapper');
+    var $Dialog = $('#dialogWrapper');
     var $DialogTitle = $Dialog.find('.title');
     var $DialogText = $Dialog.find('.text');
     var $DialogPos = $Dialog.find('.pos');
@@ -53,12 +52,10 @@ const __UIStatic = new function () {
                 opt.neg.action();
             });
 
+            var content = $Dialog.find('.content');
+            content.empty();
+            if (!_.isNil(opt.func)) opt.func($Dialog.find('.content'));
 
-            // title
-            // text
-            // button
-            //  name
-            //  action
         },
 
         close: function () {
@@ -67,21 +64,20 @@ const __UIStatic = new function () {
         }
     };
     this.Message = {};
+
+
+    this.onAuthChange = function (user) {
+        console.log('???', user)
+        if (user) {
+            $Nav.find('.logined').removeClass('hide');
+            $Nav.find('.logouted').addClass('hide');
+        } else {
+            $Nav.find('.logined').addClass('hide');
+            $Nav.find('.logouted').removeClass('hide');
+        }
+
+    }
 };
 
 
-//__UIStatic.Toast.open('asdfasdf');
-// __UIStatic.Dialog.open({
-//     title: "Lorem? Ipsum?",
-//     text: 'HANGLE AN DEN DA',
-//     pos: {
-//         name: 'Pos',
-//         action: function () {
-//         }
-//     },
-//     neg: {
-//         name: 'Neg',
-//         action: function () {
-//         },
-//     },
-// });
+

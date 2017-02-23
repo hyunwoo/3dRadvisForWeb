@@ -1,0 +1,32 @@
+extends layout
+block content
+    include includes/uiStatics
+    link(rel='stylesheet', href='/stylesheets/dev.css')
+    .dev
+        .title UI Static
+        .group
+            .subtitle Toast
+            .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+            .code.
+                __UIStatic.Toast.open('content text')
+            .space
+            .subtitle Dialog
+            .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+            .code.
+                __UIStatic.Dialog.open({
+                    title: "Lorem? Ipsum?",
+                    text: 'HANGLE AN DEN DA',
+                    pos: {
+                        name: 'Pos',
+                        action: function () {
+                        }
+                    },
+                    neg: {
+                        name: 'Neg',
+                        action: function () {
+                        },
+                    },
+                });
+
+
+

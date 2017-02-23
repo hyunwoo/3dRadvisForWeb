@@ -4,19 +4,26 @@
     .logo.i.material-icons whatshot
     .header 3D Radvis
     .rightGroup
-        .logined
-            .userIcon
-            .userAccount
-        .logouted
+        .logined.hide
+            .name h.hyunwoo@gmail.com
+            .button#signoutButton SignOut
+            //.icon.i.fa.fa-sign-out
+            .button#uploadTest Upload
+        .logouted.hide
+            .icon.i.fa.fa-google#signinButton
+            //.icon.i.material-icons mail
 
+
+#loader
 #toast.open
     .text ASDFASDF
     .closer.i.material-icons close
 
-.dialogWrapper
+#dialogWrapper
     .dialog
         .title
         .text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+        .content
         .actionGroup
             .pos POSITIVE
             .neg NEGATIVE

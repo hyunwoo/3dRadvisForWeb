@@ -28,15 +28,50 @@
     color: $main-inv-color
 
   .rightGroup
+    padding-right: 10px
     float: right
     height: inherit
-    width: 200px
-    background: #f00
-    position: relative
+    position: absolute
+    width: 100%
+    top: 0
+    box-sizing: border-box
     .logined, .logouted
       position: absolute
       right: 0
+      padding-right: 10px
       height: inherit
+      .icon
+        display: inline-block
+        vertical-align: top
+        cursor: pointer
+        margin: 8px
+        background: #fff
+        width: $nav-height - 16px
+        height: $nav-height - 16px
+        line-height: $nav-height - 16px
+        text-align: center
+        color: #000
+        border-radius: 50%
+      .button
+        display: inline-block
+        vertical-align: top
+        cursor: pointer
+        margin: 8px
+        height: $nav-height - 16px
+        line-height: $nav-height - 16px
+        text-align: center
+        color: $border-color
+        font-weight: $font-weight-6
+        font-size: $font-size-2
+        padding: 0 10px
+      .name
+        height: $nav-height
+        display: inline-block !important
+        vertical-align: top
+        color: #fff
+        font-size: $font-size-1
+      &.hide
+        display: none
 
 $toast-width: 400px
 $toast-width-half: $toast-width/2
@@ -68,7 +103,7 @@ $toast-width-half: $toast-width/2
     opacity: 1
     pointer-events: all
 
-.dialogWrapper
+#dialogWrapper
   position: fixed
   left: 0
   top: 0
@@ -95,6 +130,8 @@ $toast-width-half: $toast-width/2
     .text
       font-size: $font-size-1
       line-height: $font-size-3
+    .content
+      padding: 10px
     .actionGroup
       padding-top: 20px
       height: 40px
