@@ -11,7 +11,7 @@ $item-height: 50px
 .dataListViewer
   box-sizing: border-box
   width: calc(100% - 200px)
-  height: calc(100vh - #{$dataList-top}*2)
+  height: calc(100vh - (#{$dataList-top} + 80px))
   margin: $dataList-top 100px
   @include borderAll($border-color)
 
@@ -22,7 +22,6 @@ $item-height: 50px
     width: $left-width
     height: 100vh
     color: #fff
-    @include borderRight($border-color)
     .list
       width: 100%
       .item
@@ -43,63 +42,66 @@ $item-height: 50px
           background-color: $hover-color
 
   .viewer
+    box-sizing: border-box
+    @include borderLeft($border-color)
     position: relative
     vertical-align: top
     display: inline-block
     width: calc(100% - #{$left-width})
-    height: inherit
+    height: 100%
     background-color: $main-inv-color
     color: #fff
 
-    .desc
-      position: relative
-      color: $main-color
-      font-size: $font-size-1
-      font-weight: $font-weight-4
+    .descGroup
+      height: 25px
+      line-height: 25px
       padding: 15px
-      width: 90px
+      .desc
+        @include inlineBlock
+        color: $main-color
+        font-size: $font-size-1
+        font-weight: $font-weight-4
+        height: inherit
+        line-height: inherit
       .icon
+        @include inlineBlock
         width: 25px
-        height: 25px
-        line-height: 25px
-        position: absolute
-        right: 10px
-        top: 10px
-        font-size: 15px
-        background-color: $main-color
-        color: $main-inv-color
+        height: inherit
+        line-height: inherit
+        font-size: $icon-font-size-2
+        //background-color: $main-color
+        color: $accent-color
         text-align: center
         cursor: pointer
         @include borderRadius(50%)
     .input
       position: absolute
       width: calc(100% - 60px)
-      background-color: #f7f7f7
       margin: 0 15px
       color: $main-color
       font-size: $font-size-1
       font-weight: $font-weight-4
       line-height: 20px
-      padding: 15px
       white-space: pre-wrap
       display: none
       &.visible
         display: block
 
     textarea
+      background-color: #f7f7f7
       position: absolute
       width: calc(100% - 60px)
-      background-color: #f7f7f7
       margin: 0 15px
       color: $main-color
       font-size: $font-size-1
       font-weight: $font-weight-4
       line-height: 20px
-      padding: 15px
+      padding: 15px 15px 20px 15px
       white-space: pre-wrap
       resize: none
       outline: none
       display: none
+      border: none
       &.visible
         display: block
 

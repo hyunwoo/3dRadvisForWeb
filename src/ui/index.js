@@ -2,7 +2,7 @@
  * Created by suhyun on 2017. 2. 23..
  */
 
-function dataList(data){
+function createDataList(data){
     var $list = $('.dataList .list');
 
     var item = $('<div class="item"></div>');
@@ -24,5 +24,18 @@ function dataList(data){
 }
 
 function controlDesc(){
-    var input = $('.viewer')
+    var viewInput = $('.viewer .input');
+    var icon = $('#descModifier');
+    var viewTextarea = $('.viewer textarea');
+    if(!viewTextarea.hasClass('visible')){
+        viewInput.removeClass('visible');
+        viewTextarea.addClass('visible');
+        viewTextarea.val(viewInput.html());
+        icon.html('done');
+    }else{
+        viewInput.addClass('visible');
+        viewTextarea.removeClass('visible');
+        viewInput.html(viewTextarea.val());
+        icon.html('mode_edit');
+    }
 }

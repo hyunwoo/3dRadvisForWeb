@@ -52,14 +52,14 @@
         font-size: 13px;
         font-weight: 400; }
       .settingTab .header-group .innerTab .item.active {
-        color: #FAA332; }
+        color: #fa931f; }
         .settingTab .header-group .innerTab .item.active .border {
           position: absolute;
           left: 0;
           bottom: 0;
           height: 3px;
           width: 100%;
-          background: #FAA332; }
+          background: #fa931f; }
       .settingTab .header-group .innerTab .item.disable {
         text-decoration: line-through; }
   .settingTab.open {
@@ -236,7 +236,7 @@
       line-height: 22px;
       border-radius: 50%;
       color: #fff;
-      background: #FAA332; }
+      background: #fa931f; }
       .settingTab .bottom .icon.disable {
         background: #ccc; }
       .settingTab .bottom .icon:hover {
