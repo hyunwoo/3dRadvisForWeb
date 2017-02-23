@@ -1,0 +1,63 @@
+@import "../_util"
+@import "../_values"
+
+.nav
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: $nav-height
+  line-height: $nav-height
+  background-color: $main-color
+  z-index: 1001
+
+  .logo
+    display: inline-block
+    width: $tab-menu-width
+    text-align: center
+    line-height: $nav-height
+    font-size: $icon-font-size-2
+    cursor: pointer
+    color: $main-inv-color
+  .header
+    vertical-align: top
+    display: inline-block
+    line-height: inherit
+    font-weight: $font-weight-2
+    font-size: $font-size-4
+    color: $main-inv-color
+
+  .rightGroup
+    float: right
+    height: inherit
+    width: 200px
+    background: #f00
+    position: relative
+    .logined, .logouted
+      position: absolute
+      right: 0
+      height: inherit
+
+$toast-width: 400px
+$toast-width-half: $toast-width/2
+#toast
+  position: fixed
+  left: calc(50vw - #{$toast-width-half})
+  margin: 0 auto
+  width: $toast-width
+  padding: 15px
+  z-index: 999999
+  background: #444
+  color: #fff
+  font-size: $font-size-1
+  opacity: 0
+  transition: bottom .4s, opacity .4s ease-in-out
+  bottom: -100px
+  &.open
+    opacity: 1
+    bottom: 50px
+
+.dialog
+  position: fixed
+
+

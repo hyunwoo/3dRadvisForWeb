@@ -13,7 +13,8 @@
 
 #radvisStats {
   position: absolute;
-  right: 0;
+  top: 58px !important;
+  right: 10px;
   left: auto !important; }
 
 body {

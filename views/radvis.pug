@@ -1,9 +1,6 @@
 extends layout
 block content
-    // soo
-    .nav
-        .logo.i.material-icons whatshot
-        .header 3D Radvis
+    include ./includes/nav
     .tabWrapper(oncontextmenu="return false")
         .sideTab.open
             .tabBottom
@@ -36,7 +33,7 @@ block content
                     .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             .bottom
 
-    .actions
+    //.actions
         .options Axis
             .button#axisColorApplier ASDF
     #rendererRadvis

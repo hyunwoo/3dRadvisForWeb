@@ -1,7 +1,5 @@
 "use strict";
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 /**
  * Created by hyunwoo on 2017-02-16.
  */
@@ -13,11 +11,13 @@ var config = {
     messagingSenderId: "20687471588"
 };
 
-var FirebaseWrapper = function FirebaseWrapper() {
-    _classCallCheck(this, FirebaseWrapper);
-
-    firebase.initializeApp(config);
+var __Firebase = new function () {
+    this.firebase = firebase.initializeApp(config);
     this.storage = firebase.storage();
     this.testDataUrl = 'https://firebasestorage.googleapis.com/v0/b/dradvis.appspot.com/o/credos_testing.csv?alt=media&token=27152d59-bf4a-41cf-8658-1c3581c08c5e';
-};
+
+    this.signOut = function () {};
+
+    this.signOut = function () {};
+}();
 //# sourceMappingURL=firebase.wrapper.js.map
