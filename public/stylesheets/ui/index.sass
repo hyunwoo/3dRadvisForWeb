@@ -6,28 +6,36 @@ $title-height: 40px
 $dataList-top: 150px
 $item-height: 50px
 
-.userData
+
 
 .dataListViewer
   box-sizing: border-box
   width: calc(100% - 200px)
-  height: 100vh
+  height: calc(100vh - #{$dataList-top}*2)
   margin: $dataList-top 100px
-
+  @include borderAll($border-color)
 
   .dataList
+    box-sizing: border-box
+    vertical-align: top
     display: inline-block
     width: $left-width
     height: 100vh
-    background-color: #223444
     color: #fff
+    @include borderRight($border-color)
     .list
       width: 100%
       .item
+        cursor: pointer
         position: relative
-        width: 100%
+        width: calc(100% - 15px)
         height: $item-height
+        line-height: $item-height
         background-color: $main-inv-color
+        color: $main-color
+        font-size: $font-size-1
+        font-weight: $font-weight-4
+        padding-left: 15px
         @include borderBottom($border-color)
         &:hover
           background-color: $hover-color
@@ -35,16 +43,70 @@ $item-height: 50px
           background-color: $hover-color
 
   .viewer
+    position: relative
+    vertical-align: top
     display: inline-block
     width: calc(100% - #{$left-width})
     height: inherit
-    background-color: #787878
+    background-color: $main-inv-color
     color: #fff
+
+    .desc
+      position: relative
+      color: $main-color
+      font-size: $font-size-1
+      font-weight: $font-weight-4
+      padding: 15px
+      width: 90px
+      .icon
+        width: 25px
+        height: 25px
+        line-height: 25px
+        position: absolute
+        right: 10px
+        top: 10px
+        font-size: 15px
+        background-color: $main-color
+        color: $main-inv-color
+        text-align: center
+        cursor: pointer
+        @include borderRadius(50%)
+    .input
+      position: absolute
+      width: calc(100% - 60px)
+      background-color: #f7f7f7
+      margin: 0 15px
+      color: $main-color
+      font-size: $font-size-1
+      font-weight: $font-weight-4
+      line-height: 20px
+      padding: 15px
+      white-space: pre-wrap
+      display: none
+      &.visible
+        display: block
+
+    textarea
+      position: absolute
+      width: calc(100% - 60px)
+      background-color: #f7f7f7
+      margin: 0 15px
+      color: $main-color
+      font-size: $font-size-1
+      font-weight: $font-weight-4
+      line-height: 20px
+      padding: 15px
+      white-space: pre-wrap
+      resize: none
+      outline: none
+      display: none
+      &.visible
+        display: block
 
   *.listTitle
     height: $title-height
     line-height: $title-height
     font-size: $font-size-1
     font-weight: $font-weight-4
-    background-color: #7b7b7b
+    background-color: $main-color
     padding-left: 15px

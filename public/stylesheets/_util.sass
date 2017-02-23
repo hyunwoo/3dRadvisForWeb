@@ -17,6 +17,14 @@
 @mixin borderLeft($borderColor)
   border-left: solid 1px $borderColor
 
+@mixin borderAll($borderColor)
+  border: solid 1px $borderColor
+
+@mixin borderRadius($percent)
+  -webkit-border-radius: $percent
+  -moz-border-radius: $percent
+  border-radius: $percent
+
 @mixin inlineBlock()
   display: inline-block
   vertical-align: top

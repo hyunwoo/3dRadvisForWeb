@@ -2,7 +2,6 @@ extends layout
 block content
     include ./includes/uiStatics
 
-
     link(rel='stylesheet', href='/stylesheets/ui/index.css')
     script(src='/ui/index.js')
 
@@ -10,9 +9,17 @@ block content
         .dataList
             .listTitle Name
             .list
-                .item
-                .item
-                .item.click
+
 
         .viewer
             .listTitle Info
+            .desc Description
+                .icon.i.material-icons settings
+            .input.visible Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies risus quis dui vulputate laoreet. Aliquam imperdiet velit quis tellus blandit volutpat. Aliquam molestie magna lacus, et faucibus eros semper luctus. Sed tincidunt, metus et interdum mollis, diam risus viverra nisi, vel dictum sem elit a tortor
+            textarea
+
+    script.
+        dataList(['Data Name1', 'Data Name2', 'Data Name3'])
+
+        var controller = $('.viewer .desc .icon');
+        $(controller).click(controlDesc);
