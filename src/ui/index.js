@@ -5,20 +5,17 @@
 var __IndexDataList = new function () {
     this.createDataList = function (data) {
         var $list = $('.dataList .list');
-        var item = $('<div class="item"></div>');
+
         _.map(data, function (d) {
-            var target = item.clone().appendTo($list);
-            $(target).html(d)
+            var item = $('<div class="item"> ' + d +
+                '<div class="showChildList i material-icons">more_vert</div>' +
+                '</div>').appendTo($list);
+
         });
-        var target = $('.dataList .list .item');
-        target.click(function () {
-            var $this = $(this);
-            if (!$this.hasClass('click')) {
-                target.removeClass('click');
-                $this.addClass('click')
-            }
-        })
+
     };
+
+
 
     this.controlDesc = function () {
         var $viewInput = $('.viewer .input');

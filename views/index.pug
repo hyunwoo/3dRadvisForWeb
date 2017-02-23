@@ -8,6 +8,8 @@ block content
         .dataList
             .listTitle Name
             .list
+                .item Test Item
+                    .showChildList.i.material-icons more_vert
 
             .bottom(for='uploadTest')#DataListUploadFile
                 .icon.i.material-icons file_upload
@@ -20,19 +22,14 @@ block content
                 .icon.i.material-icons#descModifier mode_edit
             .input.visible Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies risus quis dui vulputate laoreet. Aliquam imperdiet velit quis tellus blandit volutpat. Aliquam molestie magna lacus, et faucibus eros semper luctus. Sed tincidunt, metus et interdum mollis, diam risus viverra nisi, vel dictum sem elit a tortor
             textarea
-
+            .additionInfo
+                .item 2017-06-07
+                .item CSV
+                .item 3MB
 
 
     script(src='/ui/index.js')
     script.
         __IndexDataList.createDataList([
             'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
         ]);
-

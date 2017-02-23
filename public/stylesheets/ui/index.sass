@@ -29,18 +29,36 @@ $bottom-height: 50px
         cursor: pointer
         position: relative
         width: calc(100% - 15px)
-        height: $item-height
+        min-height: $item-height
         line-height: $item-height
         background-color: $main-inv-color
         color: $main-color
         font-size: $font-size-1
         font-weight: $font-weight-4
         padding-left: 15px
+        &:hover
+          background-color: #f9f9f9
+        .showChildList
+          width: 36px
+          height: 36px
+          @include borderRadius(50%)
+          position: absolute
+          right: 7px
+          top: 7px
+          line-height: 36px
+          color: $accent-color
+          font-size: $icon-font-size-2
+          text-align: center
+          opacity: 0
         @include borderBottom($border-color)
         &:hover
-          background-color: $hover-color
-        &.click
-          background-color: $hover-color
+          .showChildList
+            opacity: 1
+            &:hover
+              background-color: #eee
+
+
+
     .bottom
       height: $bottom-height
       box-sizing: border-box
@@ -94,8 +112,8 @@ $bottom-height: 50px
         text-align: center
         cursor: pointer
         @include borderRadius(50%)
+
     .input
-      position: absolute
       width: calc(100% - 60px)
       margin: 0 15px
       color: $main-color
@@ -109,7 +127,6 @@ $bottom-height: 50px
 
     textarea
       background-color: #f7f7f7
-      position: absolute
       width: calc(100% - 60px)
       margin: 0 15px
       color: $main-color
@@ -124,6 +141,20 @@ $bottom-height: 50px
       border: none
       &.visible
         display: block
+
+    .additionInfo
+      margin-top: 10px
+      padding-left: 10px
+      width: 100%
+      height: 20px
+      .item
+        padding: 0 5px
+        display: inline-block
+        @include borderRight(#aaa)
+        font-size: 12px
+        font-weight: $font-size-2
+        color: #686868
+
 
   *.listTitle
     height: $title-height
