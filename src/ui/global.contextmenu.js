@@ -1,9 +1,8 @@
 /**
  * Created by hyunwoo on 2017-02-17.
  */
-
-
 let __ContextMenu;
+
 $(function () {
     __ContextMenu = new function () {
         const contextKey = '_contextItem';
