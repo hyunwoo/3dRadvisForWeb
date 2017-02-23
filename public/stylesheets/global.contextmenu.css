@@ -23,7 +23,7 @@
       width: 100%;
       font-size: 13px;
       line-height: 24px;
-      background: #2973FF;
+      background: #7b7b7b;
       color: #fff;
       font-weight: 400; }
       .contextmenu-wrapper .contextmenu .header .icon {
@@ -50,7 +50,7 @@
       .contextmenu-wrapper .contextmenu .item.disable:hover {
         background: inherit; }
     .contextmenu-wrapper .contextmenu .separater {
-      border-top: solid 1px #e1e1e1;
+      border-top: solid 1px #d1d1d1;
       margin: 5px 0 3px 0;
       padding-top: 5px;
       padding-left: 10px;
@@ -60,7 +60,7 @@
     .contextmenu-wrapper .contextmenu .spacer {
       height: 1px;
       margin: 5px 0;
-      border-top: solid 1px #e1e1e1; }
+      border-top: solid 1px #d1d1d1; }
 
 .context-window-wrapper {
   position: fixed;

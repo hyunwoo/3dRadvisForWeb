@@ -12,27 +12,27 @@ $inner-tab-height: 35px
   margin-left: -50px
   width: $setting-tab-width
   height: calc(100% - #{$nav-height})
-  background-color: $white-color
+  background-color: $main-inv-color
   transition-duration: 0.3s
   .header-group
-    background: $main-background-color
+    background: $main-inv-color
     .title
       //@include borderBottom($border-color)
       box-sizing: border-box
       font-size: $font-size-3
-      font-weight: $font-weight-4
+      font-weight: $font-weight-7
       width: 100%
       height: $tab-item-height + 5px
       line-height: $tab-item-height
       text-align: left
       padding: 2px 15px 0
-      color: $main-inv-color
+      color: $main-color
       position: relative
 
     .closer
       position: absolute
       right: 0
-      color: $main-inv-color
+      color: $main-color
       top: 2px
       height: $tab-item-height
       line-height: $tab-item-height
@@ -50,13 +50,13 @@ $inner-tab-height: 35px
         height: inherit
         @include inlineBlock
         padding: 0 15px
-        color: $main-inv-color-1
+        color: $main-color
         line-height: inherit
         position: relative
         font-size: $font-size-1
         font-weight: $font-weight-4
       .item.active
-        color: $main-inv-color
+        color: $accent-color
         .border
           position: absolute
           left: 0
@@ -257,14 +257,14 @@ $inner-tab-height: 35px
       //color: $active-item-color
       border-radius: 50%
       color: #fff
-      background: $main-background-color
+      background: $accent-color
       &.disable
         background: $inactive-item-color
       &:hover
         color: #eee
       &.actor
         float: left
-        background: $accent-color
+        background: $main-color
 
 
 

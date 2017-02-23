@@ -6,7 +6,7 @@
   top: 0;
   height: 100vh;
   transition-duration: 0.3s;
-  padding-top: 50px;
+  padding-top: 48px;
   box-sizing: border-box; }
   .tabWrapper .sideTab {
     position: relative;
@@ -14,7 +14,7 @@
     width: 60px;
     height: 100%;
     background-color: #ffffff;
-    border-right: solid 1px #e1e1e1;
+    border-right: solid 1px #d1d1d1;
     display: inline-block;
     transition-duration: 0.3s;
     box-sizing: border-box;
@@ -51,7 +51,7 @@
       cursor: pointer;
       position: relative; }
       .tabWrapper .sideTab .tabItemWrapper.click {
-        color: #286fe8; }
+        color: #FAA332; }
         .tabWrapper .sideTab .tabItemWrapper.click .selectBorder {
           opacity: 1; }
       .tabWrapper .sideTab .tabItemWrapper .selectBorder {
@@ -59,7 +59,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        background-color: #286fe8;
+        background-color: #FAA332;
         width: 4px;
         height: 100%;
         transition-duration: 0.3s; }
@@ -96,7 +96,7 @@
       height: 40px;
       background: #fafafa;
       color: #737373;
-      border-top: solid 1px #e1e1e1;
+      border-top: solid 1px #d1d1d1;
       text-align: center; }
       .tabWrapper .sideTab .tabBottom .text {
         display: none; }
