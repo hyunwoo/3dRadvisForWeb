@@ -1,0 +1,50 @@
+@import "../util"
+@import "../values"
+
+$left-width: 300px
+$title-height: 40px
+$dataList-top: 150px
+$item-height: 50px
+
+.userData
+
+.dataListViewer
+  box-sizing: border-box
+  width: calc(100% - 200px)
+  height: 100vh
+  margin: $dataList-top 100px
+
+
+  .dataList
+    display: inline-block
+    width: $left-width
+    height: 100vh
+    background-color: #223444
+    color: #fff
+    .list
+      width: 100%
+      .item
+        position: relative
+        width: 100%
+        height: $item-height
+        background-color: $main-inv-color
+        @include borderBottom($border-color)
+        &:hover
+          background-color: $hover-color
+        &.click
+          background-color: $hover-color
+
+  .viewer
+    display: inline-block
+    width: calc(100% - #{$left-width})
+    height: inherit
+    background-color: #787878
+    color: #fff
+
+  *.listTitle
+    height: $title-height
+    line-height: $title-height
+    font-size: $font-size-1
+    font-weight: $font-weight-4
+    background-color: #7b7b7b
+    padding-left: 15px

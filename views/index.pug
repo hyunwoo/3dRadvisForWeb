@@ -1,3 +1,18 @@
 extends layout
 block content
-    include includes/uiStatics
+    include ./includes/uiStatics
+
+
+    link(rel='stylesheet', href='/stylesheets/ui/index.css')
+    script(src='/ui/index.js')
+
+    .dataListViewer
+        .dataList
+            .listTitle Name
+            .list
+                .item
+                .item
+                .item.click
+
+        .viewer
+            .listTitle Info
