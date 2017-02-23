@@ -45,19 +45,79 @@ $toast-width-half: $toast-width/2
   left: calc(50vw - #{$toast-width-half})
   margin: 0 auto
   width: $toast-width
-  padding: 15px
-  z-index: 999999
+  z-index: 10000
   background: #444
   color: #fff
   font-size: $font-size-1
   opacity: 0
-  transition: bottom .4s, opacity .4s ease-in-out
-  bottom: -100px
+  transition: all .3s
+  bottom: 50px
+  padding: 15px 50px 15px 15px
+  @include transformScale(0, 0)
+  pointer-events: none
+
+  .closer
+    position: absolute
+    top: 0
+    right: 0
+    padding: 10px
+    cursor: pointer
+
+  &.open
+    @include transformScale(1, 1)
+    opacity: 1
+    pointer-events: all
+
+.dialogWrapper
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  z-index: 10000
+  background: rgba(0, 0, 0, 0.65)
+  transition: all .3s
+  color: $main-color
+  opacity: 0
+  pointer-events: none
+
+  .dialog
+    @include transformScale(0, 0)
+    transition: all .3s
+    width: $toast-width
+    margin: 200px auto auto
+    background: #fff
+    padding: 20px
+    .title
+      font-size: $font-size-4
+      font-weight: $font-weight-6
+      padding: 10px 0
+    .text
+      font-size: $font-size-1
+      line-height: $font-size-3
+    .actionGroup
+      padding-top: 20px
+      height: 40px
+      .pos, .neg
+        cursor: pointer
+        float: right
+        padding: 0 15px
+        font-size: $font-size-2
+        color: $accent-color
+        line-height: 40px
+        font-weight: $font-weight-6
+        &:hover
+          color: $accent-hover-color
+
   &.open
     opacity: 1
-    bottom: 50px
+    pointer-events: all
+    .dialog
+      @include transformScale(1, 1)
 
-.dialog
-  position: fixed
+
+
+
+
 
 

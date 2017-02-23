@@ -30,3 +30,13 @@
   -ms-transform: scale($x, $y) rotate($deg)
   -webkit-transform: scale($x, $y) rotate($deg)
   transform: scale($x, $y) rotate($deg)
+
+@mixin transformScale($x, $y)
+  -ms-transform: scale($x, $y)
+  -webkit-transform: scale($x, $y)
+  transform: scale($x, $y)
+
+@mixin transformPositionScale($px,$py,$x, $y)
+  -ms-transform: translate($px, $py), scale($x, $y)
+  -webkit-transform: translate($px, $py), scale($x, $y)
+  transform: translate($px, $py), scale($x, $y)

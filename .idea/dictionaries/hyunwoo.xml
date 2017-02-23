@@ -12,6 +12,7 @@
       <w>mousedown</w>
       <w>mouseevent</w>
       <w>mousemove</w>
+      <w>mouseover</w>
       <w>mouseup</w>
       <w>radvis</w>
       <w>raycast</w>
