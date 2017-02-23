@@ -33,6 +33,7 @@ $(function () {
             return that;
         };
 
+
         this.getContextItem = function ($item) {
             if (_.isNil($item[contextKey])) return [];
             return $item[contextKey];

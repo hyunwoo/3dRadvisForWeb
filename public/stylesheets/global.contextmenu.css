@@ -44,13 +44,13 @@
       color: #494949;
       transition: background .15s; }
       .contextmenu-wrapper .contextmenu .item:hover {
-        background: #ebf6ff; }
+        background: #eee; }
       .contextmenu-wrapper .contextmenu .item.disable {
         color: #ccc; }
       .contextmenu-wrapper .contextmenu .item.disable:hover {
         background: inherit; }
     .contextmenu-wrapper .contextmenu .separater {
-      border-top: solid 1px #d1d1d1;
+      border-top: solid 1px #dbdbdb;
       margin: 5px 0 3px 0;
       padding-top: 5px;
       padding-left: 10px;
@@ -60,7 +60,7 @@
     .contextmenu-wrapper .contextmenu .spacer {
       height: 1px;
       margin: 5px 0;
-      border-top: solid 1px #d1d1d1; }
+      border-top: solid 1px #dbdbdb; }
 
 .context-window-wrapper {
   position: fixed;

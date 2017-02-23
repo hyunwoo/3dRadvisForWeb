@@ -1,7 +1,7 @@
 @import "../util"
 @import "../values"
 
-$inner-tab-height: 35px
+$inner-tab-height: 40px
 .settingTab
   box-sizing: border-box
   opacity: 0
@@ -20,7 +20,7 @@ $inner-tab-height: 35px
       //@include borderBottom($border-color)
       box-sizing: border-box
       font-size: $font-size-3
-      font-weight: $font-weight-7
+      font-weight: $font-weight-4
       width: 100%
       height: $tab-item-height + 5px
       line-height: $tab-item-height
@@ -45,6 +45,7 @@ $inner-tab-height: 35px
     .innerTab
       min-height: $inner-tab-height
       line-height: $inner-tab-height
+      @include borderBottom($border-color)
       .item
         cursor: pointer
         height: inherit
@@ -63,7 +64,7 @@ $inner-tab-height: 35px
           bottom: 0
           height: 3px
           width: 100%
-          background: $main-inv-color
+          background: $accent-color
       .item.disable
         text-decoration: line-through
 
@@ -196,7 +197,7 @@ $inner-tab-height: 35px
 
           .visible
             display: none
-            color: #2e4d72
+            color: $main-color
           .invisible
             color: $inactive-item-color
             display: inline-block

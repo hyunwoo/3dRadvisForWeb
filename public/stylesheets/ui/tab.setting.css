@@ -11,13 +11,13 @@
   height: calc(100% - 48px);
   background-color: #fff;
   transition-duration: 0.3s;
-  border-right: solid 1px #d1d1d1; }
+  border-right: solid 1px #dbdbdb; }
   .settingTab .header-group {
     background: #fff; }
     .settingTab .header-group .title {
       box-sizing: border-box;
       font-size: 17px;
-      font-weight: 700;
+      font-weight: 400;
       width: 100%;
       height: 45px;
       line-height: 40px;
@@ -38,8 +38,9 @@
       text-align: center;
       cursor: pointer; }
     .settingTab .header-group .innerTab {
-      min-height: 35px;
-      line-height: 35px; }
+      min-height: 40px;
+      line-height: 40px;
+      border-bottom: solid 1px #dbdbdb; }
       .settingTab .header-group .innerTab .item {
         cursor: pointer;
         height: inherit;
@@ -59,7 +60,7 @@
           bottom: 0;
           height: 3px;
           width: 100%;
-          background: #fff; }
+          background: #FAA332; }
       .settingTab .header-group .innerTab .item.disable {
         text-decoration: line-through; }
   .settingTab.open {
@@ -83,14 +84,14 @@
     padding-left: 20px;
     color: #fff; }
   .settingTab .contents {
-    height: calc(100% - 40px * 2 - 35px - 5px);
+    height: calc(100% - 40px * 2 - 40px - 5px);
     overflow-y: auto; }
     .settingTab .contents .graphic {
       width: 100%;
       height: 200px;
       position: relative;
-      border-bottom: solid 1px #d1d1d1;
-      border-top: solid 1px #d1d1d1; }
+      border-bottom: solid 1px #dbdbdb;
+      border-top: solid 1px #dbdbdb; }
       .settingTab .contents .graphic .desc {
         pointer-events: none;
         padding: 20px;
@@ -160,7 +161,7 @@
         color: #737373;
         border-bottom: solid 1px #eee; }
         .settingTab .contents .list .item:hover {
-          background: #ebf6ff; }
+          background: #eee; }
         .settingTab .contents .list .item.active {
           border-left: solid 3px #3C3C3C; }
       .settingTab .contents .list.axis {
@@ -184,7 +185,7 @@
             font-weight: 100 !important; }
           .settingTab .contents .list.axis .item .visible {
             display: none;
-            color: #2e4d72; }
+            color: #3C3C3C; }
           .settingTab .contents .list.axis .item .invisible {
             color: #ccc;
             display: inline-block; }
@@ -223,7 +224,7 @@
     height: 41px;
     background: #fafafa;
     width: 100%;
-    border-top: solid 1px #d1d1d1;
+    border-top: solid 1px #dbdbdb;
     padding: 0 5px; }
     .settingTab .bottom .icon {
       float: right;
