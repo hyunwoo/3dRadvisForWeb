@@ -2,7 +2,6 @@
  * Created by suhyun on 2017. 2. 23..
  */
 
-
 var __IndexDataList = new function () {
     this.createDataList = function (data) {
         var $list = $('.dataList .list');
