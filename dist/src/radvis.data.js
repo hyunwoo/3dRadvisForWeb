@@ -14,14 +14,12 @@ var DataAxis = function DataAxis(name, index, stats) {
     _classCallCheck(this, DataAxis);
 
     this.active = true;
-    var that = this;
     this.name = name;
     this.spacing = Setting.Radvis.Axis.Geometry.spacing.value;
     this.spacing_center = Setting.Radvis.Axis.Geometry.spacing_center.value;
-    this.index = index;
+    this.uniqueIndex = this.index = index;
     this.stats = stats;
     this.power = Setting.Radvis.Axis.Geometry.power.value;
-    this.highlight = false;
 };
 
 var DataSet = function () {
@@ -34,8 +32,12 @@ var DataSet = function () {
     _createClass(DataSet, [{
         key: 'injectCsv',
         value: function injectCsv(csv) {
+            csv = csv.replace(/\r?\n|\r/gi, '\n');
             var rows = csv.split('\n');
             this.keys = rows[0].split(',');
+            _.forEach(this.keys, function (v) {
+                console.log(v);
+            });
             // this.keys = _.take(rows[0].split(','), 15);
             this.raw = _.map(rows, function (row) {
                 return row.split(',');
@@ -87,6 +89,13 @@ var DataSet = function () {
 
             this.axis = _.map(this.numericKeys, function (k, i) {
                 return new DataAxis(k, i, stats[k]);
+            });
+        }
+    }, {
+        key: 'getSortedAxis',
+        value: function getSortedAxis() {
+            return _.sortBy(this.axis, function (axis) {
+                return axis.index;
             });
         }
     }, {

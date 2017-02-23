@@ -61,6 +61,11 @@ let Setting = {
                     step: 0.1
                 },
             },
+            Visibility: {
+                visible: true,
+                invisible: false,
+            },
+            SelectedGeometryAxis: undefined,
         },
         Geometry: {
             BasketCount: 180,
@@ -74,7 +79,14 @@ let Setting = {
     Test: {
         AxisLimit: false,
         AxisLimitCount: 15,
-    }
+    },
+
+    setSelectedAxis: function (name) {
+        Setting.Radvis.Axis.SelectedGeometryAxis = name;
+    },
+    getSelectedAxis: function () {
+        return Setting.Radvis.Axis.SelectedGeometryAxis;
+    },
 };
 
 $(function () {

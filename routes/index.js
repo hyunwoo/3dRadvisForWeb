@@ -7,7 +7,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/testing', function (req, res) {
-    res.render('line');
+    res.render('radvis');
+});
+
+router.get('/radvis', function (req, res) {
+    res.render('radvis');
 });
 
 module.exports = router;

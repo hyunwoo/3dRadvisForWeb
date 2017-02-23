@@ -7,7 +7,7 @@
 
 $dropDown-height: 35px
 $dropDown-list-height: $dropDown-height - 2px
-$dropDown-padding: 10px
+$dropDown-padding: 15px
 $dropDown-content-color: #5e5e5e
 
 .component
@@ -33,8 +33,8 @@ $dropDown-content-color: #5e5e5e
     .arrow
       position: absolute
       top: -1px
-      right : 0
-      width : $dropDown-list-height
+      right: 0
+      width: $dropDown-list-height
       text-align: center
       line-height: inherit
       font-size: $icon-font-size-3
@@ -57,7 +57,7 @@ $dropDown-content-color: #5e5e5e
       opacity: 0
       transition: 0.17s
       max-height: $dropDown-list-height * 10
-      overflow-y : auto
+      overflow-y: auto
 
       .listItem
         box-sizing: border-box
@@ -66,8 +66,22 @@ $dropDown-content-color: #5e5e5e
         line-height: $dropDown-list-height
         padding-left: $dropDown-padding
         cursor: pointer
+        color: $active-item-color
+        background: #fff
         &:hover
           background-color: #eee
+        &.separater
+          color: #fff
+          font-size: $font-size-0
+          font-weight: $font-weight-2
+          height: $dropDown-list-height - 10px
+          line-height: $dropDown-list-height - 10px
+          padding-left: $dropDown-padding
+          @include borderTop($border-color)
+          background: $active-item-color
+          pointer-events: none
+          &:hover
+            background-color: inherit
     &.click
       .dropDownList
         height: 200px

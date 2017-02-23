@@ -3,6 +3,7 @@ block content
     // soo
     .nav
         .logo.i.material-icons whatshot
+        .header 3D Radvis
     .tabWrapper(oncontextmenu="return false")
         .sideTab.open
             .tabBottom
@@ -85,7 +86,7 @@ block content
                         input(data='setting' type='range', data-name='Radvis NodeScale'
                         update='__RadvisController.updateNodes()' min='0' max='5' step=0.1 value=1.5).slider
                     .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-
+            .bottom
         //.settingTab#SettingTabNodesGeometry
             .title
             .closer.i.material-icons(onclick='openSettingTab()') close

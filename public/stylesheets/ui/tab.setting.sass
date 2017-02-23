@@ -96,7 +96,7 @@ $inner-tab-height: 35px
     overflow-y: auto
     .graphic
       width: 100%
-      height: 250px
+      height: 200px
       position: relative
       @include borderBottom($border-color)
       @include borderTop($border-color)
@@ -170,7 +170,7 @@ $inner-tab-height: 35px
         color: $tab-item-color
         @include borderBottom(#eee)
         &:hover
-          background: #eee
+          background: $hover-color
         &.active
           border-left: solid 3px $main-color
       &.axis
@@ -236,13 +236,37 @@ $inner-tab-height: 35px
             line-height: inherit
 
   .bottom
-    height: $tab-item-height
-    background: #fafafa
     position: absolute
     bottom: 0
-    left: 0
+    box-sizing: border-box
+    height: $tab-item-height + 1px
+    background: #fafafa
     width: 100%
     @include borderTop($border-color)
+    padding: 0 5px
+
+    .icon
+      float: right
+      cursor: pointer
+      height: $tab-item-height - 18px
+      width: $tab-item-height - 18px
+      margin: 9px
+      text-align: center
+      font-size: $font-size-2
+      line-height: $tab-item-height - 18px
+      //color: $active-item-color
+      border-radius: 50%
+      color: #fff
+      background: $main-background-color
+      &.disable
+        background: $inactive-item-color
+      &:hover
+        color: #eee
+      &.actor
+        float: left
+        background: $accent-color
+
+
 
 
 

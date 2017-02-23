@@ -1,7 +1,9 @@
 /**
  * Created by hyunwoo on 2017-02-20.
  */
-function createComponentSlider(parent, option, onChange) {
+function ComponentSlider(parent, option, onChange) {
+    const that = this;
+    this.option = option;
 
     if (_.isNil(option.min) || _.isNil(option.max)) {
         console.error('Slider Min or Max not defined');
@@ -64,9 +66,14 @@ function createComponentSlider(parent, option, onChange) {
         bar.css('width', x);
     }
 
-    setDisplayObjects((option.value - option.min ) / (option.max - option.min)
-        * $range.width(), option.value);
+    this.update = function (value) {
+        setDisplayObjects((value - option.min ) / (option.max - option.min)
+            * $range.width(), value);
+    };
 
+    if (!_.isNil(option.value))
+        this.update(option.value);
+    return this;
 }
 
 // Run!

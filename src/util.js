@@ -30,3 +30,10 @@ let __Formatter = new function () {
         return num.toFixed(digits).replace(rx, "$1");
     }
 };
+
+
+let __UUID = new function(){
+    this.create = function($item){
+
+    }
+};

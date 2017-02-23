@@ -22,12 +22,12 @@ var RadvisAxis = function () {
     _createClass(RadvisAxis, [{
         key: 'setPosition',
         value: function setPosition(x, z) {
-            this.controller.axisDestPosition[this.axis.index * 6] = x;
-            this.controller.axisDestPosition[this.axis.index * 6 + 1] = -Setting.Radvis.Height / 2;
-            this.controller.axisDestPosition[this.axis.index * 6 + 2] = z;
-            this.controller.axisDestPosition[this.axis.index * 6 + 3] = x;
-            this.controller.axisDestPosition[this.axis.index * 6 + 4] = Setting.Radvis.Height / 2;
-            this.controller.axisDestPosition[this.axis.index * 6 + 5] = z;
+            this.controller.axisDestPosition[this.axis.uniqueIndex * 6] = x;
+            this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 1] = -Setting.Radvis.Height / 2;
+            this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 2] = z;
+            this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 3] = x;
+            this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 4] = Setting.Radvis.Height / 2;
+            this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 5] = z;
         }
     }, {
         key: 'updatePosition',
@@ -58,7 +58,7 @@ var RadvisAxis = function () {
     }, {
         key: 'updateProjection',
         value: function updateProjection() {
-            var vector = RadvisController.projectPosition(this.controller.camera, this.controller.vertices[this.axis.index * 6], this.controller.vertices[this.axis.index * 6 + 1], this.controller.vertices[this.axis.index * 6 + 2], this.controller.width, this.controller.height);
+            var vector = RadvisController.projectPosition(this.controller.camera, this.controller.vertices[this.axis.uniqueIndex * 6], this.controller.vertices[this.axis.uniqueIndex * 6 + 1], this.controller.vertices[this.axis.uniqueIndex * 6 + 2], this.controller.width, this.controller.height);
 
             this.$name.css('left', vector.x - this.$name.width() / 2);
             this.$name.css('top', vector.y);
@@ -66,32 +66,32 @@ var RadvisAxis = function () {
     }, {
         key: 'setColor',
         value: function setColor(color) {
-            this.controller.axisDestColor[this.axis.index * 6] = color.r;
-            this.controller.axisDestColor[this.axis.index * 6 + 1] = color.g;
-            this.controller.axisDestColor[this.axis.index * 6 + 2] = color.b;
-            this.controller.axisDestColor[this.axis.index * 6 + 3] = color.r;
-            this.controller.axisDestColor[this.axis.index * 6 + 4] = color.g;
-            this.controller.axisDestColor[this.axis.index * 6 + 5] = color.b;
+            this.controller.axisDestColor[this.axis.uniqueIndex * 6] = color.r;
+            this.controller.axisDestColor[this.axis.uniqueIndex * 6 + 1] = color.g;
+            this.controller.axisDestColor[this.axis.uniqueIndex * 6 + 2] = color.b;
+            this.controller.axisDestColor[this.axis.uniqueIndex * 6 + 3] = color.r;
+            this.controller.axisDestColor[this.axis.uniqueIndex * 6 + 4] = color.g;
+            this.controller.axisDestColor[this.axis.uniqueIndex * 6 + 5] = color.b;
         }
     }, {
         key: 'located',
         value: function located(val) {
             var ratio = (val - this.min) / (this.max - this.min);
-            var x = this.controller.axisDestPosition[this.axis.index * 6] * ratio;
-            var y = this.controller.axisDestPosition[this.axis.index * 6 + 1] * ratio + this.controller.axisDestPosition[this.axis.index * 6 + 4] * (1 - ratio);
-            var z = this.controller.axisDestPosition[this.axis.index * 6 + 5] * ratio;
+            var x = this.controller.axisDestPosition[this.axis.uniqueIndex * 6] * ratio;
+            var y = this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 1] * ratio + this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 4] * (1 - ratio);
+            var z = this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 5] * ratio;
             var v = new THREE.Vector3(x, y, z).multiplyScalar(Setting.Radvis.NodeScale);
             return v;
         }
     }, {
         key: 'bottom',
         get: function get() {
-            return THREE.Vector3(this.controller.axisDestPosition[this.axis.index * 6], this.controller.axisDestPosition[this.axis.index * 6 + 1], this.controller.axisDestPosition[this.axis.index * 6 + 2]);
+            return THREE.Vector3(this.controller.axisDestPosition[this.axis.uniqueIndex * 6], this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 1], this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 2]);
         }
     }, {
         key: 'top',
         get: function get() {
-            return THREE.Vector3(this.controller.axisDestPosition[this.axis.index * 6 + 3], this.controller.axisDestPosition[this.axis.index * 6 + 4], this.controller.axisDestPosition[this.axis.index * 6 + 5]);
+            return THREE.Vector3(this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 3], this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 4], this.controller.axisDestPosition[this.axis.uniqueIndex * 6 + 5]);
         }
     }, {
         key: 'topScreen',

@@ -9,12 +9,19 @@
   background-color: #286fe8;
   z-index: 1001; }
   .nav .logo {
-    position: absolute;
+    display: inline-block;
     width: 60px;
     text-align: center;
     line-height: 50px;
     font-size: 19px;
     cursor: pointer;
+    color: #fff; }
+  .nav .header {
+    vertical-align: top;
+    display: inline-block;
+    line-height: inherit;
+    font-weight: 200;
+    font-size: 18px;
     color: #fff; }
 
 .tabWrapper {

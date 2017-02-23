@@ -102,7 +102,6 @@ class RadvisController {
             transparent: true
         });
 
-        console.log(data);
         this.geometryNodes = new THREE.BufferGeometry();
 
         this.nodes = data.numericNodes;

@@ -12,13 +12,31 @@ $(function () {
         this.addContextItem = function ($item, name, action, disable) {
             if (_.isNil($item[contextKey])) $item[contextKey] = [];
             $item[contextKey].push({
+                type: 'action',
                 name: name,
                 action: action,
-                disable: disable
+                disable: !_.isNil(disable) || _.isNil(action)
             });
+            return that;
+        };
+
+        this.addContextSeparater = function ($item, name) {
+            $item[contextKey].push({
+                type: 'separater',
+                name: name
+            });
+            return that;
+        };
+
+        this.addContextSpacer = function ($item) {
+            $item[contextKey].push({
+                type: 'spacer'
+            });
+            return that;
         };
 
         this.getContextItem = function ($item) {
+            if (_.isNil($item[contextKey])) return [];
             return $item[contextKey];
         };
 
@@ -28,25 +46,32 @@ $(function () {
             evt.stopPropagation();
         });
 
-        this.open = function (evt) {
+        this.open = function (evt, $item) {
+            evt = evt.originalEvent;
             console.log(evt);
-
-            var target = $(evt.target);
-            console.log(target);
-            console.log(this.getContextItem(target));
-
             that.clear();
-            // that.wrapper.addClass('open');
-            // that.menu.css('left', evt.clientX);
-            // that.menu.css('top', evt.clientY);
+            that.wrapper.addClass('open');
+            that.menu.css('left', evt.clientX);
+            that.menu.css('top', evt.clientY);
 
-            // $('<div class="header">menu</div>').appendTo(that.menu);
-            // _.forEach(items, function (item) {
-            //     var $item = $('<div class="item">' + item + '</div>').appendTo(that.menu);
-            //     $item.click(function () {
-            //
-            //     });
-            // })
+            // $('<div class="header">Setting' +
+            //     '<div class="icon i material-icons">settings</div>' +
+            //     '</div>').appendTo(that.menu);
+            _.forEach(__ContextMenu.getContextItem($item), function (item) {
+                if (_.isNil(item.type) || item.type == 'action') {
+                    var $item = $('<div class="item">' + item.name + '</div>').appendTo(that.menu);
+                    if (!item.disable) $item.click(function () {
+                        item.action();
+                        __ContextMenu.close();
+                    });else $item.addClass('disable');
+                } else if (item.type == 'separater') $('<div class="separater">' + item.name + '</div>').appendTo(that.menu);else if (item.type == 'spacer') $('<div class="spacer"></div>').appendTo(that.menu);
+            });
+        };
+
+        this.adjust = function ($item) {
+            $item.on('mousedown', function (evt) {
+                if (evt.which == 3) __ContextMenu.open(evt, $item);
+            });
         };
 
         this.clear = function () {
@@ -60,16 +85,5 @@ $(function () {
 
         this.wrapper.click(this.close);
     }();
-});
-
-$(document).bind("mousedown", function (evt) {
-    evt = evt.originalEvent;
-    if (evt.which == 3) {
-        var $target = $(evt.target);
-        if ($target.attr('evt-type') === 'menu') {
-            console.log('Open Menu');
-        }
-        __ContextMenu.open(evt);
-    }
 });
 //# sourceMappingURL=mouseevent.global.js.map

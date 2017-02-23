@@ -1,3 +1,4 @@
+/* W3C compliant browsers */
 .contextmenu-wrapper {
   position: fixed;
   z-index: 999999;
@@ -12,19 +13,28 @@
   .contextmenu-wrapper .contextmenu {
     position: fixed;
     z-index: 999999;
-    width: 200px;
+    width: 170px;
     background: #fff;
     border: solid 1px #ccc; }
     .contextmenu-wrapper .contextmenu .header {
+      padding-left: 24px;
       box-sizing: border-box;
-      height: 30px;
+      height: 24px;
       width: 100%;
       font-size: 13px;
-      padding-left: 10px;
-      line-height: 30px;
+      line-height: 24px;
       background: #2973FF;
       color: #fff;
       font-weight: 400; }
+      .contextmenu-wrapper .contextmenu .header .icon {
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: inherit;
+        line-height: 24px; }
     .contextmenu-wrapper .contextmenu .item {
       min-height: 30px;
       line-height: 30px;
@@ -35,6 +45,22 @@
       transition: background .15s; }
       .contextmenu-wrapper .contextmenu .item:hover {
         background: #ebf6ff; }
+      .contextmenu-wrapper .contextmenu .item.disable {
+        color: #ccc; }
+      .contextmenu-wrapper .contextmenu .item.disable:hover {
+        background: inherit; }
+    .contextmenu-wrapper .contextmenu .separater {
+      border-top: solid 1px #e1e1e1;
+      margin: 5px 0 3px 0;
+      padding-top: 5px;
+      padding-left: 10px;
+      color: #aaa;
+      font-weight: 400;
+      font-size: 13px; }
+    .contextmenu-wrapper .contextmenu .spacer {
+      height: 1px;
+      margin: 5px 0;
+      border-top: solid 1px #e1e1e1; }
 
 .context-window-wrapper {
   position: fixed;
