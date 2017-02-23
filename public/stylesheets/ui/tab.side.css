@@ -1,29 +1,4 @@
 /* W3C compliant browsers */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 50px;
-  line-height: 50px;
-  background-color: #286fe8;
-  z-index: 1001; }
-  .nav .logo {
-    display: inline-block;
-    width: 60px;
-    text-align: center;
-    line-height: 50px;
-    font-size: 19px;
-    cursor: pointer;
-    color: #fff; }
-  .nav .header {
-    vertical-align: top;
-    display: inline-block;
-    line-height: inherit;
-    font-weight: 200;
-    font-size: 18px;
-    color: #fff; }
-
 .tabWrapper {
   position: fixed;
   left: 0;

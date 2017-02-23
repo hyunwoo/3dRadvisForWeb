@@ -9,58 +9,6 @@ block content
             .tabBottom
                 .text foxtail ©
                 .tabOpener.i.material-icons chevron_right
-        //.sideTab.open
-            .spacer
-            .tabBottom
-                .text foxtail ©
-                .tabOpener.i.material-icons chevron_right
-            .tabItemWrapper
-                .selectBorder
-                .tabItem.i.material-icons home
-                .tabItemName Overview
-            .separater
-                .text Global Setting
-            .tabItemWrapper(for='SettingTabAxisVisibility')
-                .selectBorder
-                .tabItem.i.material-icons view_week
-                .tabItemName Axis Usage
-            .tabItemWrapper(for='SettingTabAxisGeometry')
-                .selectBorder
-                .tabItem.i.material-icons view_week
-                .tabItemName Axis Geometry
-            .tabItemWrapper(for='SettingTabNodesGeometry')
-                .selectBorder
-                .tabItem.i.material-icons toll
-                .tabItemName Node Geometry
-            .tabItemWrapper(for='SettingTabColor')
-                .selectBorder
-                .tabItem.i.material-icons format_color_fill
-                .tabItemName Unique
-            .separater
-                .text Cluster Analytics
-            .separater
-                .text Time Series Setting
-
-        //.settingTab
-            .header-group
-                .title Axis
-                .closer.i.material-icons close
-                .innerTab
-                    .item.active Usage
-                        .border
-                    .item Geometry
-                        .border
-                    .item.disable Color
-                        .border
-            .contents
-                .list.axis
-            .bottom
-
-
-
-        //include sidetab/axisUsage
-        //include sidetab/axisGeometry
-
         .settingTab.open
             .header-group
                 .title
@@ -87,23 +35,6 @@ block content
                         update='__RadvisController.updateNodes()' min='0' max='5' step=0.1 value=1.5).slider
                     .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             .bottom
-        //.settingTab#SettingTabNodesGeometry
-            .title
-            .closer.i.material-icons(onclick='openSettingTab()') close
-            .controller
-                .name Node Size
-                .component
-                    input(data='setting' type='range', data-name='Radvis NodeSize'
-                    update='__RadvisController.updateNodes()' min='5' max='100' step=0.1).slider
-                .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            .controller
-                .name Position Scaling
-                .component
-                    input(data='setting' type='range', data-name='Radvis NodeScale'
-                    update='__RadvisController.updateNodes()' min='0' max='5' step=0.1 value=1.5).slider
-                .desc Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        //.settingTab#SettingTabColor
-            .title
 
     .actions
         .options Axis
@@ -120,6 +51,7 @@ block content
     script(src='/parallel.core.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
 
+    // Shader Codes
     script(type="x-shader/x-vertex" id="vertexshader").
         attribute float size;
         attribute vec3 customColor;

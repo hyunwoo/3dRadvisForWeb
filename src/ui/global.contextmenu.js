@@ -54,7 +54,6 @@ $(function () {
             that.menu.css('left', evt.clientX);
             that.menu.css('top', evt.clientY);
 
-
             // $('<div class="header">Setting' +
             //     '<div class="icon i material-icons">settings</div>' +
             //     '</div>').appendTo(that.menu);
