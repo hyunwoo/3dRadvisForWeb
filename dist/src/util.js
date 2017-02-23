@@ -31,4 +31,23 @@ var __Formatter = new function () {
 var __UUID = new function () {
     this.create = function ($item) {};
 }();
+
+var __FileReader = new function () {
+    this.InputReadFile = function ($input, callback) {
+        $input.on('change', function (evt) {
+            console.log('!!!');
+            var f = evt.target.files[0];
+            if (f) {
+                var r = new FileReader();
+                r.onload = function (e) {
+                    f['contents'] = e.target.result;
+                    callback(f);
+                };
+                r.readAsText(f);
+            } else {
+                alert("Failed to load file");
+            }
+        });
+    };
+}();
 //# sourceMappingURL=util.js.map

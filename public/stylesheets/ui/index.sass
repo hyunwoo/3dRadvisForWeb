@@ -5,8 +5,7 @@ $left-width: 300px
 $title-height: 40px
 $dataList-top: 150px
 $item-height: 50px
-
-
+$bottom-height: 50px
 
 .dataListViewer
   box-sizing: border-box
@@ -20,10 +19,12 @@ $item-height: 50px
     vertical-align: top
     display: inline-block
     width: $left-width
-    height: 100vh
+    height: inherit
     color: #fff
     .list
       width: 100%
+      height: calc(100% - #{$title-height} - #{$bottom-height})
+      overflow-y: auto
       .item
         cursor: pointer
         position: relative
@@ -40,6 +41,25 @@ $item-height: 50px
           background-color: $hover-color
         &.click
           background-color: $hover-color
+    .bottom
+      height: $bottom-height
+      box-sizing: border-box
+      width: 100%
+      background-color: $accent-color
+      color: #fff
+      line-height: $bottom-height
+      text-align: center
+      cursor: pointer
+      .icon, .text
+        @include inlineBlock
+        height: inherit
+        line-height: 50px
+        padding: 0 5px
+      &:hover
+        background: #FAA332
+    input
+      opacity: 0
+      pointer-events: none
 
   .viewer
     box-sizing: border-box

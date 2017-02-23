@@ -14,8 +14,10 @@ $(function () {
     __Firebase = new function () {
         let fb = firebase.initializeApp(config);
         let auth = fb.auth();
-        const that = this;
+        this.user = undefined;
+        let isSetReferences = false;
 
+        const that = this;
         this.authChange = [];
 
         this.addAuthChangeFunction = function (evt) {
@@ -26,16 +28,25 @@ $(function () {
         this.testDataUrl = 'https://firebasestorage.googleapis.com/v0/b/dradvis.appspot.com/o/credos_testing.csv?alt=media&token=27152d59-bf4a-41cf-8658-1c3581c08c5e';
         let providerGoogle = new firebase.auth.GoogleAuthProvider();
 
-
         fb.auth().onAuthStateChanged(function (user) {
+            that.user = user;
             if (user) {
                 console.log('auth changed');
                 console.log(user);
+                if (!isSetReferences) {
+                    console.log('initReferences');
+                }
+                isSetReferences = true;
+
             } else {
             }
 
             __UIStatic.onAuthChange(user);
         });
+
+        this.getDataList = function () {
+
+        };
 
         this.signInWithGoogle = function () {
             console.log('?');
@@ -66,18 +77,23 @@ $(function () {
                 window.location = '/';
             }, function (error) {
 
-            })
+            });
+            that.user = undefined;
         };
 
+        this.uploadData = function (f) {
+
+        };
     };
     $('#signinButton').click(__Firebase.signInWithGoogle);
     $('#signoutButton').click(__Firebase.signOut);
 
     __Firebase.addAuthChangeFunction(__UIStatic.onAuthChange);
-
-    $('#uploadTest').click(function () {
-        __UIStatic.Dialog.open({});
+    __FileReader.InputReadFile($('#uploadTest'), function (body) {
+        console.log(body);
     })
+
+
 });
 
 

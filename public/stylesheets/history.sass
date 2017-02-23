@@ -1,0 +1,61 @@
+@import "values"
+@import "util"
+
+.history
+  width: 800px
+  background: #fff
+  border: solid 1px #ddd
+  height: calc(100vh - 200px)
+  margin: 100px auto auto
+
+  *.item
+    width: 100%
+    .name, .content, .date
+      box-sizing: border-box
+      @include inlineBlock
+      padding: 0px 10px
+    .name
+      width: 100px
+    .content
+      width: 500px
+    .date
+      width: 150px
+  .header
+    height: $nav-height
+    line-height: $nav-height
+    font-weight: $font-weight-6
+    font-size: $font-size-2
+    background: $main-color
+    color: $main-inv-color
+    .name, .content, .date
+      padding-left: 20px
+
+  .list
+    overflow-y: auto
+    height: calc(100vh - 200px - #{$nav-height})
+    .item
+      min-height: 40px
+      line-height: 40px
+      color: $main-color
+      font-size: $font-size-1
+      @include borderBottom($border-color)
+      .name
+        .text
+          height: 24px
+          border-radius: 15px
+          background: #006ba0
+          text-align: center
+          color: #fff
+          margin-top: 20px
+          line-height: 24px
+          font-size: $font-size-1
+          font-weight: $font-weight-2
+      .content
+        padding: 10px 10px
+        .message
+          width: calc(100% - 20px)
+          @include pre
+      &:hover
+        background: #f0f0f0
+        cursor: pointer
+

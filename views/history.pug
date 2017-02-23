@@ -1,0 +1,51 @@
+extends layout
+block content
+    include includes/uiStatics
+    link(rel='stylesheet' href='/stylesheets/history.css')
+
+    .history
+        .header
+            .item
+                .name Name
+                .content Commit
+                .date Date
+        .list
+
+    script.
+        $.get('https://api.github.com/repos/hyunwoo/3dRadvisForWeb/commits', function (body) {
+            console.log(body)
+            console.log(body[1]);
+            var parent = $('.history .list');
+            _.map(body, function (commit) {
+                var com = commit.commit;
+                var name = com.author.name;
+                var message = com.message;
+                var date = com.author.date.replace('T', ' ').replace('Z', ' ');
+                var url = commit['html_url'];
+                var item = $('<div class="item">' +
+                    '<div class="name">' +
+                    '<div class="text">' + name + '</div>' +
+                    '</div>' +
+                    '<div class="content">' +
+                    '<div class="message">' + message + '</div>' +
+                    '</div>' +
+                    '<div class="date">' + date + '</div>' +
+                    '</div>').appendTo(parent);
+                item.click(function () {
+                    __UIStatic.Dialog.open({
+                        title: 'Redirect to github',
+                        text: 'Redirect : <b>' + url + '</b>',
+                        pos: {
+                            name: 'Go!',
+                            action: function () {
+                                window.location = url;
+                            }
+                        },
+                        neg: {
+                            name: 'Nope',
+                        }
+                    })
+                })
+            })
+
+        });

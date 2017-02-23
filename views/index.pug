@@ -3,12 +3,16 @@ block content
     include ./includes/uiStatics
 
     link(rel='stylesheet', href='/stylesheets/ui/index.css')
-    script(src='/ui/index.js')
 
     .dataListViewer
         .dataList
             .listTitle Name
             .list
+
+            .bottom(for='uploadTest')#DataListUploadFile
+                .icon.i.material-icons file_upload
+                .text Upload
+            input(type='file')#DataListUploadFileInput
         .viewer
             .listTitle Info
             .descGroup
@@ -19,8 +23,16 @@ block content
 
 
 
+    script(src='/ui/index.js')
     script.
-        createDataList(['Data Name1', 'Data Name2', 'Data Name3']);
+        __IndexDataList.createDataList([
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+        ]);
 
-        var controller = $('#descModifier');
-        $(controller).click(controlDesc);

@@ -34,28 +34,38 @@ const __UIStatic = new function () {
 
     this.Dialog = {
         open: function (opt) {
+
+            if (_.isNil(opt.pos) || _.isNil(opt.neg)) {
+                __UIStatic.Toast.open('Nil Value : pos or neg');
+                return;
+            }
             $Dialog.addClass('open');
             $DialogTitle.html(opt.title);
             $DialogText.html(opt.text);
 
-            $DialogPos.html(opt.pos.name);
-            $DialogPos.unbind();
-            $DialogPos.click(function () {
-                that.Dialog.close();
-                opt.pos.action();
-            });
+            if (!_.isNil(opt.pos.name)) {
+                $DialogPos.css('display', 'block');
+                $DialogPos.html(opt.pos.name);
+                $DialogPos.unbind();
+                $DialogPos.click(function () {
+                    that.Dialog.close();
+                    if (_.isNil(opt.pos.action)) opt.pos.action()
+                });
+            } else $DialogPos.css('display', 'none');
 
-            $DialogNeg.html(opt.neg.name);
-            $DialogNeg.unbind();
-            $DialogNeg.click(function () {
-                that.Dialog.close();
-                opt.neg.action();
-            });
+            if (!_.isNil(opt.neg.name)) {
+                $DialogNeg.css('display', 'block');
+                $DialogNeg.html(opt.neg.name);
+                $DialogNeg.unbind();
+                $DialogNeg.click(function () {
+                    that.Dialog.close();
+                    if (_.isNil(opt.neg.action)) opt.neg.action();
+                });
+            } else $DialogNeg.css('display', 'none');
 
             var content = $Dialog.find('.content');
             content.empty();
             if (!_.isNil(opt.func)) opt.func($Dialog.find('.content'));
-
         },
 
         close: function () {
