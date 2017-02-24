@@ -7,15 +7,14 @@ var __IndexDataList = new function () {
         var $list = $('.dataList .list');
 
         _.map(data, function (d) {
-            var item = $('<div class="item"> ' + d +
+            var item = $('<div class="item"> ' +
+                '<div class="parentItem">' + d.parent + '</div>' +
                 '<div class="showChildList i material-icons">more_vert</div>' +
                 '</div>').appendTo($list);
 
         });
 
     };
-
-
 
     this.controlDesc = function () {
         var $viewInput = $('.viewer .input');
@@ -44,5 +43,16 @@ var __IndexDataList = new function () {
         $('#DataListUploadFileInput').trigger('click');
     });
     __FileReader.InputReadFile($('#DataListUploadFileInput'), __Firebase.uploadData);
+
+
+    this.showChildList = function(){
+        var $childList = $(this).siblings('.childList');
+        var $childItem = $childList.find('.childItem');
+        if(!$childList.hasClass('show')) $childList.addClass('show');
+        else $childList.removeClass('show')
+    };
+
+    $('.showChildList').click(this.showChildList);
+
 
 };

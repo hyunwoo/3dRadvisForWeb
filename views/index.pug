@@ -8,8 +8,14 @@ block content
         .dataList
             .listTitle Name
             .list
-                .item Test Item
+                .item
+                    .parentItem Test Item
                     .showChildList.i.material-icons more_vert
+                    .childList
+                        .childItem Test Child Item
+                        .childItem Test Child Item
+
+
 
             .bottom(for='uploadTest')#DataListUploadFile
                 .icon.i.material-icons file_upload
@@ -31,5 +37,14 @@ block content
     script(src='/ui/index.js')
     script.
         __IndexDataList.createDataList([
-            'Data Name1', 'Data Name2', 'Data Name3', 'Data Name1', 'Data Name2', 'Data Name3',
+             {
+                'id': '',
+                'parent': 'Data one',
+                'child': ['Data one child one', 'Data one child two', 'Data one child three']
+            },
+            {
+                'id': '',
+                'parent': 'Data two',
+                'child': ['Data two child one', 'Data two child two', 'Data two child three']
+            },
         ]);
