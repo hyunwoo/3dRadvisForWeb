@@ -41,6 +41,7 @@ var __FileReader = new function () {
                 var r = new FileReader();
                 r.onload = function (e) {
                     f['contents'] = e.target.result;
+                    console.log('===>');
                     callback(f);
                 };
                 r.readAsText(f);

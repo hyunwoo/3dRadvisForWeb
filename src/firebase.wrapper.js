@@ -15,6 +15,12 @@ let __Firebase = new function () {
     this.user = undefined;
     let isSetReferences = false;
 
+
+    this.EventName = {
+        ChildAdded: 'child_added',
+        ChildRemoved: 'child_removed',
+        ChildChange: 'child_changed'
+    }
     const that = this;
     this.authChange = [];
 
@@ -31,16 +37,57 @@ let __Firebase = new function () {
         if (user) {
             console.log('auth changed');
             console.log(user);
-            if (!isSetReferences) {
-                console.log('initReferences');
-            }
+            initDBReferences();
             isSetReferences = true;
-
         } else {
         }
-
+        _.forEach(that.authChange, function (d) {
+            d(user);
+        });
         // __UIStatic.onAuthChange(user);
     });
+
+
+    let DBRefDataList;
+    let callbackEvents = {};
+
+
+    function initDBReferences() {
+        if (isSetReferences) return;
+        isSetReferences = true;
+
+        DBRefDataList = fb.database().ref(that.user.uid + '/list');
+        var events = ['child_added', 'child_changed', 'child_removed'];
+        _.forEach(events, function (evt) {
+            DBRefDataList.on(evt, function (snapshot) {
+                console.log(evt, snapshot.val())
+                _.forEach(callbackEvents[evt], function (callback) {
+                    callback(snapshot.val());
+                })
+            });
+        });
+
+    }
+
+    this.on = function (evt, callback) {
+        if (_.isNil(callbackEvents[evt])) callbackEvents[evt] = [];
+        callbackEvents[evt].push(callback);
+        return callback;
+    };
+
+    this.unbind = function (evt, callback) {
+        if (_.isNil(callbackEvents[evt])) {
+            console.error('event not binded');
+            return;
+        }
+        if (_.isNil(callback)) callbackEvents[evt] = [];
+        else if (!_.isNil(callback)) callbackEvents[evt] = _.remove(callbackEvents[evt], callback);
+    };
+
+
+    function clearDBReferences() {
+
+    }
 
     this.getDataList = function () {
 
@@ -71,25 +118,72 @@ let __Firebase = new function () {
     };
 
     this.signOut = function () {
+        if (_.isNil(that.user)) {
+            __UIStatic.Toast.open("Auth Failed");
+            return;
+        }
+
         auth.signOut().then(function () {
+            that.user = undefined;
             window.location = '/';
         }, function (error) {
-
+            __UIStatic.Toast.open("SignOut Failed");
         });
-        that.user = undefined;
+
     };
+
+    this.getDataList = function () {
+        if (_.isNil(that.user)) {
+            __UIStatic.Toast.open("Auth Failed");
+            return;
+        }
+    };
+
+    this.getDataContent = function (key) {
+        if (_.isNil(that.user)) {
+            __UIStatic.Toast.open("Auth Failed");
+            return;
+        }
+    };
+
+    this.deleteData = function (d) {
+        console.log('deleteData:', d);
+        var ref = fb.database().ref(that.user.uid + '/list/' + d._id);
+        ref.set(null);
+    };
+
 
     this.uploadData = function (f) {
+        console.log('uploadFile!?');
+        if (_.isNil(that.user)) {
+            __UIStatic.Toast.open("Auth Failed");
+            return;
+        }
+        const refList = fb.database().ref(that.user.uid + '/list');
+        const refRaw = fb.database().ref(that.user.uid + '/raw');
+        const key = refList.push().key;
 
+        console.log(f);
+        var updates = {};
+        console.log(that.user.uid + '/list/' + key);
+        updates[that.user.uid + '/list/' + key] = {
+            name: f.name,
+            size: f.size,
+            type: f.type,
+            lastModified: f.lastModified,
+            _id: key,
+            overview: 'Not Yet Set Overview',
+        };
+
+        updates[that.user.uid + '/raw/' + key] = f.contents;
+        fb.database().ref().update(updates);
     };
 };
-$('#signinButton').click(__Firebase.signInWithGoogle);
-$('#signoutButton').click(__Firebase.signOut);
 
-// __Firebase.addAuthChangeFunction(__UIStatic.onAuthChange);
-__FileReader.InputReadFile($('#uploadTest'), function (body) {
-    console.log(body);
+$(function () {
+    __Firebase.getDataList()
 });
+
 
 
 

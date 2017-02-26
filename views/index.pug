@@ -6,9 +6,11 @@ block content
 
     .dataListViewer
         .dataList
-            .listTitle Name
+            .listTitle Data List
+                .dataUploadButton(for='uploadTest')#DataListUploadFile
+                    .text Upload
             .list
-                .item
+                //.item
                     .parentItem Test Item
                     .showChildList.i.material-icons more_vert
                     .childList
@@ -17,34 +19,56 @@ block content
 
 
 
-            .bottom(for='uploadTest')#DataListUploadFile
+            //.bottom(for='uploadTest')#DataListUploadFile
                 .icon.i.material-icons file_upload
-                .text Upload
+                .text Upload Data
             input(type='file')#DataListUploadFileInput
         .viewer
             .listTitle Info
             .descGroup
                 .desc Data Overview
                 .icon.i.material-icons#descModifier mode_edit
-            .input.visible Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies risus quis dui vulputate laoreet. Aliquam imperdiet velit quis tellus blandit volutpat. Aliquam molestie magna lacus, et faucibus eros semper luctus. Sed tincidunt, metus et interdum mollis, diam risus viverra nisi, vel dictum sem elit a tortor
+            .input.visible 데이터 업로드 테스트를 위한 테스트 데이터 입니다
             textarea
             .additionInfo
-                .item 2017-06-07
-                .item CSV
-                .item 3MB
+                .item#dataListDate 2017-06-07
+                .item#dataListType CSV
+                .item#dataListSize 3MB
+            .bottom
+                .button.i.material-icons add
+                .button.i.material-icons#dataListDelete delete
 
 
     script(src='/ui/index.js')
     script.
-        __IndexDataList.createDataList([
-             {
-                'id': '',
-                'parent': 'Data one',
-                'child': ['Data one child one', 'Data one child two', 'Data one child three']
-            },
-            {
-                'id': '',
-                'parent': 'Data two',
-                'child': ['Data two child one', 'Data two child two', 'Data two child three']
-            },
-        ]);
+        var data = [{
+            _id: '-asdf',
+            name: 'DataTest',
+            date: 'date here',
+            type: 'type',
+            size: 'asdf',
+            overview: 'OverView Here',
+            info: {},
+            child: [{
+                _id: '-1',
+                overview: '',
+                name: 'Test 01',
+                info: {}
+            }, {
+                _id: '-2',
+                overview: '',
+                name: 'Test 02',
+                info: {}
+            }],
+        }]
+
+        setTimeout(function () {
+            __IndexDataList.createDataList(data);
+            __Firebase.on('child_added', function (d) {
+                __IndexDataList.addDataList(d);
+            });
+
+            __Firebase.on(__Firebase.EventName.ChildRemoved, function (d) {
+                __IndexDataList.deleteDataList(d);
+            })
+        }, 1000);

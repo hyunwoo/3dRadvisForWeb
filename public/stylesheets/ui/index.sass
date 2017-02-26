@@ -7,6 +7,8 @@ $dataList-top: 150px
 $item-height: 50px
 $child-item-height: 45px
 $bottom-height: 50px
+$upload-button-height: 24px
+
 
 .dataListViewer
   box-sizing: border-box
@@ -20,8 +22,32 @@ $bottom-height: 50px
     vertical-align: top
     display: inline-block
     width: $left-width
-    height: inherit
+    height: 100%
     color: #fff
+    .listTitle
+      position: relative
+
+      .dataUploadButton
+        position: absolute
+        right: 10px
+        top: calc((#{$title-height} - #{$upload-button-height})/2)
+        height: $upload-button-height
+        box-sizing: border-box
+        background-color: $accent-color
+        color: #fff
+        text-align: center
+        cursor: pointer
+        padding: 0 3px
+        .icon, .text
+          font-size: $font-size-1
+          @include inlineBlock
+          height: $upload-button-height
+          line-height: $upload-button-height
+          padding: 0 5px
+        .icon
+          font-size: $icon-font-size-2
+        &:hover
+          background: $accent-hover-color
     .list
       width: 100%
       height: calc(100% - #{$title-height} - #{$bottom-height})
@@ -34,6 +60,7 @@ $bottom-height: 50px
         line-height: $item-height
         background-color: $main-inv-color
         color: $main-color
+        overflow-y: hidden
         @include borderBottom($border-color)
         .showChildList
           width: 36px
@@ -63,9 +90,10 @@ $bottom-height: 50px
         .childList
           width: 100%
           height: 0
+          overflow-y: hidden
+          transition: height 0.3s ease-in-out
           &.show
             height: auto
-            overflow-y: hidden
           .childItem
             width: calc(100% - 22px)
             height: $child-item-height
@@ -76,26 +104,6 @@ $bottom-height: 50px
             @include borderTop($border-color)
             &:hover
               background-color: #f9f9f9
-
-
-
-
-    .bottom
-      height: $bottom-height
-      box-sizing: border-box
-      width: 100%
-      background-color: $accent-color
-      color: #fff
-      line-height: $bottom-height
-      text-align: center
-      cursor: pointer
-      .icon, .text
-        @include inlineBlock
-        height: inherit
-        line-height: 50px
-        padding: 0 5px
-      &:hover
-        background: #FAA332
     input
       opacity: 0
       pointer-events: none
@@ -175,7 +183,27 @@ $bottom-height: 50px
         font-size: 12px
         font-weight: $font-size-2
         color: #686868
-
+    .bottom
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      height: $bottom-height
+      box-sizing: border-box
+      line-height: $bottom-height
+      @include borderTop($border-color)
+      .button
+        cursor: pointer
+        float: right
+        text-align: center
+        margin: 7px
+        background-color: $accent-color
+        width: 36px
+        height: 36px
+        @include borderRadius(50%)
+        line-height: 36px
+        &:hover
+          background-color: $accent-hover-color
 
   *.listTitle
     height: $title-height

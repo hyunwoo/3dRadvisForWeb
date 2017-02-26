@@ -18,8 +18,8 @@ router.get('/radvis', function (req, res) {
     res.render('radvis');
 });
 
-router.get('/history', function(req,res){
+router.get('/history', function (req, res) {
     res.render('history');
-})
+});
 
 module.exports = router;

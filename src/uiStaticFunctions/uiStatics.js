@@ -6,6 +6,7 @@ const __UIStatic = new function () {
     var $Nav = $('.nav');
     var $Toast = $('#toast');
     var toastTimeout;
+
     this.Toast = {
         removeTimeout: function () {
             if (!_.isNil(toastTimeout)) clearTimeout(toastTimeout);
@@ -23,6 +24,7 @@ const __UIStatic = new function () {
             that.Toast.removeTimeout();
         },
     };
+
     $Toast.on('mouseover', this.Toast.removeTimeout);
     $Toast.find('.closer').click(that.Toast.close);
 
@@ -34,9 +36,9 @@ const __UIStatic = new function () {
 
     this.Dialog = {
         open: function (opt) {
-
             if (_.isNil(opt.pos) || _.isNil(opt.neg)) {
                 __UIStatic.Toast.open('Nil Value : pos or neg');
+                console.log(opt);
                 return;
             }
             $Dialog.addClass('open');
@@ -49,7 +51,7 @@ const __UIStatic = new function () {
                 $DialogPos.unbind();
                 $DialogPos.click(function () {
                     that.Dialog.close();
-                    if (_.isNil(opt.pos.action)) opt.pos.action()
+                    if (!_.isNil(opt.pos.action)) opt.pos.action()
                 });
             } else $DialogPos.css('display', 'none');
 
@@ -59,7 +61,7 @@ const __UIStatic = new function () {
                 $DialogNeg.unbind();
                 $DialogNeg.click(function () {
                     that.Dialog.close();
-                    if (_.isNil(opt.neg.action)) opt.neg.action();
+                    if (!_.isNil(opt.neg.action)) opt.neg.action();
                 });
             } else $DialogNeg.css('display', 'none');
 
@@ -73,11 +75,8 @@ const __UIStatic = new function () {
             $Dialog.removeClass('open');
         }
     };
-    this.Message = {};
-
 
     this.onAuthChange = function (user) {
-        console.log('???', user)
         if (user) {
             $Nav.find('.logined').removeClass('hide');
             $Nav.find('.logouted').addClass('hide');
@@ -85,8 +84,15 @@ const __UIStatic = new function () {
             $Nav.find('.logined').addClass('hide');
             $Nav.find('.logouted').removeClass('hide');
         }
+    };
 
-    }
+
+    this.Message = {};
+
+    $('#signinButton').click(__Firebase.signInWithGoogle);
+    $('#signoutButton').click(__Firebase.signOut);
+    __Firebase.addAuthChangeFunction(this.onAuthChange);
+    this.onAuthChange(null);
 };
 
 

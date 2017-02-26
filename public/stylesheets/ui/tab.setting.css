@@ -22,12 +22,12 @@
       line-height: 40px;
       text-align: left;
       padding: 2px 15px 0;
-      color: #3C3C3C;
+      color: #4b4b4b;
       position: relative; }
     .settingTab .header-group .closer {
       position: absolute;
       right: 0;
-      color: #3C3C3C;
+      color: #4b4b4b;
       top: 2px;
       height: 40px;
       line-height: 40px;
@@ -46,20 +46,20 @@
         display: inline-block;
         vertical-align: top;
         padding: 0 15px;
-        color: #3C3C3C;
+        color: #4b4b4b;
         line-height: inherit;
         position: relative;
         font-size: 13px;
         font-weight: 400; }
       .settingTab .header-group .innerTab .item.active {
-        color: #fa931f; }
+        color: #ff6955; }
         .settingTab .header-group .innerTab .item.active .border {
           position: absolute;
           left: 0;
           bottom: 0;
           height: 3px;
           width: 100%;
-          background: #fa931f; }
+          background: #ff6955; }
       .settingTab .header-group .innerTab .item.disable {
         text-decoration: line-through; }
   .settingTab.open {
@@ -77,7 +77,7 @@
       font-size: 13px; }
   .settingTab .header {
     height: 25px;
-    background: #3C3C3C;
+    background: #4b4b4b;
     line-height: 25px;
     font-size: 12px;
     padding-left: 20px;
@@ -126,11 +126,11 @@
           height: 50px;
           line-height: 50px;
           text-align: center;
-          color: #3C3C3C;
+          color: #4b4b4b;
           cursor: pointer; }
           .settingTab .contents .graphic .axis-controllers .axis-controller.clear:hover {
             color: #fff;
-            background: #3C3C3C; }
+            background: #4b4b4b; }
         .settingTab .contents .graphic .axis-controllers .axis-controller.arrows {
           display: inline-block;
           vertical-align: top;
@@ -145,7 +145,7 @@
             line-height: 23px;
             text-align: center; }
             .settingTab .contents .graphic .axis-controllers .axis-controller.arrows .item:hover {
-              background: #3C3C3C;
+              background: #4b4b4b;
               color: #fff; }
     .settingTab .contents .list {
       height: 100%;
@@ -162,7 +162,7 @@
         .settingTab .contents .list .item:hover {
           background: #eee; }
         .settingTab .contents .list .item.active {
-          border-left: solid 3px #3C3C3C; }
+          border-left: solid 3px #4b4b4b; }
       .settingTab .contents .list.axis {
         opacity: 1;
         text-align: left;
@@ -184,7 +184,7 @@
             font-weight: 100 !important; }
           .settingTab .contents .list.axis .item .visible {
             display: none;
-            color: #3C3C3C; }
+            color: #4b4b4b; }
           .settingTab .contents .list.axis .item .invisible {
             color: #ccc;
             display: inline-block; }
@@ -236,13 +236,13 @@
       line-height: 22px;
       border-radius: 50%;
       color: #fff;
-      background: #fa931f; }
+      background: #ff6955; }
       .settingTab .bottom .icon.disable {
         background: #ccc; }
       .settingTab .bottom .icon:hover {
         color: #eee; }
       .settingTab .bottom .icon.actor {
         float: left;
-        background: #3C3C3C; }
+        background: #4b4b4b; }
 
 /*# sourceMappingURL=tab.setting.css.map */

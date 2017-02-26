@@ -31,13 +31,11 @@ let __Formatter = new function () {
     }
 };
 
-
 let __UUID = new function () {
     this.create = function ($item) {
 
     }
 };
-
 
 const __FileReader = new function () {
     this.InputReadFile = function ($input, callback) {
@@ -48,6 +46,7 @@ const __FileReader = new function () {
                 var r = new FileReader();
                 r.onload = function (e) {
                     f['contents'] = e.target.result;
+                    console.log('===>');
                     callback(f);
                 };
                 r.readAsText(f);

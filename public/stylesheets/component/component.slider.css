@@ -31,14 +31,14 @@
       top: 16px;
       left: 0;
       font-size: 13px;
-      color: #3C3C3C;
+      color: #4b4b4b;
       pointer-events: none; }
     .component .slider .max {
       top: 16px;
       position: absolute;
       right: 0;
       font-size: 13px;
-      color: #3C3C3C;
+      color: #4b4b4b;
       pointer-events: none; }
     .component .slider:before {
       content: "";
@@ -53,7 +53,7 @@
     .component .slider .bar {
       position: absolute;
       left: 0;
-      background: #3C3C3C;
+      background: #4b4b4b;
       height: 3px;
       top: 4.5px;
       border-radius: 1.5px; }
@@ -67,7 +67,7 @@
       left: 0;
       margin-left: -6px;
       z-index: 2;
-      background-color: #3C3C3C;
+      background-color: #4b4b4b;
       cursor: inherit; }
       .component .slider .point .num {
         position: absolute;
@@ -89,7 +89,7 @@
           pointer-events: none;
           width: 26px;
           height: 26px;
-          background: #fa931f;
+          background: #ff6955;
           border-radius: 50% 50% 50% 0;
           top: 0;
           position: absolute;

@@ -8,9 +8,9 @@
   width: 100vw
   height: $nav-height
   line-height: $nav-height
-  background-color: $main-color
+  background-color: $main-background-color
   z-index: 1001
-
+  @include borderBottom($border-color)
   .logo
     display: inline-block
     width: $tab-menu-width
@@ -18,15 +18,14 @@
     line-height: $nav-height
     font-size: $icon-font-size-2
     cursor: pointer
-    color: $main-inv-color
+    color: $accent-color
   .header
     vertical-align: top
     display: inline-block
     line-height: inherit
     font-weight: $font-weight-2
     font-size: $font-size-4
-    color: $main-inv-color
-
+    color: $accent-color
   .rightGroup
     padding-right: 10px
     float: right
@@ -56,20 +55,19 @@
         display: inline-block
         vertical-align: top
         cursor: pointer
-        margin: 8px
-        height: $nav-height - 16px
-        line-height: $nav-height - 16px
+        margin: 11px 7px
+        height: $nav-height - 22px
+        line-height: $nav-height - 22px
         text-align: center
-        color: $border-color
-        font-weight: $font-weight-6
-        font-size: $font-size-2
-        padding: 0 10px
-
+        color: $main-font-color
+        font-weight: $font-weight-4
+        font-size: $font-size-1
+        padding: 0 8px
       .name
         height: $nav-height
         display: inline-block !important
         vertical-align: top
-        color: #fff
+        color: $main-font-color
         font-size: $font-size-1
       &.hide
         display: none
@@ -98,14 +96,12 @@ $toast-width-half: $toast-width/2
   padding: 15px 50px 15px 15px
   @include transformScale(0.7, 0.7)
   pointer-events: none
-
   .closer
     position: absolute
     top: 0
     right: 0
     padding: 10px
     cursor: pointer
-
   &.open
     @include transformScale(1, 1)
     opacity: 1
@@ -123,7 +119,6 @@ $toast-width-half: $toast-width/2
   color: $main-color
   opacity: 0
   pointer-events: none
-
   .dialog
     @include transformScale(0.7, 0.7)
     transition: all .3s
@@ -142,7 +137,6 @@ $toast-width-half: $toast-width/2
     .content
       padding: 10px
       max-width: 100%
-
     .actionGroup
       padding-top: 20px
       height: 40px
@@ -156,7 +150,6 @@ $toast-width-half: $toast-width/2
         font-weight: $font-weight-6
         &:hover
           color: $accent-hover-color
-
   &.open
     opacity: 1
     pointer-events: all

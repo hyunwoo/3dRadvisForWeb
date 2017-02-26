@@ -50,7 +50,7 @@
       cursor: pointer;
       position: relative; }
       .tabWrapper .sideTab .tabItemWrapper.click {
-        color: #fa931f; }
+        color: #ff6955; }
         .tabWrapper .sideTab .tabItemWrapper.click .selectBorder {
           opacity: 1; }
       .tabWrapper .sideTab .tabItemWrapper .selectBorder {
@@ -58,7 +58,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        background-color: #fa931f;
+        background-color: #ff6955;
         width: 4px;
         height: 100%;
         transition-duration: 0.3s; }
