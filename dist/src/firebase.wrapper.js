@@ -38,6 +38,7 @@ var __Firebase = new function () {
         if (user) {
             console.log('auth changed');
             console.log(user);
+            $('.userName').html(user.displayName);
             initDBReferences();
             isSetReferences = true;
         } else {}

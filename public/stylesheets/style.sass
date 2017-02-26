@@ -53,3 +53,29 @@ body
   pointer-events: none
   transition: opacity 0.3s
   opacity: 0.6
+
+.disappear
+  animation-name: disappear
+  animation-duration: 0.3s
+  animation-timing-function: ease-out
+
+.appear
+  animation-name: appear
+  animation-duration: 0.4s
+  animation-timing-function: ease-out
+
+@keyframes appear
+  from
+    margin-top: 50px
+    opacity: 0
+  to
+    margin-top: 0
+    opacity: 1
+
+@keyframes disappear
+  from
+    opacity: 1
+  to
+    opacity: 0
+    display: none
+
