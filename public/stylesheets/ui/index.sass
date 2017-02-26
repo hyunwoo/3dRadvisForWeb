@@ -16,7 +16,7 @@ $item-height: 45px
   padding: 20px
   box-sizing: border-box
   .grid
-    margin-top: 50px
+    margin-top: 40px
     .cell
       padding: 0 20px
       box-sizing: border-box
@@ -46,13 +46,25 @@ $item-height: 45px
             font-size: $icon-font-size-3
             font-weight: $font-weight-5
             cursor: pointer
+          .action.remove
+            color: $point-color-2
 
       .contents
         font-size: $font-size-1
         font-weight: $font-weight-4
-        line-height: $font-size-3
+        line-height: $font-size-3 + 5px
         white-space: pre-wrap
         color: $main-font-color-b1
+        .desc
+          font-size: $font-size-1
+          font-weight: $font-weight-4
+          color: $main-font-color-b2
+          action
+            cursor: pointer
+            color: $point-color-2
+            font-weight: $font-weight-5
+            &:hover
+              text-decoration: underline
         .item
           height: $item-height
           line-height: $item-height
@@ -64,6 +76,7 @@ $item-height: 45px
           small
             font-size: $font-size-0
             color: $main-font-color-b3
+
         .addition-info
           width: 100%
           @include borderTop($main-font-color-b3)
@@ -84,16 +97,21 @@ $item-height: 45px
             font-size: $font-size-2
             font-weight: $font-weight-4
             color: $main-font-color-b2
+            action
+              cursor: pointer
+              color: $point-color-2
+              font-weight: $font-weight-5
+              &:hover
+                text-decoration: underline
           .desc-small
             font-size: $font-size-0
             font-weight: $font-weight-4
             color: $main-font-color-b3
             action
               cursor: pointer
-              color: $point-color
+              color: $point-color-2
               font-weight: $font-weight-5
               &:hover
-
                 text-decoration: underline
 
 
@@ -101,13 +119,13 @@ $item-height: 45px
         @include inlineBlock
         width: 100%
         .contents
-          font-size: $font-size-4
-          font-weight: $font-weight-4
-          line-height: $font-size-5
+          font-size: $font-size-5
+          font-weight: $font-weight-3
+          line-height: $font-size-5 + 10px
           white-space: pre-wrap
           color: $main-font-color
         .header
-          padding-top: 20px
+          padding-top: 30px
           border-top: solid 2px $main-font-color-b3
           .text
             font-size: $font-size-6
