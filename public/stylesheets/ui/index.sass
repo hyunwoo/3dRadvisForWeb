@@ -1,8 +1,6 @@
 @import "../util"
 @import "../values"
 
-*
-  font-family: 'Roboto', sans-serif
 
 $action-size: 20px
 $item-height: 45px
@@ -12,6 +10,7 @@ $item-height: 45px
   height: $nav-height
 
 .page
+  font-family: 'Roboto', sans-serif
   max-width: 1240px
   margin: 30px auto 0
   padding: 20px
@@ -50,7 +49,7 @@ $item-height: 45px
 
       .contents
         font-size: $font-size-1
-        font-weight: $font-weight-3
+        font-weight: $font-weight-4
         line-height: $font-size-3
         white-space: pre-wrap
         color: $main-font-color-b1
@@ -59,9 +58,45 @@ $item-height: 45px
           line-height: $item-height
           @include borderTop($border-color)
           color: $main-font-color-b2
+          cursor: pointer
+          &:hover
+            text-decoration: underline
           small
             font-size: $font-size-0
             color: $main-font-color-b3
+        .addition-info
+          width: 100%
+          @include borderTop($main-font-color-b3)
+          padding-top: 15px
+          color: $main-font-color
+          .title
+            font-size: $font-size-2
+            font-weight: $font-weight-4
+            margin-bottom: 20px
+          .jumbo
+            font-size: $font-size-jumbo
+            line-height: $font-size-jumbo + 25px
+            font-weight: $font-weight-1 !important
+            small
+              font-size: $font-size-2
+              font-weight: $font-weight-4
+          .desc
+            font-size: $font-size-2
+            font-weight: $font-weight-4
+            color: $main-font-color-b2
+          .desc-small
+            font-size: $font-size-0
+            font-weight: $font-weight-4
+            color: $main-font-color-b3
+            action
+              cursor: pointer
+              color: $point-color
+              font-weight: $font-weight-5
+              &:hover
+
+                text-decoration: underline
+
+
       &.grid-12
         @include inlineBlock
         width: 100%

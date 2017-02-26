@@ -2,7 +2,7 @@ extends layout
 block content
     include ./includes/uiStatics
     link(rel='stylesheet', href='/stylesheets/ui/index.css')
-    link(href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700", rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Roboto:100, 300,400,500,700", rel="stylesheet")
 
     .nav-spacer
     input(type='file')#inputFileUpload(style='display:none')
@@ -19,18 +19,20 @@ block content
                 .header
                     .text Data List
                     .actions
-                        .action.i.material-icons add_circle
+                        .action.i.material-icons add
                 .contents
                     .item Data Example. <small>2012.12.12</small>
                     .item Data Example. <small>2012.12.12</small>
                     .item Data Example. <small>2012.12.12</small>
             .cell.grid-5#gridOverview
-                .header
-                    .text
-                    .actions
-                        .action.i.material-icons info
+                .contents
+                    .addition-info
+                        .title Usage
+                        .jumbo 3.25 <small>MB</small>
+                        //.desc Number of times Google Fonts API served Mada over the last week. Mada is featured in more than 1,374 websites.
+                        .desc-small Number of times Google Fonts API served Mada over the last week. Mada is featured in more than <action>1,374 websites.</action>
 
-    //.page
+
         .grid
             .cell.grid-12#gridDataOverview
                 .header
