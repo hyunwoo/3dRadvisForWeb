@@ -1,6 +1,12 @@
 @import "../util"
 @import "../values"
 
+*
+  font-family: 'Roboto', sans-serif;
+
+$action-size: 25px
+
+
 .nav-spacer
   height: $nav-height
 
@@ -12,21 +18,52 @@
   .grid
     margin-top: 50px
     .cell
+      padding: 0 15px
+      box-sizing: border-box
       .header
-        background: #FAA332
         width: 100%
         display: table
+        margin-bottom: 20px
+        border-top: solid 2px $main-font-color-b3
+        padding-top: 15px
         .text
+          font-size: $font-size-3
+          font-weight: $font-weight-4
           display: table-cell
-          //background: #f00
           vertical-align: top
+          color: $main-font-color
+        .text.title
+          font-size: $font-size-6
+          font-weight: $font-weight-4
+          display: table-cell
+          vertical-align: top
+          color: $point-color
         .action
-          width: 50px
+          @include borderRadius(50%)
+          width: $action-size
+          height: $action-size
+          line-height: $action-size
+          text-align: center
           display: table-cell
-          background: #f0f
+          background: $point-color
+          color: $main-bg-color
           vertical-align: top
-          height: 50px
+          font-size: $icon-font-size-2
+          font-weight: $font-weight-5
+          cursor: pointer
+      .contents.title
+        font-size: $font-size-4
+        font-weight: $font-weight-4
+        line-height: $font-size-5
+        white-space: pre-wrap
+        color: $main-font-color
       .contents
+        font-size: $font-size-2
+        font-weight: $font-weight-4
+        line-height: $font-size-3
+        white-space: pre-wrap
+        color: $main-font-color-b1
+
 
       &.grid-12
         @include inlineBlock
