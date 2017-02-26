@@ -5,17 +5,23 @@ block content
     link(href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700", rel="stylesheet")
 
     .nav-spacer
+    input(type='file')#inputFileUpload(style='display:none')
     .page
         .grid
             .cell.grid-12#gridSiteInfo
                 .header
                     .text.title Making the Data Set Freely
+                    .actions
+                        .action.i.material-icons add_circle
+                        .action.i.material-icons info
+                        .action.i.material-icons add
                 .contents.title Our goal is to make that process simple, by offering an intuitive and robust directory of open source designer web fonts. By using our extensive catalog, you can share and integrate typography into any design project seamlessly
         .grid
             .cell.grid-7#gridDataList
                 .header
                     .text Data List
-                    .action.i.material-icons add
+                    .actions
+                        .action.i.material-icons add
                 .contents cc
                     .item ASDFASDF
                     .item ASDFASDF
@@ -23,9 +29,10 @@ block content
             .cell.grid-5#gridOverview
                 .header
                     .text
-                    .action i
+                    .actions
+                        .action.i.material-icons event
 
-    .page
+    //.page
         .grid
             .cell.grid-12#gridDataOverview
                 .header
@@ -65,6 +72,8 @@ block content
                     .action B
                 .contents HERE CONTENTS
 
+
+
     script(src='/ui/index.js')
     script.
         var data = [{
@@ -88,13 +97,53 @@ block content
             }],
         }]
 
-        /*
-         setTimeout(function () {
-         __IndexDataList.createDataList(data);
-         __Firebase.on('child_added', function (d) {
-         __IndexDataList.addDataList(d);
-         });
-         __Firebase.on(__Firebase.EventName.ChildRemoved, function (d) {
-         __IndexDataList.deleteDataList(d);
-         })
-         }, 1000);*/
+        $(function () {
+            return;
+            __FileReader.InputReadFile($('#inputFileUpload'), __Firebase.uploadData);
+
+            GridSystem.createPage().createGrid({cell: 12, _id: 'gridOverview'});
+
+            GridSystem.setGridHeader('#gridOverview', {
+                text: 'Header Created', actions: [{
+                    icon: 'add', action: function () {
+                        __UIStatic.Toast.open('as');
+                    }
+                }]
+            })
+
+            GridSystem.setGridContent('#gridOverview', "Lorem Ipsum is simply dummy text " +
+                "of the printing and typesetting industry. " +
+                "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " +
+                "when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
+            GridSystem.createGrid([{cell: 7, _id: 'grid1Overview'}, {cell: 5, _id: 'grid2Overview'}]);
+
+
+            GridSystem.setGridHeader('#grid1Overview', {
+                text: 'DataList Created', actions: [{
+                    icon: 'add', action: function () {
+                        $('#inputFileUpload').trigger('click');
+                    }
+                }]
+            });
+            GridSystem.setGridHeader('#grid2Overview', {
+                text: 'DataList Created', actions: [{
+                    icon: 'add', action: function () {
+                        __UIStatic.Toast.open('as');
+                    }
+                }]
+            });
+
+        })
+        setTimeout(function () {
+            //__IndexDataList.createDataList(data);
+            __Firebase.on('child_added', function (d) {
+                GridSystem.addGridContentItem('#grid1Overview', {
+                    _id: d._id, text: d.name, action: function () {
+                        console.log(d)
+                    }
+                });
+            });
+            //__Firebase.on(__Firebase.EventName.ChildRemoved, function (d) {
+            //  __IndexDataList.deleteDataList(d);
+            //})
+        }, 1000);

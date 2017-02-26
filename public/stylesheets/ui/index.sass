@@ -2,10 +2,9 @@
 @import "../values"
 
 *
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif
 
-$action-size: 25px
-
+$action-size: 30px
 
 .nav-spacer
   height: $nav-height
@@ -32,31 +31,22 @@ $action-size: 25px
           display: table-cell
           vertical-align: top
           color: $main-font-color
-        .text.title
-          font-size: $font-size-6
-          font-weight: $font-weight-4
-          display: table-cell
-          vertical-align: top
-          color: $point-color
-        .action
-          @include borderRadius(50%)
-          width: $action-size
-          height: $action-size
-          line-height: $action-size
-          text-align: center
-          display: table-cell
-          background: $point-color
-          color: $main-bg-color
-          vertical-align: top
-          font-size: $icon-font-size-2
-          font-weight: $font-weight-5
-          cursor: pointer
-      .contents.title
-        font-size: $font-size-4
-        font-weight: $font-weight-4
-        line-height: $font-size-5
-        white-space: pre-wrap
-        color: $main-font-color
+        .actions
+          .action
+            float: right
+            @include borderRadius(50%)
+            width: $action-size
+            height: $action-size
+            line-height: $action-size
+            text-align: center
+            display: table-cell
+            //background: $point-color
+            color: $point-color
+            vertical-align: top
+            font-size: $icon-font-size-4
+            font-weight: $font-weight-5
+            cursor: pointer
+
       .contents
         font-size: $font-size-2
         font-weight: $font-weight-4
@@ -64,10 +54,22 @@ $action-size: 25px
         white-space: pre-wrap
         color: $main-font-color-b1
 
-
       &.grid-12
         @include inlineBlock
         width: 100%
+        .contents
+          font-size: $font-size-4
+          font-weight: $font-weight-4
+          line-height: $font-size-5
+          white-space: pre-wrap
+          color: $main-font-color
+        .header
+          .text
+            font-size: $font-size-6
+            font-weight: $font-weight-4
+            display: table-cell
+            vertical-align: top
+            color: $point-color
       &.grid-7
         @include inlineBlock
         width: calc(100% / 12 * 7)
