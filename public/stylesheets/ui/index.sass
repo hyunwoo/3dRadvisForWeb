@@ -1,214 +1,46 @@
 @import "../util"
 @import "../values"
 
-$left-width: 300px
-$title-height: 40px
-$dataList-top: 150px
-$item-height: 50px
-$child-item-height: 45px
-$bottom-height: 50px
-$upload-button-height: 24px
+.nav-spacer
+  height: $nav-height
 
-
-.dataListViewer
+.page
+  max-width: 1240px
+  margin: 50px auto 0
+  padding: 20px
   box-sizing: border-box
-  width: calc(100% - 200px)
-  height: calc(100vh - (#{$dataList-top} + 80px))
-  margin: $dataList-top 100px
-  @include borderAll($border-color)
-
-  .dataList
-    box-sizing: border-box
-    vertical-align: top
-    display: inline-block
-    width: $left-width
-    height: 100%
-    color: #fff
-    .listTitle
-      position: relative
-
-      .dataUploadButton
-        position: absolute
-        right: 10px
-        top: calc((#{$title-height} - #{$upload-button-height})/2)
-        height: $upload-button-height
-        box-sizing: border-box
-        background-color: $accent-color
-        color: #fff
-        text-align: center
-        cursor: pointer
-        padding: 0 3px
-        .icon, .text
-          font-size: $font-size-1
-          @include inlineBlock
-          height: $upload-button-height
-          line-height: $upload-button-height
-          padding: 0 5px
-        .icon
-          font-size: $icon-font-size-2
-        &:hover
-          background: $accent-hover-color
-    .list
-      width: 100%
-      height: calc(100% - #{$title-height} - #{$bottom-height})
-      overflow-y: auto
-      .item
-        cursor: pointer
-        position: relative
+  .grid
+    margin-top: 50px
+    .cell
+      .header
+        background: #FAA332
         width: 100%
-        min-height: $item-height
-        line-height: $item-height
-        background-color: $main-inv-color
-        color: $main-color
-        overflow-y: hidden
-        @include borderBottom($border-color)
-        .showChildList
-          width: 36px
-          height: 36px
-          @include borderRadius(50%)
-          position: absolute
-          right: 7px
-          top: 7px
-          line-height: 36px
-          color: $accent-color
-          font-size: $icon-font-size-2
-          text-align: center
-          opacity: 0
-        &:hover
-          .showChildList
-            opacity: 1
-            &:hover
-              background-color: #eee
+        display: table
+        .text
+          display: table-cell
+          //background: #f00
+          vertical-align: top
+        .action
+          width: 50px
+          display: table-cell
+          background: #f0f
+          vertical-align: top
+          height: 50px
+      .contents
 
-        .parentItem
-          width: calc(100% - 15px)
-          padding-left: 15px
-          font-size: $font-size-1
-          font-weight: $font-weight-4
-          &:hover
-            background-color: #f9f9f9
-        .childList
-          width: 100%
-          height: 0
-          overflow-y: hidden
-          transition: height 0.3s ease-in-out
-          &.show
-            height: auto
-          .childItem
-            width: calc(100% - 22px)
-            height: $child-item-height
-            font-size: 12px
-            font-weight: $font-weight-4
-            color: #575757
-            padding-left: 22px
-            @include borderTop($border-color)
-            &:hover
-              background-color: #f9f9f9
-    input
-      opacity: 0
-      pointer-events: none
-
-  .viewer
-    box-sizing: border-box
-    @include borderLeft($border-color)
-    position: relative
-    vertical-align: top
-    display: inline-block
-    width: calc(100% - #{$left-width})
-    height: 100%
-    background-color: $main-inv-color
-    color: #fff
-
-    .descGroup
-      height: 25px
-      line-height: 25px
-      padding: 15px
-      .desc
+      &.grid-12
         @include inlineBlock
-        color: $main-color
-        font-size: $font-size-1
-        font-weight: $font-weight-4
-        height: inherit
-        line-height: inherit
-      .icon
+        width: 100%
+      &.grid-7
         @include inlineBlock
-        width: 25px
-        height: inherit
-        line-height: inherit
-        font-size: $icon-font-size-2
-        //background-color: $main-color
-        color: $accent-color
-        text-align: center
-        cursor: pointer
-        @include borderRadius(50%)
+        width: calc(100% / 12 * 7)
+      &.grid-5
+        @include inlineBlock
+        width: calc(100% / 12 * 5)
+      &.grid-4
+        @include inlineBlock
+        width: calc(100% / 12 * 4)
+      &.grid-3
+        @include inlineBlock
+        width: calc(100% / 12 * 3)
 
-    .input
-      width: calc(100% - 60px)
-      margin: 0 15px
-      color: $main-color
-      font-size: $font-size-1
-      font-weight: $font-weight-4
-      line-height: 20px
-      white-space: pre-wrap
-      display: none
-      &.visible
-        display: block
-
-    textarea
-      background-color: #f7f7f7
-      width: calc(100% - 60px)
-      margin: 0 15px
-      color: $main-color
-      font-size: $font-size-1
-      font-weight: $font-weight-4
-      line-height: 20px
-      padding: 15px 15px 20px 15px
-      white-space: pre-wrap
-      resize: none
-      outline: none
-      display: none
-      border: none
-      &.visible
-        display: block
-
-    .additionInfo
-      margin-top: 10px
-      padding-left: 10px
-      width: 100%
-      height: 20px
-      .item
-        padding: 0 5px
-        display: inline-block
-        @include borderRight(#aaa)
-        font-size: 12px
-        font-weight: $font-size-2
-        color: #686868
-    .bottom
-      position: absolute
-      bottom: 0
-      left: 0
-      width: 100%
-      height: $bottom-height
-      box-sizing: border-box
-      line-height: $bottom-height
-      @include borderTop($border-color)
-      .button
-        cursor: pointer
-        float: right
-        text-align: center
-        margin: 7px
-        background-color: $accent-color
-        width: 36px
-        height: 36px
-        @include borderRadius(50%)
-        line-height: 36px
-        &:hover
-          background-color: $accent-hover-color
-
-  *.listTitle
-    height: $title-height
-    line-height: $title-height
-    font-size: $font-size-1
-    font-weight: $font-weight-4
-    background-color: $main-color
-    padding-left: 15px

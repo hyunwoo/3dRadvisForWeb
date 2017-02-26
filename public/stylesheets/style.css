@@ -22,24 +22,6 @@ body {
   padding: 0;
   margin: 0; }
 
-.actions {
-  z-index: -10;
-  position: absolute;
-  right: 10px;
-  top: 60px; }
-  .actions .options {
-    font-size: 12px;
-    color: #444;
-    font-weight: 900; }
-    .actions .options .button {
-      width: 100px;
-      height: 25px;
-      text-align: center;
-      font-size: 15px;
-      background: #eee;
-      line-height: 25px;
-      color: #777; }
-
 .axisHeader {
   position: absolute;
   z-index: 100;

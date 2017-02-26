@@ -1,42 +1,68 @@
 extends layout
 block content
     include ./includes/uiStatics
-
     link(rel='stylesheet', href='/stylesheets/ui/index.css')
+    .nav-spacer
+    .page
+        .grid
+            .cell.grid-12
+                .header
+                    .text ASDFASDF
+                    .action A
+                    .action B
+                .contents HERE CONTENTS
 
-    .dataListViewer
-        .dataList
-            .listTitle Data List
-                .dataUploadButton(for='uploadTest')#DataListUploadFile
-                    .text Upload
-            .list
-                //.item
-                    .parentItem Test Item
-                    .showChildList.i.material-icons more_vert
-                    .childList
-                        .childItem Test Child Item
-                        .childItem Test Child Item
+        .grid
+            .cell.grid-7
+                .header
+                    .text
+                    .action.i.material-icons add
+            .cell.grid-5
+                .header
+                    .text
+                    .action.i.material-icons info_outline
+    .page
+        .grid
+            .cell.grid-12
+                .header
+                    .text ASDFASDF
+                    .action A
+                    .action B
+                .contents HERE CONTENTS
+        .grid
+            .cell.grid-5
+                .header
+                    .text ASDFASDF
+                    .action A
+                    .action B
+                .contents HERE CONTENTS
+            .cell.grid-4
+                .header
+                    .text ASDFASDF
+                    .action A
+                    .action B
+            .cell.grid-3
+                .header
+                    .text ASDFASDF
+                    .action A
+                    .action B
+                .contents HERE CONTENTS
+        .grid
+            .cell.grid-7
+                .header
+                    .text ASDFASDF
+                    .action A
+                    .action B
+                .contents HERE CONTENTS
+            .cell.grid-5
+                .header
+                    .text ASDFASDF
+                    .action A
+                    .action B
+                .contents HERE CONTENTS
 
 
 
-            //.bottom(for='uploadTest')#DataListUploadFile
-                .icon.i.material-icons file_upload
-                .text Upload Data
-            input(type='file')#DataListUploadFileInput
-        .viewer
-            .listTitle Info
-            .descGroup
-                .desc Data Overview
-                .icon.i.material-icons#descModifier mode_edit
-            .input.visible 데이터 업로드 테스트를 위한 테스트 데이터 입니다
-            textarea
-            .additionInfo
-                .item#dataListDate 2017-06-07
-                .item#dataListType CSV
-                .item#dataListSize 3MB
-            .bottom
-                .button.i.material-icons add
-                .button.i.material-icons#dataListDelete delete
 
 
     script(src='/ui/index.js')
@@ -62,13 +88,13 @@ block content
             }],
         }]
 
-        setTimeout(function () {
-            __IndexDataList.createDataList(data);
-            __Firebase.on('child_added', function (d) {
-                __IndexDataList.addDataList(d);
-            });
-
-            __Firebase.on(__Firebase.EventName.ChildRemoved, function (d) {
-                __IndexDataList.deleteDataList(d);
-            })
-        }, 1000);
+        /*
+         setTimeout(function () {
+         __IndexDataList.createDataList(data);
+         __Firebase.on('child_added', function (d) {
+         __IndexDataList.addDataList(d);
+         });
+         __Firebase.on(__Firebase.EventName.ChildRemoved, function (d) {
+         __IndexDataList.deleteDataList(d);
+         })
+         }, 1000);*/
