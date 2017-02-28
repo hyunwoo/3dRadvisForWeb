@@ -1,0 +1,225 @@
+/* nav */
+/* tab */
+/* site color */
+/* font size */
+/* font weight */
+/* icon font size */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 48px;
+  line-height: 48px;
+  background-color: #ffffff;
+  z-index: 1001;
+  border-bottom: solid 1px #dbdbdb; }
+  .nav .logo {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    line-height: 48px;
+    font-size: 19px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #666666; }
+  .nav .header {
+    vertical-align: top;
+    display: inline-block;
+    line-height: inherit;
+    font-weight: 400;
+    font-size: 17px;
+    color: #666666; }
+  .nav .rightGroup {
+    padding-right: 10px;
+    float: right;
+    height: inherit;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    box-sizing: border-box; }
+    .nav .rightGroup .logined, .nav .rightGroup .logouted {
+      position: absolute;
+      right: 0;
+      padding-right: 10px;
+      height: inherit; }
+      .nav .rightGroup .logined .icon, .nav .rightGroup .logouted .icon {
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        margin: 8px;
+        background: #fff;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        color: #000;
+        border-radius: 50%; }
+      .nav .rightGroup .logined .button, .nav .rightGroup .logouted .button {
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        margin: 11px 7px;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        color: #000;
+        font-weight: 400;
+        font-size: 13px;
+        padding: 0 8px; }
+      .nav .rightGroup .logined .name, .nav .rightGroup .logouted .name {
+        height: 48px;
+        display: inline-block !important;
+        vertical-align: top;
+        color: #000;
+        font-size: 13px; }
+      .nav .rightGroup .logined.hide, .nav .rightGroup .logouted.hide {
+        display: none; }
+      .nav .rightGroup .logined label, .nav .rightGroup .logouted label {
+        cursor: pointer; }
+      .nav .rightGroup .logined #uploadTest, .nav .rightGroup .logouted #uploadTest {
+        opacity: 0;
+        position: absolute;
+        z-index: -1; }
+
+#toast {
+  position: fixed;
+  left: calc(50vw - 200px);
+  margin: 0 auto;
+  width: 400px;
+  z-index: 10000;
+  background: #444;
+  color: #fff;
+  font-size: 13px;
+  opacity: 0;
+  transition: all .3s;
+  bottom: 50px;
+  padding: 15px 50px 15px 15px;
+  -ms-transform: scale(0.7, 0.7);
+  -webkit-transform: scale(0.7, 0.7);
+  transform: scale(0.7, 0.7);
+  pointer-events: none; }
+  #toast .closer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer; }
+  #toast.open {
+    -ms-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+    pointer-events: all; }
+
+#dialogWrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.65);
+  transition: all .3s;
+  color: #4b4b4b;
+  opacity: 0;
+  pointer-events: none; }
+  #dialogWrapper .dialog {
+    -ms-transform: scale(0.7, 0.7);
+    -webkit-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+    transition: all .3s;
+    width: 400px;
+    margin: 200px auto auto;
+    background: #fff;
+    padding: 20px; }
+    #dialogWrapper .dialog .title {
+      font-size: 22px;
+      font-weight: 600;
+      padding: 10px 0; }
+    #dialogWrapper .dialog .text {
+      font-size: 13px;
+      line-height: 17px;
+      word-break: break-all; }
+    #dialogWrapper .dialog .content {
+      padding: 10px;
+      max-width: 100%; }
+    #dialogWrapper .dialog .actionGroup {
+      padding-top: 20px;
+      height: 40px; }
+      #dialogWrapper .dialog .actionGroup .pos, #dialogWrapper .dialog .actionGroup .neg {
+        cursor: pointer;
+        float: right;
+        padding: 0 15px;
+        font-size: 15px;
+        color: #ff6955;
+        line-height: 40px;
+        font-weight: 600; }
+        #dialogWrapper .dialog .actionGroup .pos:hover, #dialogWrapper .dialog .actionGroup .neg:hover {
+          color: #ee624f; }
+  #dialogWrapper.open {
+    opacity: 1;
+    pointer-events: all; }
+    #dialogWrapper.open .dialog {
+      -ms-transform: scale(1, 1);
+      -webkit-transform: scale(1, 1);
+      transform: scale(1, 1); }
+
+#modalWrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.65);
+  color: #4b4b4b;
+  padding: 100px 0;
+  box-sizing: border-box;
+  z-index: 10000;
+  opacity: 0;
+  transition: all .3s; }
+  #modalWrapper .modal {
+    transition: all .3s;
+    -ms-transform: scale(0.7, 0.7);
+    -webkit-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+    max-height: 100%;
+    width: 800px;
+    background: #fff;
+    margin: 0 auto; }
+    #modalWrapper .modal .title {
+      padding: 20px;
+      font-size: 17px;
+      font-weight: 600; }
+    #modalWrapper .modal .content {
+      padding: 20px;
+      font-size: 13px; }
+    #modalWrapper .modal .footer {
+      height: 50px;
+      padding: 20px 20px 10px; }
+      #modalWrapper .modal .footer .pos, #modalWrapper .modal .footer .neg {
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: top;
+        float: right;
+        height: 40px;
+        line-height: 40px;
+        background: #0d8be1;
+        color: #fff;
+        font-size: 15px;
+        padding: 0 15px;
+        margin-left: 10px; }
+        #modalWrapper .modal .footer .pos:hover, #modalWrapper .modal .footer .neg:hover {
+          background: #00B7FF; }
+  #modalWrapper.open {
+    opacity: 1;
+    pointer-events: all;
+    transition: all .3s; }
+    #modalWrapper.open .modal {
+      transition: all .3s;
+      -ms-transform: scale(1, 1);
+      -webkit-transform: scale(1, 1);
+      transform: scale(1, 1); }
+
+/*# sourceMappingURL=uiStatics.css.map */

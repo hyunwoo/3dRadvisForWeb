@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "component.colorpicker.css",
+	"sources": [
+		"component.colorpicker.sass"
+	],
+	"mappings": "",
+	"names": []
+}

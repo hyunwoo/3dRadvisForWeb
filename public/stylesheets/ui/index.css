@@ -1,0 +1,150 @@
+/* nav */
+/* tab */
+/* site color */
+/* font size */
+/* font weight */
+/* icon font size */
+.nav-spacer {
+  height: 48px; }
+
+.page {
+  font-family: 'Roboto', sans-serif;
+  max-width: 1240px;
+  margin: 30px auto 0;
+  padding: 20px;
+  box-sizing: border-box; }
+  .page .grid {
+    margin-top: 40px; }
+    .page .grid .cell {
+      padding: 0 20px;
+      box-sizing: border-box; }
+      .page .grid .cell .header {
+        width: 100%;
+        display: table;
+        margin-bottom: 20px;
+        border-top: solid 1px #999999;
+        padding-top: 15px; }
+        .page .grid .cell .header .text {
+          font-size: 15px;
+          font-weight: 400;
+          display: table-cell;
+          vertical-align: top;
+          color: #000;
+          line-height: 20px; }
+        .page .grid .cell .header .actions .action {
+          float: right;
+          padding-left: 5px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          line-height: 20px;
+          text-align: center;
+          display: table-cell;
+          color: #0d8be1;
+          vertical-align: top;
+          font-size: 24px;
+          font-weight: 500;
+          cursor: pointer; }
+        .page .grid .cell .header .actions .action.remove {
+          color: #ff5e7C; }
+      .page .grid .cell .contents {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 22px;
+        white-space: pre-wrap;
+        color: #333333; }
+        .page .grid .cell .contents .desc {
+          font-size: 13px;
+          font-weight: 400;
+          color: #666666; }
+          .page .grid .cell .contents .desc action {
+            cursor: pointer;
+            color: #ff5e7C;
+            font-weight: 500; }
+            .page .grid .cell .contents .desc action:hover {
+              text-decoration: underline; }
+        .page .grid .cell .contents .item {
+          height: 45px;
+          line-height: 45px;
+          border-top: solid 1px #dbdbdb;
+          color: #666666;
+          cursor: pointer; }
+          .page .grid .cell .contents .item:hover {
+            text-decoration: underline; }
+          .page .grid .cell .contents .item small {
+            font-size: 11px;
+            color: #999999; }
+        .page .grid .cell .contents .addition-info {
+          width: 100%;
+          border-top: solid 1px #999999;
+          padding-top: 15px;
+          color: #000; }
+          .page .grid .cell .contents .addition-info .title {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 20px; }
+          .page .grid .cell .contents .addition-info .jumbo {
+            font-size: 75px;
+            line-height: 100px;
+            font-weight: 100 !important; }
+            .page .grid .cell .contents .addition-info .jumbo small {
+              font-size: 15px;
+              font-weight: 400; }
+          .page .grid .cell .contents .addition-info .desc {
+            font-size: 15px;
+            font-weight: 400;
+            color: #666666; }
+            .page .grid .cell .contents .addition-info .desc action {
+              cursor: pointer;
+              color: #ff5e7C;
+              font-weight: 500; }
+              .page .grid .cell .contents .addition-info .desc action:hover {
+                text-decoration: underline; }
+          .page .grid .cell .contents .addition-info .desc-small {
+            font-size: 11px;
+            font-weight: 400;
+            color: #999999; }
+            .page .grid .cell .contents .addition-info .desc-small action {
+              cursor: pointer;
+              color: #ff5e7C;
+              font-weight: 500; }
+              .page .grid .cell .contents .addition-info .desc-small action:hover {
+                text-decoration: underline; }
+      .page .grid .cell.grid-12 {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%; }
+        .page .grid .cell.grid-12 .contents {
+          font-size: 28px;
+          font-weight: 300;
+          line-height: 38px;
+          white-space: pre-wrap;
+          color: #000; }
+        .page .grid .cell.grid-12 .header {
+          padding-top: 30px;
+          border-top: solid 2px #999999; }
+          .page .grid .cell.grid-12 .header .text {
+            font-size: 50px;
+            font-weight: 400;
+            display: table-cell;
+            vertical-align: top;
+            color: #0d8be1;
+            line-height: 50px; }
+      .page .grid .cell.grid-7 {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% / 12 * 7); }
+      .page .grid .cell.grid-5 {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% / 12 * 5); }
+      .page .grid .cell.grid-4 {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% / 12 * 4); }
+      .page .grid .cell.grid-3 {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% / 12 * 3); }
+
+/*# sourceMappingURL=index.css.map */

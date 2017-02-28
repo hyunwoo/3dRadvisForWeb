@@ -1,0 +1,35 @@
+.dev {
+  padding: 73px 50px 50px;
+  color: #3C3C3C; }
+  .dev .title {
+    font-weight: 600;
+    font-size: 26px;
+    text-decoration: dotted; }
+  .dev .group {
+    line-height: 30px;
+    margin-top: 20px;
+    border-left: solid 3px #FAA332;
+    padding-left: 20px; }
+    .dev .group .subtitle {
+      font-weight: 600;
+      font-size: 22px; }
+    .dev .group .desc {
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 26px; }
+    .dev .group .code {
+      font-size: 15px;
+      margin: 10px 0;
+      padding: 15px;
+      background: #444;
+      border-radius: 3px;
+      color: #fff;
+      line-height: 23px;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word; }
+    .dev .group .space {
+      height: 30px; }
+
+/*# sourceMappingURL=dev.css.map */
