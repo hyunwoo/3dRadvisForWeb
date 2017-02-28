@@ -102,8 +102,8 @@ var __UI = {
         var $contents = __UI['$settingTab']['$contents'];
         var $bottom = __UI['$settingTab']['$bottom'];
 
-        var visibleButton = __UI.createContentBottomIcon('visibility', onVisibleButtonClick);
-        var invisibleButton = __UI.createContentBottomIcon('visibility_off', onVisibleButtonClick);
+        var visibleButton = __UI.createContentBottomIcon('check_box', onVisibleButtonClick);
+        var invisibleButton = __UI.createContentBottomIcon('check_box_outline_blank', onVisibleButtonClick);
         __UI.createContentBottomIcon('refresh', refresh, 'actor');
         if (!option.visible) visibleButton.addClass('disable');
         if (!option.invisible) invisibleButton.addClass('disable');
@@ -143,7 +143,7 @@ var __UI = {
         });
         _.forEach(sortedAxis, function (d, i) {
             if (!(d.active && option.visible || !d.active && option.invisible)) return;
-            var $item = $('<div class="item">' + '<div class="visible i material-icons">visibility</div>' + '<div class="invisible i material-icons">visibility_off</div>' +
+            var $item = $('<div class="item">' + '<div class="visible i material-icons">check_box</div>' + '<div class="invisible i material-icons">check_box_outline_blank</div>' +
             // '<div class="spacing">1.0</div>' +
             '<div class="text">' + d.name + '</div>' + '</div>');
 
@@ -269,9 +269,7 @@ var __UI = {
 $(function () {});
 
 (function () {
-    __UI.SideTab.push({
-        Type: 'spacer'
-    });
+
     __UI.SideTab.push({
         Type: 'Button', Name: 'Home', Icon: 'home', AppendClass: 'overview'
     });

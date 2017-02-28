@@ -46,7 +46,7 @@
       padding-left: 10px;
       font-size: 13px;
       cursor: pointer;
-      color: #494949;
+      color: #9f9f9f;
       transition: background .15s; }
       .contextmenu-wrapper .contextmenu .item:hover {
         background: #eee; }

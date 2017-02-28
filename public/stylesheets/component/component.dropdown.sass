@@ -21,7 +21,8 @@ $dropDown-content-color: #5e5e5e
     background-color: $main-inv-color
     margin: 15px auto 15px
     cursor: default
-    border: solid 1px $main-color
+    border: solid 1px #f1f1f1
+    @include shadow-b1
 
     .content
       font-size: $font-size-1
@@ -38,7 +39,7 @@ $dropDown-content-color: #5e5e5e
       text-align: center
       line-height: inherit
       font-size: $icon-font-size-3
-      color: $main-color
+      color: $point-color
       @include rotate(0deg)
 
     .dropDownList
@@ -46,10 +47,9 @@ $dropDown-content-color: #5e5e5e
       top: $dropDown-height + 2px
       left: -2px
       width: calc(100% + 2px)
-      border: solid 1px $main-font-color
+      //border: solid 1px $main-font-color
       font-size: $font-size-1
       font-weight: $font-weight-4
-      color: $tab-item-color
       background-color: #ffffff
       z-index: 100
       height: 0
@@ -58,6 +58,7 @@ $dropDown-content-color: #5e5e5e
       transition: 0.17s
       max-height: $dropDown-list-height * 10
       overflow-y: auto
+      @include shadow
 
       .listItem
         box-sizing: border-box
@@ -66,18 +67,17 @@ $dropDown-content-color: #5e5e5e
         line-height: $dropDown-list-height
         padding-left: $dropDown-padding
         cursor: pointer
-        color: $active-item-color
+        color: $main-font-color-b2
         background: #fff
         &:hover
           background-color: #eee
         &.separater
-          color: $accent-color
+          color: $point-color
           font-size: $font-size-0
           font-weight: $font-weight-2
           height: $dropDown-list-height - 15px
           line-height: $dropDown-list-height - 15px
           padding-left: $dropDown-padding
-          background-color: $hover-color
           //border: solid 1px $accent-color
           //@include borderBottom($border-color)
           pointer-events: none

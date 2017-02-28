@@ -58,14 +58,14 @@
         font-size: 13px;
         font-weight: 400; }
       .settingTab .header-group .innerTab .item.active {
-        color: #ff6955; }
+        color: #0188E5; }
         .settingTab .header-group .innerTab .item.active .border {
           position: absolute;
           left: 0;
           bottom: 0;
           height: 3px;
           width: 100%;
-          background: #ff6955; }
+          background: #0188E5; }
       .settingTab .header-group .innerTab .item.disable {
         text-decoration: line-through; }
   .settingTab.open {
@@ -184,13 +184,13 @@
             vertical-align: top;
             text-align: center;
             width: 30px;
-            font-size: 14px;
+            font-size: 19px;
             line-height: inherit;
             padding-right: 4px;
             font-weight: 100 !important; }
           .settingTab .contents .list.axis .item .visible {
             display: none;
-            color: #4b4b4b; }
+            color: #0188E5; }
           .settingTab .contents .list.axis .item .invisible {
             color: #ccc;
             display: inline-block; }
@@ -238,17 +238,19 @@
       width: 22px;
       margin: 9px;
       text-align: center;
-      font-size: 15px;
+      font-size: 19px;
       line-height: 22px;
+      color: #0188E5;
       border-radius: 50%;
-      color: #fff;
-      background: #ff6955; }
+      font-weight: 600; }
       .settingTab .bottom .icon.disable {
-        background: #ccc; }
+        color: #ccc; }
       .settingTab .bottom .icon:hover {
-        color: #eee; }
+        color: #0188E5; }
       .settingTab .bottom .icon.actor {
         float: left;
-        background: #4b4b4b; }
+        background: #505050;
+        color: #fff;
+        font-weight: 400; }
 
 /*# sourceMappingURL=tab.setting.css.map */

@@ -154,7 +154,7 @@ const __UIStatic = new function () {
 
 $(function () {
     //__UIStatic.Modal.open();
-    __UIStatic.GlobalLoader.open();
+    //__UIStatic.GlobalLoader.open();
     console.log('?')
 });
 

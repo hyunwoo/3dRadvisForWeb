@@ -57,14 +57,14 @@ $inner-tab-height: 40px
         font-size: $font-size-1
         font-weight: $font-weight-4
       .item.active
-        color: $accent-color
+        color: $point-color
         .border
           position: absolute
           left: 0
           bottom: 0
           height: 3px
           width: 100%
-          background: $accent-color
+          background: $point-color
       .item.disable
         text-decoration: line-through
 
@@ -190,14 +190,14 @@ $inner-tab-height: 40px
             vertical-align: top
             text-align: center
             width: 30px
-            font-size: $icon-font-size-1
+            font-size: $icon-font-size-2
             line-height: inherit
             padding-right: 4px
             font-weight: $font-weight-1 !important
 
           .visible
             display: none
-            color: $main-color
+            color: $point-color
           .invisible
             color: $inactive-item-color
             display: inline-block
@@ -249,19 +249,20 @@ $inner-tab-height: 40px
       width: $tab-item-height - 18px
       margin: 9px
       text-align: center
-      font-size: $font-size-2
+      font-size: $icon-font-size-2
       line-height: $tab-item-height - 18px
-      //color: $active-item-color
+      color: $point-color
       border-radius: 50%
-      color: #fff
-      background: $accent-color
+      font-weight: $font-weight-6
       &.disable
-        background: $inactive-item-color
+        color: #ccc
       &:hover
-        color: #eee
+        color: $point-color
       &.actor
         float: left
-        background: $main-color
+        background: #505050
+        color: #fff
+        font-weight: $font-weight-4
 
 
 
