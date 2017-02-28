@@ -4,11 +4,33 @@ block content
     link(rel='stylesheet', href='/stylesheets/ui/index.css')
     link(href="https://fonts.googleapis.com/css?family=Roboto:100, 300,400,500,700", rel="stylesheet")
 
+
+
     .nav-spacer
     input#inputFileUpload(style='display:none' type='file')
 
-    .loader
-        .boxLoading
+    //.loader
+            .boxLoading
+
+
+    //.loader.small
+        svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 100 100')
+            g.anim-0
+                circle(cx='50', cy='50', r='50', fill='#ff5e7C')
+            g.anim-1
+                circle(cx='50', cy='50', r='5', fill='white')
+            g.anim-2
+                circle(cx='75', cy='50', r='5', fill='white')
+                line(x1='25', y1='50', x2='75', y2='50', stroke='white', stroke-width='3')
+            g.anim-3
+                circle(cx='50', cy='25', r='5', fill='white')
+                line(x1='50', y1='25', x2='25', y2='75', stroke='white', stroke-width='3')
+                line(x1='50', y1='25', x2='75', y2='75', stroke='white', stroke-width='3')
+            g.anim-4
+                circle(cx='75', cy='25', r='5', fill='white')
+                line(x1='75', y1='25', x2='25', y2='25', stroke='white', stroke-width='3')
+
+
     //.page
         .grid
             .cell.grid-12#gridSiteInfo

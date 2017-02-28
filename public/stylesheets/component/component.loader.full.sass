@@ -1,3 +1,9 @@
+@import "../util"
+@import "../values"
+
+
+// page loader
+
 
 .loader
   background: #fff
@@ -34,7 +40,7 @@
       content: ''
       width: 50px
       height: 50px
-      background: #0d8be1
+      background: $point-color
       animation: animate .5s linear infinite
       position: absolute
       top: 0
@@ -68,4 +74,5 @@
 
   50%
     transform: scale(1.2, 1)
+
 
