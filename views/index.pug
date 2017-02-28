@@ -5,8 +5,10 @@ block content
     link(href="https://fonts.googleapis.com/css?family=Roboto:100, 300,400,500,700", rel="stylesheet")
 
     .nav-spacer
-    input(type='file')#inputFileUpload(style='display:none')
+    input#inputFileUpload(style='display:none' type='file')
 
+    .loader
+        .boxLoading
     //.page
         .grid
             .cell.grid-12#gridSiteInfo
@@ -49,7 +51,7 @@ block content
             .cell.grid-4#gridDataInfo
                 .header
                     .text ASDFASDF
-                    .action A
+                   .action A
                     .action B
             .cell.grid-3#gridDataAddition
                 .header

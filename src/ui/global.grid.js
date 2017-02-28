@@ -20,7 +20,6 @@ var GridSystem = new function () {
         return that;
     };
 
-
     /**
      * [{
      *  cell : numeric

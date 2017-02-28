@@ -20,7 +20,6 @@ $(function () {
         var number = __Formatter.numberWithSymbol(_.sumBy(data, function (d) {
             return d.size;
         }));
-
         console.log(number);
         GridSystem.setGridContentAddition('#grid2Overview', [{
             class: 'title',
