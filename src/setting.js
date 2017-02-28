@@ -11,7 +11,7 @@ let Setting = {
         Node: {
             Geometry: { // component
                 size: {
-                    value: 5,
+                    value: 12,
                     type: 'slider',
                     name: 'Node Size',
                     desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
@@ -77,7 +77,7 @@ let Setting = {
     },
 
     Test: {
-        AxisLimit: false,
+        AxisLimit: true,
         AxisLimitCount: 15,
     },
 

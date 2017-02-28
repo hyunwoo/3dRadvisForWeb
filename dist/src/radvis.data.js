@@ -47,6 +47,7 @@ var DataSet = function () {
             var numeric = this.numeric = {};
             var stats = this.stats = {};
             var numericKeys = this.numericKeys = [];
+            var currentInjectAxisCount = 0;
             _.forEach(this.transposRaw, function (d) {
                 var values = _.map(_.drop(d), function (d) {
                     return Number(d);
@@ -54,7 +55,10 @@ var DataSet = function () {
 
                 if (_.some(values, function (v) {
                     return isNaN(v);
-                })) return;
+                })) {
+                    console.log('Not a Number : ', d);
+                    return;
+                }
 
                 stats[d[0]] = {
                     value: values,
@@ -72,10 +76,13 @@ var DataSet = function () {
                 numeric[d[0]] = values;
                 // FOR TEST
                 if (Setting.Test.AxisLimit) {
-                    if (Setting.Test.AxisLimitCount < 15) numericKeys.push(d[0]);
+                    if (currentInjectAxisCount < Setting.Test.AxisLimitCount) {
+                        numericKeys.push(d[0]);
+                        currentInjectAxisCount++;
+                    }
                 } else numericKeys.push(d[0]);
             });
-
+            console.log(numericKeys);
             this.numericNodes = [];
             for (var i = 0; i < numeric[numericKeys[0]].length; i++) {
                 var out = {};

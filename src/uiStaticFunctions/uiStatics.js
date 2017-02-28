@@ -34,7 +34,24 @@ const __UIStatic = new function () {
     var $DialogPos = $Dialog.find('.pos');
     var $DialogNeg = $Dialog.find('.neg');
 
+    /**
+     *
+     * @type {{open: __UIStatic.Dialog.open, close: __UIStatic.Dialog.close}}
+     */
     this.Dialog = {
+        /**
+         * @param opt : object
+         *      @title
+         *      @text
+         *      @pos : {
+         *          @name :string
+         *          @action : function
+         *      }
+         *      @neg : {
+         *          @name :string
+         *          @action : function
+         *      }
+         */
         open: function (opt) {
             if (_.isNil(opt.pos) || _.isNil(opt.neg)) {
                 __UIStatic.Toast.open('Nil Value : pos or neg');
@@ -71,12 +88,12 @@ const __UIStatic = new function () {
         },
 
         close: function () {
-            console.log('??');
             $Dialog.removeClass('open');
         }
     };
 
     this.onAuthChange = function (user) {
+        __UIStatic.GlobalLoader.close();
         if (user) {
             $Nav.find('.logined').removeClass('hide');
             $Nav.find('.logouted').addClass('hide');
@@ -89,11 +106,57 @@ const __UIStatic = new function () {
 
     this.Message = {};
 
+
+    var $Modal = $('#modalWrapper');
+    var $ModalTitle = $Modal.find('.title');
+    var $ModalContent = $Modal.find('.content');
+    var $ModalPos = $Modal.find('.pos');
+    var $ModalNeg = $Modal.find('.neg');
+
+
+    this.Modal = {
+        /**
+         * @param opt : object
+         *      @title
+         *      @content
+         *      @pos : {
+         *          @name :string
+         *          @action : function
+         *      }
+         */
+        open: function (opt) {
+            $Modal.addClass('open');
+        },
+        close: function () {
+            $Modal.removeClass('open');
+        }
+    };
+    $ModalNeg.click(function () {
+        console.log('click neg');
+        that.Modal.close();
+    });
+
     $('#signinButton').click(__Firebase.signInWithGoogle);
     $('#signoutButton').click(__Firebase.signOut);
     __Firebase.addAuthChangeFunction(this.onAuthChange);
-    this.onAuthChange(null);
+    // this.onAuthChange(null);
+
+    this.GlobalLoader = {
+        open: function () {
+            $('#globalLoader').addClass('open');
+        },
+        close: function () {
+            $('#globalLoader').removeClass('open');
+        },
+    }
 };
+
+
+$(function () {
+    //__UIStatic.Modal.open();
+    __UIStatic.GlobalLoader.open();
+    console.log('?')
+});
 
 
 

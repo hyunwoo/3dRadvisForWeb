@@ -1,7 +1,6 @@
 @import "../util"
 @import "../values"
 
-
 // page loader
 
 
@@ -14,6 +13,12 @@
   width: 100vw
   height: 100vh
   z-index: 9999999
+  pointer-events: none
+  transition: opacity 0.1s
+  opacity: 0
+  &.open
+    pointer-events: all
+    opacity: 1
 
   .boxLoading
     width: 50px
@@ -47,8 +52,6 @@
       left: 0
       border-radius: 3px
 
-
-
 @keyframes animate
   17%
     border-bottom-right-radius: 3px
@@ -65,8 +68,6 @@
 
   100%
     transform: translateY(0) rotate(90deg)
-
-
 
 @keyframes shadow
   0%, 100%

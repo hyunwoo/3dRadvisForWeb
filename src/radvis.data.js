@@ -40,6 +40,7 @@ class DataSet {
         var numeric = this.numeric = {};
         var stats = this.stats = {};
         var numericKeys = this.numericKeys = [];
+        var currentInjectAxisCount = 0;
         _.forEach(this.transposRaw, function (d) {
             var values = _.map(_.drop(d), function (d) {
                 return Number(d);
@@ -47,15 +48,18 @@ class DataSet {
 
             if (_.some(values, function (v) {
                     return isNaN(v);
-                })) return;
+                })) {
+                console.log('Not a Number : ', d);
+                return;
+            }
 
             stats[d[0]] = {
                 value: values,
                 min: _.min(values),
                 max: _.max(values),
-                // variance: _.variance(values), // ºÐ»ê
-                sigma: _.stdDeviation(values), // Ç¥ÁØÆíÂ÷
-                median: _.median(values), // Áß¾Ó°ª
+                // variance: _.variance(values), // ï¿½Ð»ï¿½
+                sigma: _.stdDeviation(values), // Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                median: _.median(values), // ï¿½ß¾Ó°ï¿½
                 mean: _.average(values),
 
                 toString: function () {
@@ -68,13 +72,14 @@ class DataSet {
             numeric[d[0]] = values;
             // FOR TEST
             if (Setting.Test.AxisLimit) {
-                if (Setting.Test.AxisLimitCount < 15)
+                if (currentInjectAxisCount < Setting.Test.AxisLimitCount) {
                     numericKeys.push(d[0]);
+                    currentInjectAxisCount++;
+                }
             } else numericKeys.push(d[0]);
 
         });
-
-
+        console.log(numericKeys)
         this.numericNodes = [];
         for (var i = 0; i < numeric[numericKeys[0]].length; i++) {
             var out = {};

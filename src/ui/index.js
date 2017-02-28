@@ -128,7 +128,7 @@ $(function () {
                         __UIStatic.Toast.open('변인 필드를 추가합니다. 해당기능은 아직 구현되지 않았습니다.');
                     }
                 }]
-            })
+            })//7B76313B62617369633B6879756E776F6F2068616E3B313B682E6879756E776F6F40676D61696C2E636F6D3B3B303B307D
             .addGridContentItem('#gridDataChildList', [{
                 text: 'Education 대한 상관관계 분석 후 변인 군집화',
                 action: testAction
