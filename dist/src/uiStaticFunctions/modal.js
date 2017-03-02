@@ -1,10 +1,12 @@
+'use strict';
+
 /**
  * Created by hyunwoo on 2017-03-02.
  */
 
-const __Modal = new function () {
-    const that = this;
-    const $dimension = $('#modalDimensionFieldMaker');
+var __Modal = new function () {
+    var that = this;
+    var $dimension = $('#modalDimensionFieldMaker');
 
     var $dimensionTitle = $dimension.find('.title');
     var $dimensionContent = $dimension.find('.content');
@@ -20,9 +22,8 @@ const __Modal = new function () {
             $dimensionPos.unbind();
             $dimensionPos.click(function () {
                 that.dimension.close();
-                opt.pos.action()
+                opt.pos.action();
             });
-
         };
         $dimension.find('.closer').click(function () {
             console.log('?');
@@ -37,35 +38,23 @@ const __Modal = new function () {
         };
 
         this.addAxisList = function (value) {
-            let item = $(`<div class="item">
-                <div class="checkbox i material-icons">check_box</div>
-                <div class="axis">${value.name}</div>
-                <div class="value"></div>
-                <div class="value">${__Formatter.number(value.mean)}</div>
-                <div class="value">${__Formatter.number(value.min)}</div>
-                <div class="value">${__Formatter.number(value.max)}</div>
-                <div class="value">${__Formatter.number(value.median)}</div>
-                <div class="value">${__Formatter.number(value.sigma)}</div>
-            </div>`).appendTo($dimensionAxisSelector);
+            var item = $('<div class="item">\n                <div class="checkbox i material-icons">check_box</div>\n                <div class="axis">' + value.name + '</div>\n                <div class="value"></div>\n                <div class="value">' + __Formatter.number(value.mean) + '</div>\n                <div class="value">' + __Formatter.number(value.min) + '</div>\n                <div class="value">' + __Formatter.number(value.max) + '</div>\n                <div class="value">' + __Formatter.number(value.median) + '</div>\n                <div class="value">' + __Formatter.number(value.sigma) + '</div>\n            </div>').appendTo($dimensionAxisSelector);
             item.click(function () {
-                const box = $(this).find('.checkbox');
+                var box = $(this).find('.checkbox');
                 if (box.hasClass('unchecked')) {
                     box.removeClass('unchecked');
                     box.html('check_box');
-                }
-                else {
+                } else {
                     box.addClass('unchecked');
                     box.html('check_box_outline_blank');
                 }
             });
-
-        }
-    };
+        };
+    }();
     $dimensionNeg.click(function () {
         that.Modal.close();
     });
-};
+}();
 
-$(function () {
-
-});
+$(function () {});
+//# sourceMappingURL=modal.js.map

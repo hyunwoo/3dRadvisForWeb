@@ -104,7 +104,6 @@ const __UIStatic = new function () {
         }
     };
 
-
     this.Message = {};
     var $Modal = $('.modalWrapper');
     var $ModalTitle = $Modal.find('.title');

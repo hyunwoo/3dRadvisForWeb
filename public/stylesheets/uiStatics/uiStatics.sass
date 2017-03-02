@@ -208,6 +208,7 @@ $toast-width-half: $toast-width/2
       color: $main-font-color-b2
       font-weight: $font-weight-4
     .content
+      max-height: calc(100vh - 380px)
       overflow-y: auto
       padding: 20px
       font-size: $font-size-1
@@ -264,9 +265,10 @@ $toast-width-half: $toast-width/2
             width: 25px
             line-height: 30px
             cursor: default
+            color: $point-color
             font-size: $icon-font-size-1
             &.unchecked
-              color: $point-color
+              color: $main-font-color-b2
     .footer
       height: 50px
       padding: 20px 20px 10px
