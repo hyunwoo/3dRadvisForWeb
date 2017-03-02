@@ -24,8 +24,8 @@
         .actionGroup
             .pos POSITIVE
             .neg NEGATIVE
-#modalWrapper
-    .modal#modalDimensionFieldMaker
+.modalWrapper#modalDimensionFieldMaker
+    .modal
         .title Create Dimension Field
             .closer.i.material-icons close
         .content(page=01)
@@ -44,7 +44,6 @@
                     .value center
                     .value sigma
             .list.axis
-                -for(var i = 0 ; i < 100 ; i ++){
                 .item
                     .axis background_education_year
                     .value numeric
@@ -53,7 +52,6 @@
                     .value 2.5
                     .value 2.0
                     .value 3.2
-                -}
 
         .footer
             .pos.i.material-icons navigate_next
@@ -83,7 +81,7 @@
 
 link(rel='stylesheet', href='/stylesheets/uiStatics/uiStatics.css')
 script(src='/uiStaticFunctions/uiStatics.js')
-
+script(src='/uiStaticFunctions/modal.js')
 
 
 

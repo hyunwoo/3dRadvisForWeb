@@ -165,7 +165,7 @@
       -webkit-transform: scale(1, 1);
       transform: scale(1, 1); }
 
-#modalWrapper {
+.modalWrapper {
   position: fixed;
   left: 0;
   top: 0;
@@ -179,7 +179,7 @@
   z-index: 10000;
   opacity: 0;
   transition: all .3s; }
-  #modalWrapper .modal {
+  .modalWrapper .modal {
     transition: all .3s;
     -ms-transform: scale(0.7, 0.7);
     -webkit-transform: scale(0.7, 0.7);
@@ -192,30 +192,30 @@
     font-size: 13px;
     color: #666666;
     overflow-y: auto; }
-    #modalWrapper .modal#modalDimensionFieldMaker {
+    .modalWrapper .modal#modalDimensionFieldMaker {
       height: 100%; }
-    #modalWrapper .modal .title {
+    .modalWrapper .modal .title {
       position: relative;
       padding: 15px;
       font-size: 13px;
       font-weight: 400;
       background-color: #222;
       color: #fff; }
-      #modalWrapper .modal .title .closer {
+      .modalWrapper .modal .title .closer {
         position: absolute;
         font-size: 14px;
         right: 15px;
         top: 15px;
         cursor: pointer; }
-    #modalWrapper .modal .header {
+    .modalWrapper .modal .header {
       font-size: 11px;
       padding: 15px 0 7px;
       color: #666666;
       font-weight: 400; }
-    #modalWrapper .modal .content {
+    .modalWrapper .modal .content {
       padding: 20px;
       font-size: 13px; }
-      #modalWrapper .modal .content input, #modalWrapper .modal .content textarea {
+      .modalWrapper .modal .content input, .modalWrapper .modal .content textarea {
         color: #666666;
         width: 100%;
         resize: none;
@@ -227,18 +227,18 @@
         border: solid 1px #dbdbdb;
         padding: 10px;
         transition: border .3s; }
-        #modalWrapper .modal .content input:focus, #modalWrapper .modal .content input:active, #modalWrapper .modal .content textarea:focus, #modalWrapper .modal .content textarea:active {
+        .modalWrapper .modal .content input:focus, .modalWrapper .modal .content input:active, .modalWrapper .modal .content textarea:focus, .modalWrapper .modal .content textarea:active {
           border: solid 1px #0188E5;
           transition: border .3s; }
-      #modalWrapper .modal .content textarea {
+      .modalWrapper .modal .content textarea {
         height: 90px; }
-      #modalWrapper .modal .content .list.axis {
+      .modalWrapper .modal .content .list.axis {
         box-sizing: border-box;
         background: #fff;
         width: 100%;
         max-height: calc(100vh - 630px);
         overflow-y: auto; }
-        #modalWrapper .modal .content .list.axis .title, #modalWrapper .modal .content .list.axis .item {
+        .modalWrapper .modal .content .list.axis .title, .modalWrapper .modal .content .list.axis .item {
           padding: 0 10px 0;
           display: table;
           background: #fff;
@@ -250,18 +250,18 @@
           color: #666666;
           font-size: 11px;
           font-weight: 400; }
-          #modalWrapper .modal .content .list.axis .title .axis, #modalWrapper .modal .content .list.axis .title .value, #modalWrapper .modal .content .list.axis .item .axis, #modalWrapper .modal .content .list.axis .item .value {
+          .modalWrapper .modal .content .list.axis .title .axis, .modalWrapper .modal .content .list.axis .title .value, .modalWrapper .modal .content .list.axis .item .axis, .modalWrapper .modal .content .list.axis .item .value {
             display: table-cell; }
-          #modalWrapper .modal .content .list.axis .title .value, #modalWrapper .modal .content .list.axis .item .value {
+          .modalWrapper .modal .content .list.axis .title .value, .modalWrapper .modal .content .list.axis .item .value {
             text-align: center;
             width: 50px; }
-    #modalWrapper .modal .footer {
+    .modalWrapper .modal .footer {
       position: absolute;
       right: 0;
       bottom: 0;
       height: 50px;
       padding: 20px 20px 10px; }
-      #modalWrapper .modal .footer .pos, #modalWrapper .modal .footer .neg {
+      .modalWrapper .modal .footer .pos, .modalWrapper .modal .footer .neg {
         border-radius: 50%;
         cursor: pointer;
         display: inline-block;
@@ -276,13 +276,13 @@
         font-weight: 400;
         margin-left: 10px;
         text-align: center; }
-        #modalWrapper .modal .footer .pos:hover, #modalWrapper .modal .footer .neg:hover {
+        .modalWrapper .modal .footer .pos:hover, .modalWrapper .modal .footer .neg:hover {
           background: #00B7FF; }
-  #modalWrapper.open {
+  .modalWrapper.open {
     opacity: 1;
     pointer-events: all;
     transition: all .3s; }
-    #modalWrapper.open .modal {
+    .modalWrapper.open .modal {
       transition: all .3s;
       -ms-transform: scale(1, 1);
       -webkit-transform: scale(1, 1);

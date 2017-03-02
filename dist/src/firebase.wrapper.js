@@ -98,11 +98,9 @@ var __Firebase = new function () {
         callbackDimensions = {};
         that.DimensionFieldList = {};
     };
-
     this.storage = firebase.storage();
     this.testDataUrl = 'https://firebasestorage.googleapis.com/v0/b/dradvis.appspot.com/o/credos_testing.csv?alt=media&token=27152d59-bf4a-41cf-8658-1c3581c08c5e';
     var providerGoogle = new firebase.auth.GoogleAuthProvider();
-
     fb.auth().onAuthStateChanged(function (user) {
         that.user = user;
         if (user) {

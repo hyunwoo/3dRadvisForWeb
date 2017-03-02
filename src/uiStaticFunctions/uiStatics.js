@@ -105,13 +105,11 @@ const __UIStatic = new function () {
 
     this.Message = {};
 
-
-    var $Modal = $('#modalWrapper');
+    var $Modal = $('.modalWrapper');
     var $ModalTitle = $Modal.find('.title');
     var $ModalContent = $Modal.find('.content');
     var $ModalPos = $Modal.find('.pos');
     var $ModalNeg = $Modal.find('.neg');
-
 
     this.Modal = {
         /**
@@ -194,18 +192,7 @@ const __UIStatic = new function () {
 
 $(function () {
     //__UIStatic.Modal.open();
-    __UIStatic.Modal.open({
-        title: 'Data Overview',
-        content: '',
-        pos: {
-            name: 'Update',
-            action: function () {
-                __Firebase.addDimensionField({
-                    name: '임수현이 제정신이 아닙니다.'
-                });
-            },
-        }
-    });
+
 });
 
 
