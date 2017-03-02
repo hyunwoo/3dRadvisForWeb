@@ -60,6 +60,7 @@ var __UIStatic = new function () {
                 console.log(opt);
                 return;
             }
+
             $Dialog.addClass('open');
             $DialogTitle.html(opt.title);
             $DialogText.html(opt.text);
@@ -94,6 +95,7 @@ var __UIStatic = new function () {
     };
 
     this.onAuthChange = function (user) {
+        console.log('??');
         __UIStatic.Loader.close();
         if (user) {
             $Nav.find('.logined').removeClass('hide');
@@ -105,7 +107,6 @@ var __UIStatic = new function () {
     };
 
     this.Message = {};
-
     var $Modal = $('.modalWrapper');
     var $ModalTitle = $Modal.find('.title');
     var $ModalContent = $Modal.find('.content');

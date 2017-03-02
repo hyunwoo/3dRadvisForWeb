@@ -27,10 +27,10 @@ class DataSet {
     injectCsv(csv) {
         csv = csv.replace(/\r?\n|\r/gi, '\n');
         var rows = csv.split('\n');
+        if (rows[rows.length - 1] == '')
+            rows = _.dropRight(rows);
         this.keys = rows[0].split(',');
-        _.forEach(this.keys, function (v) {
-            console.log(v);
-        })
+
         // this.keys = _.take(rows[0].split(','), 15);
         this.raw = _.map(rows, function (row) {
             return row.split(',');
@@ -49,11 +49,11 @@ class DataSet {
             if (_.some(values, function (v) {
                     return isNaN(v);
                 })) {
-                console.log('Not a Number : ', d);
                 return;
             }
 
             stats[d[0]] = {
+                name: d[0],
                 value: values,
                 min: _.min(values),
                 max: _.max(values),
@@ -89,8 +89,6 @@ class DataSet {
             this.numericNodes.push(out);
         }
 
-        console.log(this.numericNodes);
-
         this.axis = _.map(this.numericKeys, function (k, i) {
             return new DataAxis(k, i, stats[k]);
         });
@@ -120,17 +118,17 @@ class DataSet {
 
 }
 
-
-$.get('/data/credos_testing.csv', function (data) {
-    __data = new DataSet(data);
-    //createAxisVisibility();
-    // Important! : Visualization Controlled based on Data
-    createRadvis();
-    __UI.injectData(__data);
-    __UI.createSideTab();
-    // create2DViewer();
-    //createParallel();
-});
+//
+// $.get('/data/credos_testing.csv', function (data) {
+//     __data = new DataSet(data);
+//     //createAxisVisibility();
+//     // Important! : Visualization Controlled based on Data
+//     createRadvis();
+//     __UI.injectData(__data);
+//     __UI.createSideTab();
+//     // create2DViewer();
+//     //createParallel();
+// });
 
 $(function () {
     $('#axisColorApplier').click(function () {

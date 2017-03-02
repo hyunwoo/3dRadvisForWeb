@@ -37,15 +37,20 @@ var __Firebase = new function () {
     var callbackEvents = {};
     var callbackDimensions = {};
     var DataList = this.DataList = {};
+    this.CurrentData = {};
     this.DimensionFieldList = {};
 
-    this.setUsageData = function (d) {
+    this.setUsageData = function (d, callback) {
         usageData = d;
         console.log(" Data & Dimension Event Injected");
         DBRefDimensionList = fb.database().ref(that.user.uid + '/list/' + d._id + '/dimension');
+        fb.database().ref(that.user.uid + '/raw/' + d._id).once('value').then(function (snapshot) {
+            that.CurrentData = new DataSet(snapshot.val());
+            callback(snapshot.val());
+        });
 
         DBRefDimensionList.once('value').then(function (snapshot) {
-            console.log('once', snapshot.val());
+            if (_.isNil(snapshot.val())) return;
             that.DimensionFieldList[snapshot.val()._id] = snapshot.val();
             var val = snapshot.val();
             _.forEach(callbackDimensions[that.EventName.ChildAdded], function (callback) {
@@ -102,16 +107,20 @@ var __Firebase = new function () {
     this.testDataUrl = 'https://firebasestorage.googleapis.com/v0/b/dradvis.appspot.com/o/credos_testing.csv?alt=media&token=27152d59-bf4a-41cf-8658-1c3581c08c5e';
     var providerGoogle = new firebase.auth.GoogleAuthProvider();
     fb.auth().onAuthStateChanged(function (user) {
-        that.user = user;
-        if (user) {
-            console.log('auth changed', user);
-            $('.userName').html(user.displayName);
-            initDBReferences();
-            isSetReferences = true;
-        } else {}
-        _.forEach(that.authChange, function (d) {
-            d(user);
-        });
+        console.log('auth change input');
+        setTimeout(function () {
+            that.user = user;
+            if (user) {
+                console.log('auth changed', user);
+                $('.userName').html(user.displayName);
+                initDBReferences();
+                isSetReferences = true;
+            } else {}
+            _.forEach(that.authChange, function (d) {
+                d(user);
+            });
+        }, 100);
+
         // __UIStatic.onAuthChange(user);
     });
 
