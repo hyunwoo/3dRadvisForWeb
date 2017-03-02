@@ -13,7 +13,6 @@
   line-height: 55px;
   background-color: #ffffff;
   z-index: 1001;
-  box-shadow: 1px 1px 1px #cbcbcb;
   border-bottom: solid 1px #dbdbdb; }
   .nav .logo {
     display: inline-block;
@@ -185,6 +184,7 @@
   opacity: 0;
   transition: all .3s; }
   .modalWrapper .modal {
+    overflow-y: hidden;
     transition: all .3s;
     -ms-transform: scale(0.7, 0.7);
     -webkit-transform: scale(0.7, 0.7);
@@ -195,8 +195,7 @@
     margin: 0 auto;
     position: relative;
     font-size: 13px;
-    color: #666666;
-    overflow-y: scroll; }
+    color: #666666; }
     .modalWrapper .modal#modalDimensionFieldMaker {
       height: 100%; }
     .modalWrapper .modal .title {
@@ -206,12 +205,13 @@
       font-weight: 400;
       background-color: #222;
       color: #fff; }
-      .modalWrapper .modal .title .closer {
-        position: absolute;
-        font-size: 14px;
-        right: 15px;
-        top: 15px;
-        cursor: pointer; }
+    .modalWrapper .modal .closer {
+      position: absolute;
+      font-size: 14px;
+      right: 15px;
+      top: 15px;
+      color: #fff;
+      cursor: pointer; }
     .modalWrapper .modal .header {
       font-size: 11px;
       padding: 15px 0 7px;
@@ -274,14 +274,10 @@
             width: 25px;
             line-height: 30px;
             cursor: default;
-            font-size: 14px;
-            color: #0188E5; }
+            font-size: 14px; }
             .modalWrapper .modal .content .list.axis .title .checkbox.unchecked, .modalWrapper .modal .content .list.axis .item .checkbox.unchecked {
-              color: #666666; }
+              color: #0188E5; }
     .modalWrapper .modal .footer {
-      position: absolute;
-      right: 0;
-      bottom: 0;
       height: 50px;
       padding: 20px 20px 10px; }
       .modalWrapper .modal .footer .pos, .modalWrapper .modal .footer .neg {
