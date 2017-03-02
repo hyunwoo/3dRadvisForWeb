@@ -18,8 +18,8 @@
     line-height: $nav-height
     font-size: $icon-font-size-2
     font-weight: $font-weight-6
-    cursor: pointer
     color: $main-font-color-b2
+    cursor: pointer
   .header
     vertical-align: top
     display: inline-block
@@ -27,6 +27,7 @@
     font-weight: $font-weight-4
     font-size: $font-size-3
     color: $main-font-color-b2
+    cursor: pointer
   .rightGroup
     padding-right: 10px
     float: right
@@ -35,6 +36,7 @@
     width: 100%
     top: 0
     box-sizing: border-box
+    pointer-events: none
     .logined, .logouted
       position: absolute
       right: 0
@@ -64,6 +66,7 @@
         font-weight: $font-weight-4
         font-size: $font-size-1
         padding: 0 8px
+        pointer-events: all
       .name
         height: $nav-height
         display: inline-block !important
@@ -247,9 +250,6 @@ $toast-width-half: $toast-width/2
             width: 50px
 
     .footer
-      position: absolute
-      right: 0
-      bottom: 0
       height: 50px
       padding: 20px 20px 10px
       .pos, .neg
