@@ -9,16 +9,17 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 48px;
-  line-height: 48px;
+  height: 55px;
+  line-height: 55px;
   background-color: #ffffff;
   z-index: 1001;
+  box-shadow: 1px 1px 1px #cbcbcb;
   border-bottom: solid 1px #dbdbdb; }
   .nav .logo {
     display: inline-block;
-    width: 60px;
+    width: 55px;
     text-align: center;
-    line-height: 48px;
+    line-height: 55px;
     font-size: 19px;
     font-weight: 600;
     color: #666666;
@@ -44,16 +45,17 @@
       position: absolute;
       right: 0;
       padding-right: 10px;
-      height: inherit; }
+      height: inherit;
+      pointer-events: all; }
       .nav .rightGroup .logined .icon, .nav .rightGroup .logouted .icon {
         display: inline-block;
         vertical-align: top;
         cursor: pointer;
         margin: 8px;
         background: #fff;
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
+        width: 39px;
+        height: 39px;
+        line-height: 39px;
         text-align: center;
         color: #000;
         border-radius: 50%; }
@@ -62,8 +64,8 @@
         vertical-align: top;
         cursor: pointer;
         margin: 11px 7px;
-        height: 26px;
-        line-height: 26px;
+        height: 33px;
+        line-height: 33px;
         text-align: center;
         color: #000;
         font-weight: 400;
@@ -71,7 +73,7 @@
         padding: 0 8px;
         pointer-events: all; }
       .nav .rightGroup .logined .name, .nav .rightGroup .logouted .name {
-        height: 48px;
+        height: 55px;
         display: inline-block !important;
         vertical-align: top;
         color: #000;
@@ -194,7 +196,7 @@
     position: relative;
     font-size: 13px;
     color: #666666;
-    overflow-y: auto; }
+    overflow-y: scroll; }
     .modalWrapper .modal#modalDimensionFieldMaker {
       height: 100%; }
     .modalWrapper .modal .title {
@@ -272,10 +274,14 @@
             width: 25px;
             line-height: 30px;
             cursor: default;
-            font-size: 14px; }
+            font-size: 14px;
+            color: #0188E5; }
             .modalWrapper .modal .content .list.axis .title .checkbox.unchecked, .modalWrapper .modal .content .list.axis .item .checkbox.unchecked {
-              color: #0188E5; }
+              color: #666666; }
     .modalWrapper .modal .footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
       height: 50px;
       padding: 20px 20px 10px; }
       .modalWrapper .modal .footer .pos, .modalWrapper .modal .footer .neg {

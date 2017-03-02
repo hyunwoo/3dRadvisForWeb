@@ -12,10 +12,11 @@
   position: absolute;
   display: inline-block;
   margin-left: -50px;
-  width: 330px;
-  height: calc(100% - 48px);
+  width: 280px;
+  height: calc(100% - 55px);
   background-color: #fff;
   transition-duration: 0.3s;
+  box-shadow: 1px 1px 1px #eaeaea;
   border-right: solid 1px #dbdbdb; }
   .settingTab .header-group {
     background: #fff; }

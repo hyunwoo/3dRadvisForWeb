@@ -5,7 +5,7 @@
 /* font weight */
 /* icon font size */
 .nav-spacer {
-  height: 48px; }
+  height: 55px; }
 
 .page {
   font-family: 'Roboto', sans-serif;
@@ -125,7 +125,7 @@
           color: #000; }
         .page .grid .cell.grid-12 .header {
           padding-top: 30px;
-          border-top: solid 2px #999999; }
+          border-top: solid 3px #999999; }
           .page .grid .cell.grid-12 .header .text {
             font-size: 50px;
             font-weight: 400;

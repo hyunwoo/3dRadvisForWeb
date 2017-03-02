@@ -10,6 +10,8 @@
   line-height: $nav-height
   background-color: $main-background-color
   z-index: 1001
+  //@include shadow-b1
+  box-shadow: 1px 1px 1px #cbcbcb
   @include borderBottom($border-color)
   .logo
     display: inline-block
@@ -42,6 +44,7 @@
       right: 0
       padding-right: 10px
       height: inherit
+      pointer-events: all
       .icon
         display: inline-block
         vertical-align: top
@@ -184,7 +187,7 @@ $toast-width-half: $toast-width/2
     position: relative
     font-size: $font-size-1
     color: $main-font-color-b2
-    overflow-y: auto
+    overflow-y: scroll
     &#modalDimensionFieldMaker
       height: 100%
     .title
@@ -264,9 +267,13 @@ $toast-width-half: $toast-width/2
             line-height: 30px
             cursor: default
             font-size: $icon-font-size-1
+            color: $point-color
             &.unchecked
-              color: $point-color
+              color: $main-font-color-b2
     .footer
+      position: absolute
+      right: 0
+      bottom: 0
       height: 50px
       padding: 20px 20px 10px
       .pos, .neg

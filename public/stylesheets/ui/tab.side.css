@@ -11,12 +11,13 @@
   top: 0;
   height: 100vh;
   transition-duration: 0.3s;
-  padding-top: 48px;
-  box-sizing: border-box; }
+  padding-top: 55px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 1px #eaeaea; }
   .tabWrapper .sideTab {
     position: relative;
     vertical-align: top;
-    width: 60px;
+    width: 55px;
     height: 100%;
     background-color: #ffffff;
     border-right: solid 1px #dbdbdb;
@@ -69,7 +70,7 @@
         height: 100%;
         transition-duration: 0.3s; }
       .tabWrapper .sideTab .tabItemWrapper .tabItem {
-        width: 60px;
+        width: 55px;
         position: relative;
         float: left;
         display: inline-block;
@@ -81,7 +82,7 @@
         position: absolute;
         height: inherit;
         top: 2px;
-        left: 55px;
+        left: 50px;
         font-size: 13px;
         display: inline-block;
         opacity: 0;
@@ -107,7 +108,7 @@
       .tabWrapper .sideTab .tabBottom .text {
         display: none; }
       .tabWrapper .sideTab .tabBottom .tabOpener {
-        width: 60px;
+        width: 55px;
         height: inherit;
         line-height: 40px;
         text-align: center;
@@ -116,7 +117,7 @@
         transition: transform 0.3s;
         font-weight: 600; }
     .tabWrapper .sideTab.open {
-      width: 200px; }
+      width: 170px; }
       .tabWrapper .sideTab.open .tabItemWrapper .tabItemName {
         opacity: 1; }
       .tabWrapper .sideTab.open .tabOpener {

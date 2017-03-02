@@ -26,6 +26,7 @@ var __UI = {
                     if ($item.hasClass('click')) {
                         $('.tabItemWrapper').removeClass('click');
                         __UI.$settingTab.removeClass('open');
+                        $sideTab.addClass('shadow');
                     } else {
                         $('.tabItemWrapper').removeClass('click');
                         $item.addClass('click');
@@ -44,6 +45,7 @@ var __UI = {
         __UI['$settingTab']['$header'].find('.closer').click(function () {
             $('.tabItemWrapper').removeClass('click');
             __UI.$settingTab.removeClass('open');
+            $sideTab.addClass('shadow');
         });
 
         $sideTab.find('.tabOpener').click(function () {
@@ -102,8 +104,8 @@ var __UI = {
         var $contents = __UI['$settingTab']['$contents'];
         var $bottom = __UI['$settingTab']['$bottom'];
 
-        var visibleButton = __UI.createContentBottomIcon('check_box', onVisibleButtonClick);
-        var invisibleButton = __UI.createContentBottomIcon('check_box_outline_blank', onVisibleButtonClick);
+        var visibleButton = __UI.createContentBottomIcon('check_', onVisibleButtonClick);
+        var invisibleButton = __UI.createContentBottomIcon('visibility_off', onVisibleButtonClick);
         __UI.createContentBottomIcon('refresh', refresh, 'actor');
         if (!option.visible) visibleButton.addClass('disable');
         if (!option.invisible) invisibleButton.addClass('disable');
