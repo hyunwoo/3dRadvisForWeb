@@ -225,6 +225,16 @@ $toast-width-half: $toast-width/2
           transition: border .3s
       textarea
         height: 90px
+      .desc
+        padding: 10px
+        width: calc(100% - 20px)
+        font-size: $font-size-0
+        line-height: $font-size-1 + 3px
+        font-weight: $font-weight-4
+        color: $main-font-color
+        white-space: pre-line
+        text-align: justify
+
       .list.axis
         box-sizing: border-box
         background: #fff
@@ -243,12 +253,19 @@ $toast-width-half: $toast-width/2
           color: $main-font-color-b2
           font-size: $font-size-0
           font-weight: $font-weight-4
-          .axis, .value
+          .checkbox, .axis, .value
             display: table-cell
+            vertical-align: middle
           .value
             text-align: center
             width: 50px
-
+          .checkbox
+            width: 25px
+            line-height: 30px
+            cursor: default
+            font-size: $icon-font-size-1
+            &.unchecked
+              color: $point-color
     .footer
       height: 50px
       padding: 20px 20px 10px

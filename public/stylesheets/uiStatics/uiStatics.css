@@ -235,6 +235,15 @@
           transition: border .3s; }
       .modalWrapper .modal .content textarea {
         height: 90px; }
+      .modalWrapper .modal .content .desc {
+        padding: 10px;
+        width: calc(100% - 20px);
+        font-size: 11px;
+        line-height: 16px;
+        font-weight: 400;
+        color: #000;
+        white-space: pre-line;
+        text-align: justify; }
       .modalWrapper .modal .content .list.axis {
         box-sizing: border-box;
         background: #fff;
@@ -253,11 +262,19 @@
           color: #666666;
           font-size: 11px;
           font-weight: 400; }
-          .modalWrapper .modal .content .list.axis .title .axis, .modalWrapper .modal .content .list.axis .title .value, .modalWrapper .modal .content .list.axis .item .axis, .modalWrapper .modal .content .list.axis .item .value {
-            display: table-cell; }
+          .modalWrapper .modal .content .list.axis .title .checkbox, .modalWrapper .modal .content .list.axis .title .axis, .modalWrapper .modal .content .list.axis .title .value, .modalWrapper .modal .content .list.axis .item .checkbox, .modalWrapper .modal .content .list.axis .item .axis, .modalWrapper .modal .content .list.axis .item .value {
+            display: table-cell;
+            vertical-align: middle; }
           .modalWrapper .modal .content .list.axis .title .value, .modalWrapper .modal .content .list.axis .item .value {
             text-align: center;
             width: 50px; }
+          .modalWrapper .modal .content .list.axis .title .checkbox, .modalWrapper .modal .content .list.axis .item .checkbox {
+            width: 25px;
+            line-height: 30px;
+            cursor: default;
+            font-size: 14px; }
+            .modalWrapper .modal .content .list.axis .title .checkbox.unchecked, .modalWrapper .modal .content .list.axis .item .checkbox.unchecked {
+              color: #0188E5; }
     .modalWrapper .modal .footer {
       height: 50px;
       padding: 20px 20px 10px; }
