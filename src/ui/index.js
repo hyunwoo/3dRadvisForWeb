@@ -7,9 +7,10 @@ $(function () {
     __Firebase.on('child_added', function (d) {
         data.push(d);
         console.log(data);
+        __UIStatic.Loader.detach('#grid1Overview');
+
         GridSystem.addGridContentItem('#grid1Overview', {
             _id: d._id, text: d.name + ` <small>${d.type}</small>`, action: function () {
-                console.log(d)
                 GridSystem.clearPage(function () {
                     createDataWindow(d);
                 });
@@ -20,7 +21,6 @@ $(function () {
         var number = __Formatter.numberWithSymbol(_.sumBy(data, function (d) {
             return d.size;
         }));
-        console.log(number);
         GridSystem.setGridContentAddition('#grid2Overview', [{
             class: 'title',
             text: 'Usage'
@@ -35,9 +35,14 @@ $(function () {
     });
 
 
+    window.onpopstate = history.onpushstate = function (e) {
+        GridSystem.clearPage(() => {
+            createDataListWindow();
+        });
+    };
+
     function createDataListWindow() {
         GridSystem.createPage().createGrid({cell: 12, _id: 'gridOverview'});
-
         GridSystem.setGridHeader('#gridOverview', {
             text: 'Making the Data Set Freely',
         });
@@ -65,13 +70,46 @@ $(function () {
             class: 'desc-small',
             text: ''
         }]);
+
+        _.forEach(__Firebase.DataList, function (d) {
+            GridSystem.addGridContentItem('#grid1Overview', {
+                _id: d._id, text: d.name + ` <small>${d.type}</small>`, action: function () {
+                    GridSystem.clearPage(function () {
+                        createDataWindow(d);
+                    });
+                }
+            });
+        });
+
+        let totalSize = 0;
+        _.forEach(__Firebase.DataList, function (v) {
+            totalSize += v.size;
+        });
+
+        let number = __Formatter.numberWithSymbol(totalSize);
+
+        GridSystem.clearGridAddition('#grid2Overview');
+        GridSystem.setGridContentAddition('#grid2Overview', [{
+            class: 'title',
+            text: 'Usage'
+        }, {
+            class: 'jumbo',
+            text: `${number.number}<small>${number.symbol}b</small>`
+        }, {
+            class: 'desc-small',
+            text: `총 사용 가능한 용량은 50MB 이고 <action>${number.number}${number.symbol}b</action>를 사용 하고 있습니다.`
+        }]);
+
+        __Firebase.releaseUsageData();
     }
 
-    function createDataWindow(data) {
 
+    function createDataWindow(data) {
+        window.history.pushState('page2', '', '/dataSummary/' + data.name);
+
+        __Firebase.setUsageData(data);
         // Overview
         GridSystem.createPage().createGrid({cell: 12, _id: 'gridDataOverview'});
-
         GridSystem.setGridHeader('#gridDataOverview', {
             text: data.name, actions: [{
                 icon: 'delete', action: function () {
@@ -92,6 +130,8 @@ $(function () {
                 }, addition: 'remove',
             }]
         });
+
+
         // Description
         const fileSize = __Formatter.numberWithSymbol(data.size);
         GridSystem.createGrid([
@@ -101,7 +141,15 @@ $(function () {
             .setGridHeader('#gridDataDescription', {
                 text: 'Data Overview', actions: [{
                     icon: 'edit', action: function () {
-                        __UIStatic.Toast.open('데이터의 Overview 를 수정합니다. 해당기능은 아직 구현되지 않았습니다.');
+                        //__UIStatic.Toast.open('데이터의 Overview 를 수정합니다. 해당기능은 아직 구현되지 않았습니다.');
+                        __UIStatic.Modal.open({
+                            title: 'Data Overview',
+                            content: '',
+                            pos: {
+                                name: 'Update',
+                                action: "?",
+                            }
+                        })
                     }
                 }]
             })
@@ -125,25 +173,73 @@ $(function () {
             .setGridHeader('#gridDataChildList', {
                 text: 'Dimension Field List', actions: [{
                     icon: 'add', action: function () {
-                        __UIStatic.Toast.open('변인 필드를 추가합니다. 해당기능은 아직 구현되지 않았습니다.');
+                        __UIStatic.Modal.open({
+                            title: 'Data Overview',
+                            content: '',
+                            pos: {
+                                name: 'Update',
+                                action: function () {
+                                    __Firebase.addDimensionField({
+                                        name: '임수현이 제정신이 아닙니다.'
+                                    });
+                                },
+                            }
+                        })
                     }
                 }]
-            })//7B76313B62617369633B6879756E776F6F2068616E3B313B682E6879756E776F6F40676D61696C2E636F6D3B3B303B307D
-            .addGridContentItem('#gridDataChildList', [{
-                text: 'Education 대한 상관관계 분석 후 변인 군집화',
-                action: testAction
-            }, {
-                text: 'SIDAL 대한 상관관계 [0.9]이상 그룹화',
-                action: testAction
-            }, {
-                text: 'SVD,AD 중요 변인 필드',
-                action: testAction
-            },])
-            .setGridHeader('#gridDataChildInfo', {
+            });
+
+        _.forEach(__Firebase.DimensionFieldList, addDimensionField);
+        __Firebase.onDimension(__Firebase.EventName.ChildAdded, addDimensionField);
+
+        function addDimensionField(d) {
+            GridSystem.addGridContentItem('#gridDataChildList', {
+                text: d.name,
+                action: () => {
+                    setDimensionFieldOverview(__Firebase.DimensionFieldList[d._id]);
+                },
+                _id: d._id
+            });
+        }
+
+        __Firebase.onDimension(__Firebase.EventName.ChildRemoved, function (d) {
+            GridSystem.removeElement('#' + d._id);
+        });
+
+        __Firebase.onDimension(__Firebase.EventName.ChildChange, function (d) {
+            GridSystem.updateGridContentItem('#' + d._id, d);
+        });
+
+        __Firebase.onDimension(__Firebase.EventName.ChildRemoved, function (d) {
+            setDimensionFieldOverview();
+        });
+
+        setDimensionFieldOverview();
+
+        function setDimensionFieldOverview(d) {
+            console.log('dimension : ', d);
+            let headerData = {
                 text: 'Dimension Field Overview',
-                actions: [{
+            };
+
+            if (!_.isNil(d)) {
+                headerData['actions'] = [{
                     icon: 'remove_circle', action: function () {
-                        __UIStatic.Toast.open('변인 필드를 추가합니다. 해당기능은 아직 구현되지 않았습니다.');
+                        __UIStatic.Dialog.open({
+                            title: 'Delete Dimension Field',
+                            text: '선택된 "<strong>' + d.name + '</strong>" Dimension Field 가 삭제됩니다<br>삭제된 Field는 <u>복구 할 수 없습니다.</u>',
+                            pos: {
+                                name: 'Delete',
+                                action: function () {
+                                    __Firebase.deleteDimensionField(d);
+                                }
+                            },
+                            neg: {
+                                name: 'Cancel'
+                            }
+                        });
+
+
                     }, addition: 'remove'
                 }, {
                     icon: 'play_circle_filled', action: function () {
@@ -163,15 +259,19 @@ $(function () {
                             }
                         });
                     }
-                }]
-            })
-            .setGridContent('#gridDataChildInfo', '선택된 변인 필드에 대한 정보를 나타냅니다. 현재 구현중에 있습니다.')
+                }];
+                GridSystem.setGridContent('#gridDataChildInfo', `<strong>${d.name}</strong>`);
+            } else {
+                GridSystem.setGridContent('#gridDataChildInfo', '선택된 Dimension Field 가 없습니다.<br>분석 하고자 하는 Dimension Field를 선택 해주세요.');
+            }
+            GridSystem.setGridHeader('#gridDataChildInfo', headerData)
 
+        }
 
     }
 
     createDataListWindow();
-
+    console.log(__UIStatic.Loader.attach('#grid1Overview'));
     //__Firebase.on(__Firebase.EventName.ChildRemoved, function (d) {
     //  __IndexDataList.deleteDataList(d);
     //})

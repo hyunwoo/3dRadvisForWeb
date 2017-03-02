@@ -178,27 +178,94 @@ $toast-width-half: $toast-width/2
     width: 800px
     background: #fff
     margin: 0 auto
+    position: relative
+    font-size: $font-size-1
+    color: $main-font-color-b2
+    overflow-y: auto
+    &#modalDimensionFieldMaker
+      height: 100%
     .title
-      padding: 20px
-      font-size: $font-size-3
-      font-weight: $font-weight-6
+      position: relative
+      padding: 15px
+      font-size: $font-size-1
+      font-weight: $font-weight-4
+      background-color: #222
+      color: $main-inv-color
+      .closer
+        position: absolute
+        font-size: $icon-font-size-1
+        right: 15px
+        top: 15px
+        cursor: pointer
+    .header
+      font-size: $font-size-0
+      padding: 15px 0 7px
+      color: $main-font-color-b2
+      font-weight: $font-weight-4
     .content
       padding: 20px
       font-size: $font-size-1
+      input, textarea
+        color: $main-font-color-b2
+        width: 100%
+        resize: none
+        outline: none
+        box-sizing: border-box
+        font-size: $font-size-1
+        font-weight: $font-weight-4
+        line-height: $font-size-2
+        @include borderAll($border-color)
+        padding: 10px
+        transition: border .3s
+        &:focus, &:active
+          @include borderAll($point-color)
+          transition: border .3s
+      textarea
+        height: 90px
+      .list.axis
+        box-sizing: border-box
+        background: #fff
+        width: 100%
+        max-height: calc(100vh - 630px)
+        overflow-y: auto
+        .title, .item
+          padding: 0 10px 0
+          display: table
+          background: #fff
+          box-sizing: border-box
+          height: 30px
+          line-height: 30px
+          width: 100%
+          @include borderBottom($border-color)
+          color: $main-font-color-b2
+          font-size: $font-size-0
+          font-weight: $font-weight-4
+          .axis, .value
+            display: table-cell
+          .value
+            text-align: center
+            width: 50px
+
     .footer
+      position: absolute
+      right: 0
+      bottom: 0
       height: 50px
       padding: 20px 20px 10px
       .pos, .neg
+        border-radius: 50%
         cursor: pointer
         @include inlineBlock
         float: right
-        height: 40px
-        line-height: 40px
+        width: 35px
+        height: 35px
+        line-height: 35px
         background: $point-color
         color: $main-inv-color
-        font-size: $font-size-2
-        padding: 0 15px
+        font-size: $icon-font-size-2
+        font-weight: $font-weight-4
         margin-left: 10px
+        text-align: center
         &:hover
           background: #00B7FF
   &.open

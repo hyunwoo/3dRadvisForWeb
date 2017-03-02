@@ -58,6 +58,7 @@
         transform: matrix3d(0.70711, 0.70711, 0, 0, -0.70711, 0.70711, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/DEm6fe */
 @keyframes anim-1-circle {
     0% {
@@ -238,6 +239,7 @@
         transform: scale(0) translateX(-25px);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/e10ASq */
 @keyframes anim-3-circle {
     0% {
@@ -388,6 +390,7 @@
         transform: scale(0);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/uIqwYq */
 @keyframes anim-2-circle {
     0% {
@@ -526,6 +529,7 @@
         transform: scale(0);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/Kdj66E */
 @keyframes anim-4-circle {
     0% {
@@ -661,6 +665,7 @@
         transform: scale(0);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/2SMi6x */
 @keyframes g-move-bottom {
     0% {
@@ -718,6 +723,7 @@
         transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 25, 0, 1);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/pKqSyP */
 @keyframes line-grow-horizontal-1 {
     0% {
@@ -814,6 +820,7 @@
         transform: scaleX(0);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/NHi83y */
 @keyframes line-grow-horizontal-2 {
     0% {
@@ -919,6 +926,7 @@
         transform: scaleX(0);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/21oylQ */
 @keyframes line-grow-vertical-1 {
     0% {
@@ -1048,6 +1056,7 @@
         transform: scaleY(0) skewX(26.5px);
     }
 }
+
 /* Generated with Bounce.js. Edit at http://goo.gl/taI49K */
 @keyframes line-grow-vertical-2 {
     0% {
@@ -1262,18 +1271,17 @@
     }
 }
 
-.loader.small{
+.loader.small {
     position: absolute;
     width: 100%;
-    height: 100%;
-    left: 0;
+    height: 200px;
+    right: 0;
     top: 0;
-    background-color: #fff;
     z-index: 9999;
     overflow: hidden;
+    opacity: 1 !important;
+    background: transparent !important;
 }
-
-
 
 svg {
     position: absolute;
@@ -1290,6 +1298,7 @@ svg {
 .anim-1 {
     animation: g-move-bottom 4.5s linear infinite both;
 }
+
 .anim-1 circle {
     animation: anim-1-circle 4.5s linear infinite both;
     transform-origin: 50% 50%;
@@ -1298,10 +1307,12 @@ svg {
 .anim-2 {
     animation: g-move-bottom 4.5s linear infinite both;
 }
+
 .anim-2 circle {
     animation: anim-2-circle 4.5s linear infinite both;
     transform-origin: 50% 50%;
 }
+
 .anim-2 line {
     animation: line-grow-horizontal-1 4.5s linear infinite both;
     transform-origin: 100% 50%;
@@ -1311,10 +1322,12 @@ svg {
     animation: anim-3-circle 4.5s linear infinite both;
     transform-origin: 50% 50%;
 }
+
 .anim-3 line:first-of-type {
     animation: line-grow-vertical-1 4.5s linear infinite both;
     transform-origin: 50% 0%;
 }
+
 .anim-3 line:last-of-type {
     animation: line-grow-vertical-2 4.5s linear infinite both;
     transform-origin: 50% 0%;
@@ -1324,6 +1337,7 @@ svg {
     animation: anim-4-circle 4.5s linear infinite both;
     transform-origin: 50% 50%;
 }
+
 .anim-4 line {
     animation: line-grow-horizontal-2 4.5s linear infinite both;
     transform-origin: 100% 50%;

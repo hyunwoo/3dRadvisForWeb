@@ -7,7 +7,6 @@
         .logined.hide
             .name.userName h.hyunwoo@gmail.com
             .button#signoutButton SignOut
-            //.button#getCurrentDataList GetData
             //.icon.i.fa.fa-sign-out
         .logouted.hide
             .icon.i.fa.fa-google#signinButton
@@ -26,17 +25,43 @@
             .pos POSITIVE
             .neg NEGATIVE
 #modalWrapper
-    .modal
-        .title TITLE HERE
-        .content CONTENT HERE
+    .modal#modalDimensionFieldMaker
+        .title Create Dimension Field
+            .closer.i.material-icons close
+        .content(page=01)
+            .header Dimension Field Name
+            input
+            .header Dimension Field Overview
+            textarea
+            .header Choose Usage Axises
+            .list.axis
+                .title
+                    .axis name
+                    .value type
+                    .value mean
+                    .value min
+                    .value max
+                    .value center
+                    .value sigma
+            .list.axis
+                -for(var i = 0 ; i < 100 ; i ++){
+                .item
+                    .axis background_education_year
+                    .value numeric
+                    .value 1.3
+                    .value 0.53
+                    .value 2.5
+                    .value 2.0
+                    .value 3.2
+                -}
+
         .footer
-            .pos ACTION POS
-            .neg ACTION NEG
-
-
+            .pos.i.material-icons navigate_next
+            .neg.i.material-icons navigate_before
 
 .loader#globalLoader
     .boxLoading
+
 
 //.loader.small
     svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 100 100')

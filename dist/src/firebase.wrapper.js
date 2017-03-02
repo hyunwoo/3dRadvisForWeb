@@ -12,6 +12,8 @@ var config = {
 };
 
 var __Firebase = new function () {
+    var that = this;
+
     var fb = firebase.initializeApp(config);
     var auth = fb.auth();
     this.user = undefined;
@@ -22,11 +24,79 @@ var __Firebase = new function () {
         ChildRemoved: 'child_removed',
         ChildChange: 'child_changed'
     };
-    var that = this;
-    this.authChange = [];
 
+    this.authChange = [];
     this.addAuthChangeFunction = function (evt) {
         that.authChange.push(evt);
+    };
+
+    var usageData = void 0;
+    var DBRefDimensionList = void 0;
+
+    var DBRefDataList = void 0;
+    var callbackEvents = {};
+    var callbackDimensions = {};
+    var DataList = this.DataList = {};
+    this.DimensionFieldList = {};
+
+    this.setUsageData = function (d) {
+        usageData = d;
+        console.log(" Data & Dimension Event Injected");
+        DBRefDimensionList = fb.database().ref(that.user.uid + '/list/' + d._id + '/dimension');
+
+        DBRefDimensionList.once('value').then(function (snapshot) {
+            console.log('once', snapshot.val());
+            that.DimensionFieldList[snapshot.val()._id] = snapshot.val();
+            var val = snapshot.val();
+            _.forEach(callbackDimensions[that.EventName.ChildAdded], function (callback) {
+                _.forEach(val, function (v) {
+                    callback(v);
+                });
+            });
+        });
+
+        _.forEach(that.EventName, function (event) {
+            console.log('Alloc Dimension Event : ' + event);
+            DBRefDimensionList.on(event, function (snapshot) {
+                console.log(event, snapshot.val());
+                switch (event) {
+                    case that.EventName.ChildAdded:
+                    case that.EventName.ChildChange:
+                        that.DimensionFieldList[snapshot.val()._id] = snapshot.val();
+                        break;
+                    case that.EventName.ChildRemoved:
+                        delete that.DimensionFieldList[snapshot.val()._id];
+                        break;
+                }
+
+                _.forEach(callbackDimensions[event], function (callback) {
+                    callback(snapshot.val());
+                });
+            });
+        });
+    };
+
+    this.addDimensionField = function (field) {
+        var key = DBRefDimensionList.push().key;
+        var data = {};
+        field['_id'] = key;
+        data[key] = field;
+        DBRefDimensionList.update(data);
+    };
+
+    this.deleteDimensionField = function (field) {
+        console.log('delete field : ', that.user.uid + '/list/' + field._id + '/dimension/' + field._id);
+        var data = {};
+        data[field._id] = null;
+        DBRefDimensionList.update(data);
+    };
+
+    this.releaseUsageData = function () {
+        usageData = null;
+        console.log("Data & Dimension Event Released");
+        if (!_.isNil(DBRefDimensionList)) DBRefDimensionList.off();
+        callbackDimensions = {};
+        that.DimensionFieldList = {};
     };
 
     this.storage = firebase.storage();
@@ -36,8 +106,7 @@ var __Firebase = new function () {
     fb.auth().onAuthStateChanged(function (user) {
         that.user = user;
         if (user) {
-            console.log('auth changed');
-            console.log(user);
+            console.log('auth changed', user);
             $('.userName').html(user.displayName);
             initDBReferences();
             isSetReferences = true;
@@ -48,18 +117,23 @@ var __Firebase = new function () {
         // __UIStatic.onAuthChange(user);
     });
 
-    var DBRefDataList = void 0;
-    var callbackEvents = {};
-
     function initDBReferences() {
         if (isSetReferences) return;
         isSetReferences = true;
 
         DBRefDataList = fb.database().ref(that.user.uid + '/list');
-        var events = ['child_added', 'child_changed', 'child_removed'];
-        _.forEach(events, function (evt) {
+
+        _.forEach(that.EventName, function (evt) {
             DBRefDataList.on(evt, function (snapshot) {
-                console.log(evt, snapshot.val());
+                switch (evt) {
+                    case 'child_added':
+                    case 'child_changed':
+                        DataList[snapshot.val()._id] = snapshot.val();
+                        break;
+                    case 'child_removed':
+                        delete DataList[snapshot.val()._id];
+                        break;
+                }
                 _.forEach(callbackEvents[evt], function (callback) {
                     callback(snapshot.val());
                 });
@@ -70,6 +144,12 @@ var __Firebase = new function () {
     this.on = function (evt, callback) {
         if (_.isNil(callbackEvents[evt])) callbackEvents[evt] = [];
         callbackEvents[evt].push(callback);
+        return callback;
+    };
+
+    this.onDimension = function (evt, callback) {
+        if (_.isNil(callbackDimensions[evt])) callbackDimensions[evt] = [];
+        callbackDimensions[evt].push(callback);
         return callback;
     };
 
@@ -86,11 +166,9 @@ var __Firebase = new function () {
     this.getDataList = function () {};
 
     this.signInWithGoogle = function () {
-        console.log('?');
         fb.auth().signInWithPopup(providerGoogle).then(function (result) {
             var token = result.credential.accessToken;
             var user = result.user;
-            console.log('??');
             // ...
         }).catch(function (error) {
             console.log(error);
@@ -151,9 +229,7 @@ var __Firebase = new function () {
         var refRaw = fb.database().ref(that.user.uid + '/raw');
         var key = refList.push().key;
 
-        console.log(f);
         var updates = {};
-        console.log(that.user.uid + '/list/' + key);
         updates[that.user.uid + '/list/' + key] = {
             name: f.name,
             size: f.size,
@@ -169,6 +245,6 @@ var __Firebase = new function () {
 }();
 
 $(function () {
-    __Firebase.getDataList();
+    //__Firebase.getDataList()
 });
 //# sourceMappingURL=firebase.wrapper.js.map

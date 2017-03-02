@@ -16,6 +16,7 @@
   .page .grid {
     margin-top: 40px; }
     .page .grid .cell {
+      position: relative;
       padding: 0 20px;
       box-sizing: border-box; }
       .page .grid .cell .header {
@@ -64,8 +65,10 @@
             .page .grid .cell .contents .desc action:hover {
               text-decoration: underline; }
         .page .grid .cell .contents .item {
-          height: 45px;
-          line-height: 45px;
+          box-sizing: border-box;
+          min-height: 45px;
+          line-height: calc(45px - 20px);
+          padding: 10px 0;
           border-top: solid 1px #dbdbdb;
           color: #666666;
           cursor: pointer; }

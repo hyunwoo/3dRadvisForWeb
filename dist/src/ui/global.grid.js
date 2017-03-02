@@ -81,6 +81,17 @@ var GridSystem = new function () {
         $target.addClass(anim);
     }
 
+    this.removeElement = function ($target) {
+        if (_.isString($target)) $target = $($target);
+        $target.remove();
+    };
+
+    this.updateGridContentItem = function ($target, content) {
+        if (_.isString($target)) $target = $($target);
+        console.log($target);
+        var update = _.isNil(content.text) ? content.name : content.text;
+        $target.html(update);
+    };
     this.addGridContentItem = function ($target, contents) {
         if (_.isString($target)) $target = $($target);
         if (!_.isArray(contents)) contents = [contents];
@@ -91,8 +102,8 @@ var GridSystem = new function () {
             return;
         }
         _.forEach(contents, function (content) {
+            if ($('#' + content._id).length != 0) return;
             var $item = $('<div class="item">' + content.text + '</div>').appendTo($contents);
-            console.log('?????');
             $item.attr('id', content._id);
             $item.click(content.action);
             injectAnimate($item, 'appear');
@@ -111,7 +122,6 @@ var GridSystem = new function () {
         }
         _.forEach(descs, function (content) {
             var $item = $('<div class="desc">' + content.text + '</div>').appendTo($contents);
-            console.log('?????');
             $item.attr('id', content._id);
             $item.click(content.action);
             injectAnimate($item, 'appear');
@@ -132,7 +142,6 @@ var GridSystem = new function () {
         $target = $target.find('.contents');
         $target = $('<div class="addition-info"></div>').appendTo($target);
         _.forEach(addition, function (d) {
-            console.log(d);
             var $item = $('<div class="' + d.class + '">' + d.text + '</div>').appendTo($target);
             $item.find('action').click(d.action);
         });
@@ -147,8 +156,6 @@ var GridSystem = new function () {
         $contents.html(content);
         return that;
     };
-
-    this.removeGridContent = function ($target, _id) {};
 
     function isPageNil() {
         var nil = _.isNil(_page);
