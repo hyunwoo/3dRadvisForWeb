@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 
 var component = require('./routes/component.test');
 
@@ -30,11 +31,13 @@ app.use(require('node-sass-middleware')({
     indentedSyntax: true,
     sourceMap: true
 }));
+
 app.use(express.static(path.join(__dirname, '/dist/src')));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/node_modules')));
 
 app.use('/', index);
+app.use('/api', api);
 app.use('/component', component);
 app.use('/users', users);
 

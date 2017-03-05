@@ -63,7 +63,7 @@ let __Firebase = new function () {
         _.forEach(that.EventName, function (event) {
             console.log('Alloc Dimension Event : ' + event);
             DBRefDimensionList.on(event, function (snapshot) {
-                console.log(event, snapshot.val())
+                console.log(event, snapshot.val());
                 switch (event) {
                     case that.EventName.ChildAdded:
                     case that.EventName.ChildChange:
@@ -121,11 +121,8 @@ let __Firebase = new function () {
                 d(user);
             });
         }, 100);
-
-
         // __UIStatic.onAuthChange(user);
     });
-
 
     function initDBReferences() {
         if (isSetReferences) return;

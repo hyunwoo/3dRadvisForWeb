@@ -120,7 +120,6 @@ var __Firebase = new function () {
                 d(user);
             });
         }, 100);
-
         // __UIStatic.onAuthChange(user);
     });
 
