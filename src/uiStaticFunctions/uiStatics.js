@@ -144,7 +144,7 @@ const __UIStatic = new function () {
     // this.onAuthChange(null);
 
     const LoaderString = '<div class="loader small">' +
-        '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100">' +
+        '<svg class="loaderIcon" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100">' +
         '<g class="anim-0">' +
         '<circle cx="50" cy="50" r="50" fill="#ff5e7C"></circle>' +
         '</g>' +

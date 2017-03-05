@@ -9,6 +9,7 @@
     "babel-cli": "^6.23.0",
     "body-parser": "~1.16.0",
     "cookie-parser": "~1.4.3",
+    "d3": "^4.7.1",
     "debug": "~2.6.0",
     "express": "~4.14.1",
     "font-awesome": "^4.7.0",
