@@ -2,11 +2,35 @@
 @import "util"
 
 .correlation-bg
-  width: 500px
-  height: 500px
-
-
-.correlation
   width: 100%
-  height: 100%
+  height: 100vh
+  position: relative
+  .field
+    position: absolute
+    left: 100px
+    top: 100px
+    width: calc(100% - 100px)
+    height: calc(100% - 100px)
+    .line
+      stroke : $border-color
+
+  .axis
+    position: absolute
+    font-size: 9px
+    font-weight: $font-weight-4
+    &.vertical
+      left: 0
+      top: 100px
+      width: 100px
+      height: calc(100% - 100px)
+    &.horizon
+      left: 100px
+      top: 0
+      width: calc(100% - 100px)
+      height: 100px
+
+
+
+
+
 

@@ -13,9 +13,19 @@
   width: 100vw;
   height: 100vh;
   z-index: 9999999;
-  pointer-events: none;
   transition: opacity 0.1s;
+  pointer-events: none;
   opacity: 0; }
+  .loader .text {
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100px;
+    padding-top: 200px;
+    text-align: center; }
   .loader.open {
     pointer-events: all;
     opacity: 1; }

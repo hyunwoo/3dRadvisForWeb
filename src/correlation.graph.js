@@ -1,51 +1,107 @@
-/**
- * Created by suhyun on 2017. 3. 5..
- */
+function createCorrGraph(id, keys, corr) {
 
-var width;
-var height;
-var g;
-var verticalG;
-var horizonG;
-$(function () {
-    var svg = d3.select(".correlation-bg").append("svg").attr('class', 'correlation');
 
-    width = $('.correlation').width();
-    height = $('.correlation').height();
+    $(id).addClass('correlation-bg');
+
+    var axisMargin = 100;
+    var parent = d3.select(id);
+
+
+    var width = $(id).width();
+    console.log('corr graph width ', $(id), width, $(id).css('width'));
+    $(id).css('height', width);
 
     //var variableSpace =
+    var drag = d3.drag().on('drag', d => console.log(d));
 
-    g = svg.append('g');
+    const svgMatrix = parent.append('svg').attr('class', 'field');
+    const gMatrix = svgMatrix.append('g');
+    const fieldSize = width - axisMargin;
 
-    var dataNum = 20;
+    const svgAxisHori = parent.append('svg').attr('class', 'axis horizon')
+    const gAxisHori = svgAxisHori.append('g');
 
-    var vx1 = 0;
-    var vy1 = 0;
-    var vx2 = width;
-    var vy2 = 0;
+    const svgAxisVert = parent.append('svg').attr('class', 'axis vertical')
+    const gAxisVert = svgAxisVert.append('g');
 
-    var hx1 = 0;
-    var hy1 = 0;
-    var hx2 = 0;
-    var hy2 = height;
-    var interval = width/dataNum;
+    var dataNum = keys.length;
 
-    for(var i = 0 ; i <= dataNum ; i++){
-        drawLine(g, vx1, vy1, vx2, vy2);
-        vy1 += interval;
-        vy2 += interval;
+    var interval = Math.max((fieldSize) / dataNum, 25);
+
+    var e = interval * dataNum;
+    _.forEach(keys, function (k, i) {
+        var p = interval * i;
+        writeText(gAxisHori, k, p + interval / 2, axisMargin - 20, -90, 'axis');
+        writeText(gAxisVert, k, axisMargin - 20, p + interval / 2, 0, 'axis')
+            .attr('text-anchor', 'end');
+
+        drawLine(gMatrix, 0, p, e, p).attr('class', 'line');
+        drawLine(gMatrix, p, 0, p, e).attr('class', 'line');
+    });
+
+
+    var gx = 0;
+    var gy = 0;
+    var gmax = interval * dataNum - fieldSize;
+
+    svgMatrix.call(d3.drag().on('drag', () => {
+        gx -= d3.event.dx * 1;
+        gy -= d3.event.dy * 1;
+
+        gx = Math.min(gmax, Math.max(0, gx));
+        gy = Math.min(gmax, Math.max(0, gy));
+
+        gMatrix.attr('transform', `translate(${-gx},${-gy})`);
+        gAxisHori.attr('transform', `translate(${-gx},0)`);
+        gAxisVert.attr('transform', `translate(0,${-gy})`);
+
+    }).on('end', () => {
+        var modX = gx % interval;
+        var modY = gy % interval;
+        gx -= modX < interval / 2 ? modX : -(interval - modX);
+        gy -= modY < interval / 2 ? modY : -(interval - modY);
+
+        gMatrix.transition().attr('transform', `translate(${-gx},${-gy})`);
+        gAxisHori.transition().attr('transform', `translate(${-gx},0)`);
+        gAxisVert.transition().attr('transform', `translate(0,${-gy})`);
+    }));
+
+
+    var rColor = d3.rgb(151, 15, 38);
+    var bColor = d3.rgb(5, 48, 97);
+    var cWeight = 3;
+    _.forEach(corr, function (d, y) {
+        _.forEach(d, function (d, x) {
+            var c = d > 0 ? bColor.brighter((1 - d) * cWeight) : rColor.brighter((1 + d) * cWeight);
+            drawCircle(gMatrix, x * interval + interval / 2, y * interval + interval / 2, Math.abs(d) * interval / 2).attr('fill', c);
+        });
+    });
+
+
+    function writeText(section, text, x, y, rotate, cls) {
+        if (_.isNil(rotate)) rotate = 0;
+
+        var d3_text = section.append('text')
+            .text(text)
+            .attr('transform', `translate(${x},${y}), rotate(${rotate})`)
+            .attr('alignment-baseline', 'middle');
+
+        if (!_.isNil(cls)) d3_text.attr('class', cls);
+        return d3_text;
     }
 
-    for(var i = 0 ; i <= dataNum ; i++){
-        drawLine(g, hx1, hy1, hx2, hy2);
-        hx1 += interval;
-        hx2 += interval;
+    function drawLine(section, x1, y1, x2, y2) {
+        return section.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2).attr("stroke", 'black')
     }
 
+    function drawCircle(section, x, y, r) {
+        return section.append('circle').attr('cx', x).attr('cy', y).attr('r', r);
+    }
+}
 
+
+$(function () {
+    createCorrGraph('#corrGraph', ['a', 'b', 'c'],
+        [[1, 0.7, 0.5], [.3, 0, -.3], [-.5, -.7, -1]]);
 });
 
-
-function drawLine(section, x1, y1, x2, y2){
-    var line = section.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2).attr("stroke", 'black')
-}

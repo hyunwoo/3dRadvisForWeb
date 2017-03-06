@@ -2,8 +2,10 @@
   <dictionary name="hyunwoo">
     <words>
       <w>contextmenu</w>
+      <w>dataset</w>
       <w>dropdown</w>
       <w>firebase</w>
+      <w>hori</w>
       <w>iconfont</w>
       <w>ipsum</w>
       <w>javascripts</w>
@@ -19,6 +21,7 @@
       <w>renderers</w>
       <w>transpos</w>
       <w>vals</w>
+      <w>vert</w>
     </words>
   </dictionary>
 </component>

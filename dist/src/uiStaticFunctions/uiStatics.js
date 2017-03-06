@@ -144,12 +144,14 @@ var __UIStatic = new function () {
     $('#signoutButton').click(__Firebase.signOut);
     __Firebase.addAuthChangeFunction(this.onAuthChange);
     // this.onAuthChange(null);
-
+    var globalLoader = $('#globalLoader');
     var LoaderString = '<div class="loader small">' + '<svg class="loaderIcon" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100">' + '<g class="anim-0">' + '<circle cx="50" cy="50" r="50" fill="#ff5e7C"></circle>' + '</g>' + '<g class="anim-1">' + '<circle cx="50" cy="50" r="5" fill="white"></circle>' + '</g>' + '<g class="anim-2">' + '<circle cx="75" cy="50" r="5" fill="white"></circle>' + '<line x1="25" y1="50" x2="75" y2="50" stroke="white" stroke-width="3"></line>' + '</g>' + '<g class="anim-3">' + '<circle cx="50" cy="25" r="5" fill="white"></circle>' + '<line x1="50" y1="25" x2="25" y2="75" stroke="white" stroke-width="3"></line>' + '<line x1="50" y1="25" x2="75" y2="75" stroke="white" stroke-width="3"></line>' + '</g>' + '<g class="anim-4">' + '<circle cx="75" cy="25" r="5" fill="white"></circle>' + '<line x1="75" y1="25" x2="25" y2="25" stroke="white" stroke-width="3"></line>' + '</g>' + '</svg>' + '</div>';
 
     this.Loader = {
-        open: function open() {
-            $('#globalLoader').addClass('open');
+        open: function open(message) {
+            globalLoader.addClass('open');
+            if (_.isNil(message)) message = '';
+            globalLoader.find('.text').html(message);
         },
         close: function close() {
             $('#globalLoader').removeClass('open');

@@ -170,7 +170,6 @@ $toast-width-half: $toast-width/2
   pointer-events: none
   background: rgba(0, 0, 0, .65)
   color: $main-color
-  padding: 100px 0
   box-sizing: border-box
   z-index: 10000
   opacity: 0
@@ -179,11 +178,15 @@ $toast-width-half: $toast-width/2
     overflow-y: hidden
     transition: all .3s
     @include transformScale(0.7, 0.7)
-    max-height: 100%
-    width: 800px
-    background: #fff
-    margin: 0 auto
-    position: relative
+    position: absolute
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
+    height: calc(100% - 100px)
+    width: calc(100% - 100px)
+    background-color: $main-background-color
+    margin: auto
     font-size: $font-size-1
     color: $main-font-color-b2
     &#modalDimensionFieldMaker

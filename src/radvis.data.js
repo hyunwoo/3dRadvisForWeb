@@ -3,8 +3,6 @@
  */
 
 let __data;
-
-
 class DataAxis {
     constructor(name, index, stats) {
         this.active = true;
@@ -16,7 +14,6 @@ class DataAxis {
         this.power = Setting.Radvis.Axis.Geometry.power.value;
 
     }
-
 }
 
 class DataSet {
@@ -54,20 +51,13 @@ class DataSet {
 
             stats[d[0]] = {
                 name: d[0],
-                value: values,
+                //value: values,
                 min: _.min(values),
                 max: _.max(values),
-                // variance: _.variance(values), // �л�
-                sigma: _.stdDeviation(values), // ǥ������
-                median: _.median(values), // �߾Ӱ�
+                // variance: _.variance(values),
+                sigma: _.stdDeviation(values),
+                median: _.median(values),
                 mean: _.average(values),
-
-                toString: function () {
-                    return "min: " + __Formatter.number(this.min) + "<br>" +
-                        "max: " + __Formatter.number(this.max) + "<br>" +
-                        "sigma: " + __Formatter.number(this.sigma) + "<br>" +
-                        "mean: " + __Formatter.number(this.mean);
-                }
             };
             numeric[d[0]] = values;
             // FOR TEST
@@ -77,9 +67,9 @@ class DataSet {
                     currentInjectAxisCount++;
                 }
             } else numericKeys.push(d[0]);
-
         });
-        console.log(numericKeys)
+        console.log(numericKeys);
+
         this.numericNodes = [];
         for (var i = 0; i < numeric[numericKeys[0]].length; i++) {
             var out = {};
@@ -107,6 +97,7 @@ class DataSet {
         })
     }
 
+
     static TransposData(matrix) {
         return _.map(matrix[0], function (col, i) {
             return _.map(matrix, function (row) {
@@ -114,25 +105,21 @@ class DataSet {
             })
         })
     }
-
-
 }
 
-//
-// $.get('/data/credos_testing.csv', function (data) {
-//     __data = new DataSet(data);
-//     //createAxisVisibility();
-//     // Important! : Visualization Controlled based on Data
-//     createRadvis();
-//     __UI.injectData(__data);
-//     __UI.createSideTab();
-//     // create2DViewer();
-//     //createParallel();
-// });
 
-$(function () {
-    $('#axisColorApplier').click(function () {
-        Setting.Radvis.Axis.Color = 0xFF0000;
-        __RadvisController.updateAxisColor(new THREE.Color(Setting.Radvis.Axis.Color));
-    });
-});
+function LoadByWorker() {
+    var i = 0;
+    self.onmessage = function (event) {
+        postMessage("Hello " + event.data, ['/']);
+    };
+
+    for (i = 0; i < 5; i++) {
+        postMessage(i, ['/']);
+    }
+    postMessage("Finished", ['/']);
+}
+
+LoadByWorker();
+
+

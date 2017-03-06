@@ -6,7 +6,6 @@ $(function () {
     var data = [];
     __Firebase.on('child_added', function (d) {
         data.push(d);
-        console.log(data);
         __UIStatic.Loader.detach('#grid1Overview');
 
         GridSystem.addGridContentItem('#grid1Overview', {
@@ -36,9 +35,7 @@ $(function () {
 
 
     window.onpopstate = history.onpushstate = function (e) {
-        GridSystem.clearPage(() => {
-            createDataListWindow();
-        });
+        window.location = '/';
     };
 
     function createDataListWindow() {
@@ -131,7 +128,6 @@ $(function () {
                 }]
             });
 
-
             // Description
             const fileSize = __Formatter.numberWithSymbol(data.size);
             GridSystem.createGrid([
@@ -186,10 +182,12 @@ $(function () {
                 {cell: 7, _id: 'gridDataChildInfo'},])
                 .setGridHeader('#gridDataChildList', {
                     text: 'Dimension Field List', actions: [{
-                        icon: 'add', action: function () {
+                        icon: 'add', action: async function () {
+                            var dSet = await __Firebase.getUsageDataSetting();
                             __Modal.dimension.clearAxisList();
-                            console.log(__Firebase.CurrentData.stats);
-                            _.forEach(__Firebase.CurrentData.stats, __Modal.dimension.addAxisList);
+                            // console.log(__Firebase.CurrentData.stats);
+                            // _.forEach(__Firebase.CurrentData.stats, __Modal.dimension.addAxisList);
+                            createCorrGraph('#correlationGraph', dSet.keys, dSet.corr);
                             __Modal.dimension.open({
                                 title: 'Data Overview',
                                 content: '',

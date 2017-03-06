@@ -142,7 +142,7 @@ const __UIStatic = new function () {
     $('#signoutButton').click(__Firebase.signOut);
     __Firebase.addAuthChangeFunction(this.onAuthChange);
     // this.onAuthChange(null);
-
+    const globalLoader = $('#globalLoader');
     const LoaderString = '<div class="loader small">' +
         '<svg class="loaderIcon" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100">' +
         '<g class="anim-0">' +
@@ -168,8 +168,12 @@ const __UIStatic = new function () {
         '</div>';
 
     this.Loader = {
-        open: function () {
-            $('#globalLoader').addClass('open');
+        open: function (message) {
+            globalLoader.addClass('open');
+            if (_.isNil(message)) message = '';
+            globalLoader.find('.text').html(message);
+
+
         },
         close: function () {
             $('#globalLoader').removeClass('open');

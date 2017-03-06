@@ -45,6 +45,7 @@ let __Firebase = new function () {
         console.log(" Data & Dimension Event Injected");
         DBRefDimensionList = fb.database().ref(that.user.uid + '/list/' + d._id + '/dimension');
         fb.database().ref(that.user.uid + '/raw/' + d._id).once('value').then(function (snapshot) {
+
             that.CurrentData = new DataSet(snapshot.val());
             callback(snapshot.val());
         });
@@ -79,6 +80,14 @@ let __Firebase = new function () {
                 });
             });
         });
+    };
+
+    this.getUsageDataSetting = async function () {
+        console.log('asdfasdf');
+        var a = await fb.database().ref(that.user.uid + '/setting/' + usageData._id).once('value');
+        return a.val();
+
+
     };
 
     this.addDimensionField = function (field) {
@@ -239,26 +248,47 @@ let __Firebase = new function () {
 
     this.uploadData = function (f) {
         console.log('uploadFile!?');
+
         if (_.isNil(that.user)) {
             __UIStatic.Toast.open("Auth Failed");
-            return;
+            return null;
         }
+
         const refList = fb.database().ref(that.user.uid + '/list');
         const refRaw = fb.database().ref(that.user.uid + '/raw');
         const key = refList.push().key;
 
-        var updates = {};
-        updates[that.user.uid + '/list/' + key] = {
-            name: f.name,
-            size: f.size,
-            type: f.type,
-            lastModified: f.lastModified,
-            _id: key,
-            overview: 'Not Yet Set Overview',
-        };
+        // TODO Convert Worker
+        // var worker = new Worker('/radvis.data.js');
+        // worker.postMessage('hello!!');
+        // worker.addEventListener('message', (d) => {
+        //     console.log('receive', d);
+        // });
 
-        updates[that.user.uid + '/raw/' + key] = f.contents;
-        fb.database().ref().update(updates);
+        // __UIStatic.Loader.open();
+        const dSet = new DataSet(f.contents);
+        console.log('dset length : ', JSON.stringify(dSet).length);
+        $.post('/api/correlation', dSet, function (body) {
+            let updates = {};
+            const dataInfo = {
+                name: f.name,
+                size: f.size,
+                type: f.type,
+                lastModified: f.lastModified,
+                _id: key,
+                overview: 'Not Yet Set Overview',
+            };
+
+            updates[that.user.uid + '/list/' + key] = dataInfo;
+            updates[that.user.uid + '/raw/' + key] = f.contents;
+            updates[that.user.uid + '/setting/' + key] = body;
+            updates[that.user.uid + '/dataset/' + key] = dSet;
+            fb.database().ref().update(updates);
+        }).fail(() => {
+            console.error('error');
+        }).always(() => {
+        });
+
     };
 
 };

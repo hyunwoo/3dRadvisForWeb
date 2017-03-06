@@ -60,17 +60,13 @@ var DataSet = function () {
 
                 stats[d[0]] = {
                     name: d[0],
-                    value: values,
+                    //value: values,
                     min: _.min(values),
                     max: _.max(values),
-                    // variance: _.variance(values), // �л�
-                    sigma: _.stdDeviation(values), // ǥ������
-                    median: _.median(values), // �߾Ӱ�
-                    mean: _.average(values),
-
-                    toString: function toString() {
-                        return "min: " + __Formatter.number(this.min) + "<br>" + "max: " + __Formatter.number(this.max) + "<br>" + "sigma: " + __Formatter.number(this.sigma) + "<br>" + "mean: " + __Formatter.number(this.mean);
-                    }
+                    // variance: _.variance(values),
+                    sigma: _.stdDeviation(values),
+                    median: _.median(values),
+                    mean: _.average(values)
                 };
                 numeric[d[0]] = values;
                 // FOR TEST
@@ -82,6 +78,7 @@ var DataSet = function () {
                 } else numericKeys.push(d[0]);
             });
             console.log(numericKeys);
+
             this.numericNodes = [];
             for (var i = 0; i < numeric[numericKeys[0]].length; i++) {
                 var out = {};
@@ -123,22 +120,17 @@ var DataSet = function () {
     return DataSet;
 }();
 
-//
-// $.get('/data/credos_testing.csv', function (data) {
-//     __data = new DataSet(data);
-//     //createAxisVisibility();
-//     // Important! : Visualization Controlled based on Data
-//     createRadvis();
-//     __UI.injectData(__data);
-//     __UI.createSideTab();
-//     // create2DViewer();
-//     //createParallel();
-// });
+function LoadByWorker() {
+    var i = 0;
+    self.onmessage = function (event) {
+        postMessage("Hello " + event.data, ['/']);
+    };
 
-$(function () {
-    $('#axisColorApplier').click(function () {
-        Setting.Radvis.Axis.Color = 0xFF0000;
-        __RadvisController.updateAxisColor(new THREE.Color(Setting.Radvis.Axis.Color));
-    });
-});
+    for (i = 0; i < 5; i++) {
+        postMessage(i, ['/']);
+    }
+    postMessage("Finished", ['/']);
+}
+
+LoadByWorker();
 //# sourceMappingURL=radvis.data.js.map
