@@ -161,6 +161,8 @@ $toast-width-half: $toast-width/2
     .dialog
       @include transformScale(1, 1)
 
+$modal-right-width: 280px
+
 .modalWrapper
   position: fixed
   left: 0
@@ -183,95 +185,108 @@ $toast-width-half: $toast-width/2
     top: 0
     bottom: 0
     right: 0
-    height: calc(100% - 100px)
+    height: calc(100% - 70px)
     width: calc(100% - 100px)
     background-color: $main-background-color
     margin: auto
     font-size: $font-size-1
     color: $main-font-color-b2
+    border-radius: 3px
     &#modalDimensionFieldMaker
       height: 100%
-    .title
-      position: relative
-      padding: 15px
-      font-size: $font-size-1
-      font-weight: $font-weight-4
-      background-color: #222
-      color: $main-inv-color
-    .closer
-      position: absolute
-      font-size: $icon-font-size-1
-      right: 15px
-      top: 15px
-      color: $main-inv-color
-      cursor: pointer
-    .header
-      font-size: $font-size-0
-      padding: 15px 0 7px
-      color: $main-font-color-b2
-      font-weight: $font-weight-4
-    .content
-      max-height: calc(100vh - 380px)
-      overflow-y: auto
-      padding: 20px
-      font-size: $font-size-1
-      input, textarea
+    .right
+      @include inlineBlock
+      height: 100%
+      width: $modal-right-width
+      background: #FAFAFA
+    .left
+      @include inlineBlock
+      height: 100%
+      width: calc(100% - #{$modal-right-width})
+      .title
+        position: relative
+        padding: 30px
+        font-size: $font-size-2
+        line-height: $font-size-3
+        font-weight: $font-weight-5
+        //background-color: #222
+        text-align: center
         color: $main-font-color-b2
-        width: 100%
-        resize: none
-        outline: none
-        box-sizing: border-box
-        font-size: $font-size-1
-        font-weight: $font-weight-4
-        line-height: $font-size-2
-        @include borderAll($border-color)
-        padding: 10px
-        transition: border .3s
-        &:focus, &:active
-          @include borderAll($point-color)
-          transition: border .3s
-      textarea
-        height: 90px
-      .desc
-        padding: 10px
-        width: calc(100% - 20px)
+      .closer
+        position: absolute
+        font-size: $icon-font-size-2
+        font-weight: $font-weight-5
+        right: 20px
+        top: 20px
+        color: $main-font-color-b2
+        cursor: pointer
+      .header
         font-size: $font-size-0
-        line-height: $font-size-1 + 3px
+        padding: 15px 0 7px
+        color: $main-font-color-b2
         font-weight: $font-weight-4
-        color: $main-font-color
-        white-space: pre-line
-        text-align: justify
-
-      .list.axis
-        box-sizing: border-box
-        background: #fff
-        width: 100%
-        .title, .item
-          padding: 0 10px 0
-          display: table
-          background: #fff
-          box-sizing: border-box
-          height: 30px
-          line-height: 30px
-          width: 100%
-          @include borderBottom($border-color)
+      .content
+        max-height: calc(100vh - 380px)
+        overflow-y: auto
+        padding: 20px
+        font-size: $font-size-1
+        input, textarea
           color: $main-font-color-b2
-          font-size: $font-size-0
+          width: 100%
+          resize: none
+          outline: none
+          box-sizing: border-box
+          font-size: $font-size-1
           font-weight: $font-weight-4
-          .checkbox, .axis, .value
-            display: table-cell
-            vertical-align: middle
-          .value
-            text-align: center
-            width: 50px
-          .checkbox
-            width: 25px
+          line-height: $font-size-2
+          @include borderAll($border-color)
+          padding: 10px
+          transition: border .3s
+          &:focus, &:active
+            @include borderAll($point-color)
+            transition: border .3s
+        textarea
+          height: 90px
+        .desc
+          padding: 10px
+          width: calc(100% - 20px)
+          font-size: $font-size-0
+          line-height: $font-size-1 + 3px
+          font-weight: $font-weight-4
+          color: $main-font-color
+          white-space: pre-line
+          text-align: justify
+
+        .list.axis
+          box-sizing: border-box
+          background: #fff
+          width: 100%
+          .title, .item
+            padding: 0 10px 0
+            display: table
+            background: #fff
+            box-sizing: border-box
+            height: 30px
             line-height: 30px
-            cursor: default
-            color: $point-color
-            font-size: $icon-font-size-1
-            &.unchecked
-              color: $main-font-color-b2
+            width: 100%
+            @include borderBottom($border-color)
+            color: $main-font-color-b2
+            font-size: $font-size-0
+            font-weight: $font-weight-4
+            .checkbox, .axis, .value
+              display: table-cell
+              vertical-align: middle
+            .value
+              text-align: center
+              width: 50px
+            .checkbox
+              width: 25px
+              line-height: 30px
+              cursor: default
+              color: $point-color
+              font-size: $icon-font-size-1
+              &.unchecked
+                color: $main-font-color-b2
     .footer
       height: 50px
       padding: 20px 20px 10px

@@ -193,94 +193,108 @@
     top: 0;
     bottom: 0;
     right: 0;
-    height: calc(100% - 100px);
+    height: calc(100% - 70px);
     width: calc(100% - 100px);
     background-color: #ffffff;
     margin: auto;
     font-size: 13px;
-    color: #666666; }
+    color: #666666;
+    border-radius: 3px; }
     .modalWrapper .modal#modalDimensionFieldMaker {
       height: 100%; }
-    .modalWrapper .modal .title {
-      position: relative;
-      padding: 15px;
-      font-size: 13px;
-      font-weight: 400;
-      background-color: #222;
-      color: #fff; }
-    .modalWrapper .modal .closer {
-      position: absolute;
-      font-size: 14px;
-      right: 15px;
-      top: 15px;
-      color: #fff;
-      cursor: pointer; }
-    .modalWrapper .modal .header {
-      font-size: 11px;
-      padding: 15px 0 7px;
-      color: #666666;
-      font-weight: 400; }
-    .modalWrapper .modal .content {
-      max-height: calc(100vh - 380px);
-      overflow-y: auto;
-      padding: 20px;
-      font-size: 13px; }
-      .modalWrapper .modal .content input, .modalWrapper .modal .content textarea {
+    .modalWrapper .modal .right {
+      display: inline-block;
+      vertical-align: top;
+      height: 100%;
+      width: 280px;
+      background: #FAFAFA; }
+    .modalWrapper .modal .left {
+      display: inline-block;
+      vertical-align: top;
+      height: 100%;
+      width: calc(100% - 280px); }
+      .modalWrapper .modal .left .title {
+        position: relative;
+        padding: 30px;
+        font-size: 15px;
+        line-height: 17px;
+        font-weight: 500;
+        text-align: center;
+        color: #666666; }
+      .modalWrapper .modal .left .closer {
+        position: absolute;
+        font-size: 19px;
+        font-weight: 500;
+        right: 20px;
+        top: 20px;
         color: #666666;
-        width: 100%;
-        resize: none;
-        outline: none;
-        box-sizing: border-box;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 15px;
-        border: solid 1px #dbdbdb;
-        padding: 10px;
-        transition: border .3s; }
-        .modalWrapper .modal .content input:focus, .modalWrapper .modal .content input:active, .modalWrapper .modal .content textarea:focus, .modalWrapper .modal .content textarea:active {
-          border: solid 1px #0188E5;
-          transition: border .3s; }
-      .modalWrapper .modal .content textarea {
-        height: 90px; }
-      .modalWrapper .modal .content .desc {
-        padding: 10px;
-        width: calc(100% - 20px);
+        cursor: pointer; }
+      .modalWrapper .modal .left .header {
         font-size: 11px;
-        line-height: 16px;
-        font-weight: 400;
-        color: #000;
-        white-space: pre-line;
-        text-align: justify; }
-      .modalWrapper .modal .content .list.axis {
-        box-sizing: border-box;
-        background: #fff;
-        width: 100%; }
-        .modalWrapper .modal .content .list.axis .title, .modalWrapper .modal .content .list.axis .item {
-          padding: 0 10px 0;
-          display: table;
-          background: #fff;
-          box-sizing: border-box;
-          height: 30px;
-          line-height: 30px;
-          width: 100%;
-          border-bottom: solid 1px #dbdbdb;
+        padding: 15px 0 7px;
+        color: #666666;
+        font-weight: 400; }
+      .modalWrapper .modal .left .content {
+        max-height: calc(100vh - 380px);
+        overflow-y: auto;
+        padding: 20px;
+        font-size: 13px; }
+        .modalWrapper .modal .left .content input, .modalWrapper .modal .left .content textarea {
           color: #666666;
+          width: 100%;
+          resize: none;
+          outline: none;
+          box-sizing: border-box;
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 15px;
+          border: solid 1px #dbdbdb;
+          padding: 10px;
+          transition: border .3s; }
+          .modalWrapper .modal .left .content input:focus, .modalWrapper .modal .left .content input:active, .modalWrapper .modal .left .content textarea:focus, .modalWrapper .modal .left .content textarea:active {
+            border: solid 1px #0188E5;
+            transition: border .3s; }
+        .modalWrapper .modal .left .content textarea {
+          height: 90px; }
+        .modalWrapper .modal .left .content .desc {
+          padding: 10px;
+          width: calc(100% - 20px);
           font-size: 11px;
-          font-weight: 400; }
-          .modalWrapper .modal .content .list.axis .title .checkbox, .modalWrapper .modal .content .list.axis .title .axis, .modalWrapper .modal .content .list.axis .title .value, .modalWrapper .modal .content .list.axis .item .checkbox, .modalWrapper .modal .content .list.axis .item .axis, .modalWrapper .modal .content .list.axis .item .value {
-            display: table-cell;
-            vertical-align: middle; }
-          .modalWrapper .modal .content .list.axis .title .value, .modalWrapper .modal .content .list.axis .item .value {
-            text-align: center;
-            width: 50px; }
-          .modalWrapper .modal .content .list.axis .title .checkbox, .modalWrapper .modal .content .list.axis .item .checkbox {
-            width: 25px;
+          line-height: 16px;
+          font-weight: 400;
+          color: #000;
+          white-space: pre-line;
+          text-align: justify; }
+        .modalWrapper .modal .left .content .list.axis {
+          box-sizing: border-box;
+          background: #fff;
+          width: 100%; }
+          .modalWrapper .modal .left .content .list.axis .title, .modalWrapper .modal .left .content .list.axis .item {
+            padding: 0 10px 0;
+            display: table;
+            background: #fff;
+            box-sizing: border-box;
+            height: 30px;
             line-height: 30px;
-            cursor: default;
-            color: #0188E5;
-            font-size: 14px; }
-            .modalWrapper .modal .content .list.axis .title .checkbox.unchecked, .modalWrapper .modal .content .list.axis .item .checkbox.unchecked {
-              color: #666666; }
+            width: 100%;
+            border-bottom: solid 1px #dbdbdb;
+            color: #666666;
+            font-size: 11px;
+            font-weight: 400; }
+            .modalWrapper .modal .left .content .list.axis .title .checkbox, .modalWrapper .modal .left .content .list.axis .title .axis, .modalWrapper .modal .left .content .list.axis .title .value, .modalWrapper .modal .left .content .list.axis .item .checkbox, .modalWrapper .modal .left .content .list.axis .item .axis, .modalWrapper .modal .left .content .list.axis .item .value {
+              display: table-cell;
+              vertical-align: middle; }
+            .modalWrapper .modal .left .content .list.axis .title .value, .modalWrapper .modal .left .content .list.axis .item .value {
+              text-align: center;
+              width: 50px; }
+            .modalWrapper .modal .left .content .list.axis .title .checkbox, .modalWrapper .modal .left .content .list.axis .item .checkbox {
+              width: 25px;
+              line-height: 30px;
+              cursor: default;
+              color: #0188E5;
+              font-size: 14px; }
+              .modalWrapper .modal .left .content .list.axis .title .checkbox.unchecked, .modalWrapper .modal .left .content .list.axis .item .checkbox.unchecked {
+                color: #666666; }
     .modalWrapper .modal .footer {
       height: 50px;
       padding: 20px 20px 10px; }
