@@ -7,7 +7,7 @@ function createComponentDropDown(parent, option, onChange) {
     var component = $('<div class="component"></div>');
     __ComponentUtil.createName(component, option);
     var $dropDown = $('<div class="dropDown">' +
-        '<div class="content">' + option.selected + '</div>' +
+        '<div class="selected">' + option.selected + '</div>' +
         '<div class="arrow i material-icons">arrow_drop_down</div>' +
         '<div class="dropDownList"></div>' +
         '</div>').appendTo(component);
@@ -46,7 +46,7 @@ function createComponentDropDown(parent, option, onChange) {
 
     function clickList() {
         var clickTarget = $(this).html();
-        $dropDown.find('.content').html(clickTarget);
+        $dropDown.find('.selected').html(clickTarget);
         onChange(clickTarget);
     }
 }

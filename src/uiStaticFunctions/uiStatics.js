@@ -134,6 +134,8 @@ const __UIStatic = new function () {
             $Modal.removeClass('open');
         }
     };
+
+
     $ModalNeg.click(function () {
         that.Modal.close();
     });

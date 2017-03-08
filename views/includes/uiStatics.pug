@@ -26,17 +26,22 @@
             .neg NEGATIVE
 .modalWrapper#modalDimensionFieldMaker
     .modal
+        .closer.i.material-icons close
         .left
-            .title Create Dimension Field
-            .closer.i.material-icons close
-            .content(page=01)
+            .title Dimension Field Setting
+            .content(page=0).select
                 .header Dimension Field Name
-                input
-                //.header Dimension Field Overview
-                //textarea
-                //.header Choose Usage Axises
-                //.desc Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                #correlationGraph
+                input#DFName
+                .header Dimension Field Overview
+                textarea#DFOverview
+                .header Dimension Group with a High Impact
+                .group#DGHighImpact
+                .header Dimension Group with a Medium Impact
+                .group#DGMediumImpact
+                //.header Dimension Group with a none Impact
+                //.group#DGNoneImpact
+            .content(page=1)
+                .header Dimension Field Overview
                 .list.axis
                     .title
                         .axis name
@@ -56,16 +61,47 @@
                         .value 2.5
                         .value 2.0
                         .value 3.2
-                    .item
-                        .checkbox.unchecked.i.material-icons check_box_outline_blank
-                        .axis background_education_year
-                        .value numeric
-                        .value 1.3
-                        .value 0.53
-                        .value 2.5
-                        .value 2.0
-                        .value 3.2
+            .content(page=2)
+                #correlationGraph.correlation-bg
+            .content(page=3)
+                #componentNetwork
+                .network#correlationNetwork
+
         .right
+            .content
+                .step(for=0).select
+                    //.icon.i.material-icons change_history
+                    .head
+                        .index 1
+                        | Overview
+                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                .step(for=1)
+                    //.icon.i.material-icons blur_circular
+                    .head
+                        .index 2
+                        | Axis Info
+                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                .step(for=2)
+                    //.icon.i.material-icons change_history
+                    .head
+                        .index 3
+                        | Correlation ScatterPlot
+                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                .step(for=3)
+                    //.icon.i.material-icons change_history
+                    .head
+                        .index 4
+                        | Correlation Network
+                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                .step(for=4)
+                    //.icon.i.material-icons change_history
+                    .head
+                        .index 5
+                        | Field Summary
+                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                .action Set Dimension Field
+
+
         //.footer
             .pos.i.material-icons navigate_next
             .neg.i.material-icons navigate_before
@@ -73,7 +109,6 @@
 .loader#globalLoader
     .boxLoading
     .text ASDF
-
 
 //.loader.small
     svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 100 100')
@@ -91,7 +126,6 @@
         g.anim-4
             circle(cx='75', cy='25', r='5', fill='white')
             line(x1='75', y1='25', x2='25', y2='25', stroke='white', stroke-width='3')
-
 
 link(rel='stylesheet', href='/stylesheets/uiStatics/uiStatics.css')
 script(src='/uiStaticFunctions/uiStatics.js')

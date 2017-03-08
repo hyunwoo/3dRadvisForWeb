@@ -1,6 +1,7 @@
 @import "../_util"
 @import "../_values"
 
+$modal-border-radius: 5px
 .nav
   position: fixed
   top: 0
@@ -161,7 +162,10 @@ $toast-width-half: $toast-width/2
     .dialog
       @include transformScale(1, 1)
 
-$modal-right-width: 280px
+$modal-right-width: 240px
+.vis-manipulation
+  top: auto !important
+  bottom: 0px !important
 
 .modalWrapper
   position: fixed
@@ -169,12 +173,13 @@ $modal-right-width: 280px
   top: 0
   width: 100vw
   height: 100vh
-  pointer-events: none
+
   background: rgba(0, 0, 0, .65)
   color: $main-color
   box-sizing: border-box
   z-index: 10000
   opacity: 0
+  pointer-events: none
   transition: all .3s
   .modal
     overflow-y: hidden
@@ -191,45 +196,162 @@ $modal-right-width: 280px
     margin: auto
     font-size: $font-size-1
     color: $main-font-color-b2
-    border-radius: 3px
+    border-radius: $modal-border-radius
+    box-sizing: border-box
+    .closer
+      position: absolute
+      font-size: $icon-font-size-2
+      font-weight: $font-weight-5
+      right: 20px
+      top: 20px
+      color: $main-font-color-b2
+      cursor: pointer
+      z-index: 1
     &#modalDimensionFieldMaker
       height: 100%
     .right
+      @include borderLeft($border-color)
+      padding-top: 60px
+      box-sizing: border-box
       @include inlineBlock
       height: 100%
       width: $modal-right-width
       background: #FAFAFA
+      position: relative
+      .content
+        box-sizing: border-box
+        width: 100%
+        height: 100%
+        padding: $padding-default
+        .step
+          padding: 25px 0
+          transition: opacity 0.3s
+          width: 100%
+          box-sizing: border-box
+          cursor: pointer
+          opacity: .6
+          .icon
+            width: 50px
+            height: 50px
+            margin: 10px
+            line-height: 50px
+          .head
+            font-size: $font-size-2
+            font-weight: $font-weight-6
+            height: 30px
+            line-height: 30px
+            .index
+              @include inlineBlock
+              margin: 5px 10px 5px 0
+              height: 20px
+              line-height: 21px
+              text-align: center
+              width: 20px !important
+              border-radius: 50%
+              font-size: $font-size-0
+              background-color: $main-color
+              color: $main-inv-color
+
+          .body
+            padding-top: 10px
+            margin-bottom: 10px
+            font-size: $font-size-0
+          &:hover
+            opacity: 1
+          &.select
+            opacity: 1
+        .action
+          height: 50px
+          width: 100%
+          position: absolute
+          bottom: 0
+          left: 0
+          background-color: $accent-color
+          border-bottom-right-radius: $modal-border-radius
+          text-align: center
+          line-height: 50px
+          color: #fff
+          font-size: $font-size-2
+          cursor: pointer
+          font-weight: $font-weight-4
+          @include borderTop($border-color)
+          &:hover
+            background-color: $accent-hover-color
     .left
       @include inlineBlock
       height: 100%
       width: calc(100% - #{$modal-right-width})
+      box-sizing: border-box
       .title
         position: relative
-        padding: 30px
-        font-size: $font-size-2
-        line-height: $font-size-3
-        font-weight: $font-weight-5
+        height: 60px
+        line-height: 60px
+        font-size: $font-size-3
+        font-weight: $font-weight-7
         //background-color: #222
         text-align: center
         color: $main-font-color-b2
-      .closer
-        position: absolute
-        font-size: $icon-font-size-2
-        font-weight: $font-weight-5
-        right: 20px
-        top: 20px
-        color: $main-font-color-b2
-        cursor: pointer
-      .header
-        font-size: $font-size-0
-        padding: 15px 0 7px
-        color: $main-font-color-b2
-        font-weight: $font-weight-4
       .content
-        max-height: calc(100vh - 380px)
+        box-sizing: border-box
+        height: calc(100% - 60px)
         overflow-y: auto
-        padding: 20px
+        padding: $padding-default
         font-size: $font-size-1
+        display: none
+        position: relative
+        #componentNetwork
+          background: rgba(255, 255, 255, 0.6)
+          z-index: 1
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+
+        .header
+          font-size: $font-size-1
+          margin: 15px 0 7px
+          color: $main-font-color-b2
+          font-weight: $font-weight-7
+        .group
+          margin-bottom: 30px
+          .item
+            display: inline-block
+            margin: 5px 10px 5px 0
+            @include borderAll($border-color)
+            height: 30px
+            line-height: 30px
+            font-size: $font-size-1
+            padding: 0 13px
+            background: #888
+            color: #fff
+            &.posHigh
+              background: darken($point-color, 10)
+              color: #fff
+              font-weight: $font-weight-7
+              border: none
+            &.posMid
+              background: $point-color
+              color: #fff
+              font-weight: $font-weight-7
+              border: none
+            &.negMid
+              background: $point-color-2
+              color: #fff
+              font-weight: $font-weight-7
+              border: none
+            &.negHigh
+              background: darken($point-color-2, 10)
+              color: #fff
+              font-weight: $font-weight-7
+              border: none
+
+        .network
+          box-sizing: border-box
+          width: 100%
+          height: 100%
+
+        &.select
+          display: block
         input, textarea
           color: $main-font-color-b2
           width: 100%
@@ -261,6 +383,24 @@ $modal-right-width: 280px
           box-sizing: border-box
           background: #fff
           width: 100%
+          &#axisListSelector
+            max-height: calc(100% - 70px)
+            overflow: auto
+            position: relative
+            &::-webkit-scrollbar
+              position: absolute
+              right: 0
+              width: 2px
+              /* remove scrollbar space */
+              background: transparent
+            /* optional: just make scrollbar invisible */
+
+            /* optional: show position indicator in red */
+            &::-webkit-scrollbar-thumb
+              background: rgba(0, 0, 0, 0.3)
+
+          .item
+            cursor: pointer
           .title, .item
             padding: 0 10px 0
             display: table
@@ -274,11 +414,12 @@ $modal-right-width: 280px
             font-size: $font-size-0
             font-weight: $font-weight-4
             .checkbox, .axis, .value
+
               display: table-cell
               vertical-align: middle
             .value
               text-align: center
-              width: 50px
+              width: 60px
             .checkbox
               width: 25px
               line-height: 30px

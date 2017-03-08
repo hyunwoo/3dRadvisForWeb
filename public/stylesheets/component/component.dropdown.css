@@ -4,6 +4,7 @@
 /* font size */
 /* font weight */
 /* icon font size */
+/* padding */
 .dropDownWrapper {
   width: 300px;
   margin: 100px auto; }
@@ -23,7 +24,7 @@
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.2); }
-    .component .dropDown .content {
+    .component .dropDown .selected {
       font-size: 13px;
       font-weight: 400;
       padding-left: 15px;

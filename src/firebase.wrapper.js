@@ -37,18 +37,25 @@ let __Firebase = new function () {
     let callbackDimensions = {};
     let DataList = this.DataList = {};
     this.CurrentData = {};
+    this.CurrentSetting = {};
     this.DimensionFieldList = {};
 
 
-    this.setUsageData = function (d, callback) {
+    this.setUsageData = async function (d, callback) {
         usageData = d;
         console.log(" Data & Dimension Event Injected");
         DBRefDimensionList = fb.database().ref(that.user.uid + '/list/' + d._id + '/dimension');
-        fb.database().ref(that.user.uid + '/raw/' + d._id).once('value').then(function (snapshot) {
 
-            that.CurrentData = new DataSet(snapshot.val());
-            callback(snapshot.val());
-        });
+        var rawDataReceiver = await fb.database().ref(that.user.uid + '/raw/' + d._id).once('value');
+        that.CurrentData = new DataSet(rawDataReceiver.val());
+
+        var settingDataReceiver = await fb.database().ref(that.user.uid + '/setting/' + d._id).once('value');
+        that.CurrentSetting = settingDataReceiver.val();
+        callback(rawDataReceiver.val());
+        // fb.database().ref(that.user.uid + '/raw/' + d._id).once('value').then(function (snapshot) {
+        //     that.CurrentData = new DataSet(snapshot.val());
+        //     callback(snapshot.val());
+        // });
 
         DBRefDimensionList.once('value').then(function (snapshot) {
             if (_.isNil(snapshot.val())) return;

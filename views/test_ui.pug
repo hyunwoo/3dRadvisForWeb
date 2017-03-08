@@ -1,0 +1,10 @@
+extends layout
+block content
+    <script src="/data/data.corr.js"></script>
+    <script src="/data/data.dset.js"></script>
+    include ./includes/uiStatics
+    script.
+        $(function () {
+            __Modal.dimension.open();
+            __Modal.dimension.injectDataSet({}, __DefaultDataSet, __DefaultDataCorr);
+        })
