@@ -4,6 +4,9 @@
  * Created by hyunwoo on 2017-03-02.
  */
 
+// setInterval(() => {
+//     console.log(window.performance.memory)
+// }, 1000);
 var __Modal = new function () {
     var that = this;
     var $dimension = $('#modalDimensionFieldMaker');
@@ -14,15 +17,80 @@ var __Modal = new function () {
     var $dimensionNeg = $dimension.find('.neg');
     var $dimensionAxisSelector = $dimension.find('#axisListSelector');
     this.dimension = {};
+    var summaryUsageDimension = $('#summary-recommend-dimension');
+    var usageDimension = $('#usage-dimension');
+
+    var powers = [];
+    var usingDimensions = {};
+
+    function addUsingDimension(v) {
+        var i1 = $('<div class="item _axis" using="' + v.name + '">' + ('<div class="name">' + v.name + '</div>') + ('<div class="num">' + __Formatter.number(v.value) + '</div>') + '</div>').appendTo(usageDimension);
+
+        var stats = v.stats;
+        var item = $('<div class="item _axis" using="' + v.name + '" index="' + stats.index + '">' + ('<div class="axis">' + v.name + '</div>') + ('<div class="value">' + __Formatter.number(stats.mean) + '</div>') + ('<div class="value">' + __Formatter.number(stats.min) + '</div>') + ('<div class="value">' + __Formatter.number(stats.max) + '</div>') + ('<div class="value">' + __Formatter.number(stats.sigma) + '</div>') + ('<div class="impact neg">' + __Formatter.number(v.neg) + '</div>') + ('<div class="impact pos">' + __Formatter.number(v.pos) + '</div>') + '</div>').appendTo($dimensionAxisSelector);
+
+        var btn = $('<div class="check"><div class="i material-icons">add_circle_outline</div></div>').prependTo(item);
+        var detail = $('<div class="detail"><div class="i material-icons">keyboard_arrow_down</div></div>').prependTo(item);
+        btn.click(function () {
+            if (item.hasClass('use')) setUnUsingDimension(v);else setUsingDimension(v);
+        });
+        detail.click(function () {
+            console.log('?', item.attr('detail'));
+            if (item.attr('detail') == 'show') {
+                item.attr('detail', 'hide');
+                item.find('.impact-field').remove();
+            } else {
+                item.attr('detail', 'show');
+                var f = $('<div class="impact-field"></div>').appendTo(item);
+                var pig = $('<div class="impact-group">positive impact</div>').appendTo(f);
+                var nig = $('<div class="impact-group">negative impact</div>').appendTo(f);
+
+                var froms = _.sortBy(v.from, function (t) {
+                    return -Math.abs(t.val);
+                });
+                _.forEach(froms, function (t) {
+                    var isPos = t.val > 0;
+                    $('<div class="impact-item ' + (isPos ? 'pos' : 'neg') + '">' + t.name + '(' + __Formatter.number(t.val) + ')</div>').appendTo(isPos ? pig : nig);
+                });
+            }
+        });
+    }
+
+    function addSummaryUsageDimension(v) {
+        var i2 = $('<div class="item _axis" using="' + v.name + '">' + v.name + '<div class="i material-icons">add_circle_outline</div>' + '</div>').appendTo(summaryUsageDimension).click(function () {
+            if (i2.hasClass('use')) setUnUsingDimension(v);else setUsingDimension(v);
+        });
+    }
+
+    function setUnUsingDimension(v) {
+        delete usingDimensions[v.name];
+        $('._axis[using="' + v.name + '"]').removeClass('use');
+        updateRadvisPreview();
+    }
+
+    function setUsingDimension(v) {
+        usingDimensions[v.name] = v;
+        $('._axis[using="' + v.name + '"]').addClass('use');
+        updateRadvisPreview();
+    }
+
+    function addDimensionGroupItem(v) {
+        // console.log(v);
+        var abs = Math.abs(v.value);
+        var item;
+        // item = $(`<div class="item use">${v.name}</div>`).appendTo(dgh);
+    }
+
+    function addAxisList(value) {}
 
     function CreateDimensionModal() {
         var dimensionModal = this;
         $dimension.find('.step').click(function () {
             $dimension.find('.step').removeClass('select');
-            $dimension.find('.left .content').removeClass('select');
+            $dimension.find('.modal-field .content').removeClass('select');
 
             $(this).addClass('select');
-            $dimension.find('.left .content[page=' + $(this).attr("for") + ']').addClass('select');
+            $dimension.find('.modal-field .content[page=' + $(this).attr("for") + ']').addClass('select');
         });
 
         $('#DFName').focusout(function () {
@@ -39,7 +107,7 @@ var __Modal = new function () {
             _.forEach(corr.keys, function (c, i) {
                 return data.stats[c]['index'] = i;
             });
-            _.forEach(data.stats, dimensionModal.addAxisList);
+
             createCorrGraph('#correlationGraph', corr.keys, corr.corr);
             corrNetwork = new CreateCorrNetwork('#correlationNetwork', corr.keys, corr.corr);
             createComponentDropDown('#componentNetwork', {
@@ -50,12 +118,8 @@ var __Modal = new function () {
                 corrNetwork.setEdge(mode);
             });
 
-            var pos_powers = _.map(corr.keys, function (k, i) {
-                return { value: 0, from: [], name: k, index: i };
-            });
-
-            var neg_powers = _.map(corr.keys, function (k, i) {
-                return { value: 0, from: [], name: k, index: i };
+            powers = _.map(corr.keys, function (k, i) {
+                return { value: 0, from: [], name: k, index: i, pos: 0, neg: 0, stats: data.stats[k] };
             });
 
             _.forEach(corr.corr, function (cs, x) {
@@ -72,63 +136,48 @@ var __Modal = new function () {
                         maxVal = c;
                         maxIndex = y;
                     }
-                    //
-                    // if (c < -0.7) {
-                    //     neg_powers[y].value += c;
-                    //     neg_powers[y].from.push({
-                    //         name: corr.keys[y],
-                    //         index: y,
-                    //     });
-                    // }
-                    //
-                    // if (c > 0.7) {
-                    //     pos_powers[y].value += c;
-                    //     pos_powers[y].from.push({
-                    //         name: corr.keys[y],
-                    //         index: y,
-                    //     });
-                    // }
                 });
+
                 if (minIndex != -1) {
-                    neg_powers[minIndex].value += minVal;
-                    neg_powers[minIndex].from.push({
-                        name: corr.keys[minIndex],
-                        index: minIndex
+                    powers[minIndex].value += Math.abs(minVal);
+                    powers[minIndex].neg += minVal;
+                    powers[minIndex].from.push({
+                        name: corr.keys[x],
+                        index: x,
+                        val: minVal
                     });
                 }
 
                 if (maxIndex != -1) {
-                    pos_powers[maxIndex].value += maxVal;
-                    pos_powers[maxIndex].from.push({
-                        name: corr.keys[maxIndex],
-                        index: maxIndex
+                    powers[maxIndex].value += Math.abs(maxVal);
+                    powers[maxIndex].pos += maxVal;
+                    powers[maxIndex].from.push({
+                        name: corr.keys[x],
+                        index: x,
+                        val: maxVal
                     });
                 }
             });
-
-            _.forEach(neg_powers, function (v) {
-                return addDimensionGroupItem(v);
+            powers = _.sortBy(powers, function (d) {
+                return -d.value;
             });
-            _.forEach(pos_powers, function (v) {
-                return addDimensionGroupItem(v);
+
+            _.forEach(powers, function (v) {
+                addAxisList(v);
+                addUsingDimension(v);
             });
-        };
 
-        var dgn = $('#DGNoneImpact');
-        var dgm = $('#DGMediumImpact');
-        var dgh = $('#DGHighImpact');
+            $('#usage-dimension').sortable({
+                update: function update(d) {
+                    updateRadvisPreview();
+                }
+            });
 
-        function addDimensionGroupItem(v) {
-            console.log(v);
-            var abs = Math.abs(v.value);
-            var item;
-            if (v.from.length > 2) {
-                if (v.value > 0) item = $('<div class="item posHigh">' + v.name + '</div>').appendTo(dgh);else item = $('<div class="item negHigh">' + v.name + '</div>').appendTo(dgh);
-            } else if (abs > 0.2) {
-                if (v.value > 0) item = $('<div class="item posMid">' + v.name + '</div>').appendTo(dgm);else item = $('<div class="item negMid">' + v.name + '</div>').appendTo(dgm);
-            } else {
-                // item = $(`<div class="item">${v.name}</div>`).appendTo(dgn)
-            }
+            _.forEach(_.take(powers, 10), function (v) {
+                addSummaryUsageDimension(v);
+                setUsingDimension(v);
+            });
+            updateRadvisPreview();
         };
 
         this.open = function (opt) {
@@ -151,20 +200,61 @@ var __Modal = new function () {
         function clearAxisList() {
             $dimension.find('#axisListSelector').empty();
         };
+    }
 
-        this.addAxisList = function (value) {
-            var item = $('<div class="item dimension" index="' + value.index + '">' + '<div class="checkbox i material-icons">check_box</div>' + ('<div class="axis">' + value.name + '</div>') + '<div class="value"></div>' + ('<div class="value">' + __Formatter.number(value.mean) + '</div>') + ('<div class="value">' + __Formatter.number(value.min) + '</div>') + ('<div class="value">' + __Formatter.number(value.max) + '</div>') + ('<div class="value">' + __Formatter.number(value.median) + '</div>') + ('<div class="value">' + __Formatter.number(value.sigma) + '</div>') + '</div>').appendTo($dimensionAxisSelector);
-            item.click(function () {
-                var box = $(this).find('.checkbox');
-                if (box.hasClass('unchecked')) {
-                    box.removeClass('unchecked');
-                    box.html('check_box');
-                } else {
-                    box.addClass('unchecked');
-                    box.html('check_box_outline_blank');
-                }
-            });
-        };
+    // PREVIEW
+    var previewOpener = $('#rad-view-opener');
+    var preview = $('#rad-view');
+
+    preview.draggable({ handle: '.handle' });
+    preview.resizable();
+    preview.on('resizestop', resizeRadvisPreview);
+    // preview.draggable();
+
+    preview.find('#preview-closer').click(previewEvent);
+    previewOpener.click(previewEvent);
+    function previewEvent() {
+        if (preview.hasClass('open')) {
+            preview.removeClass('open');
+            previewOpener.html('Show Preview Field');
+        } else {
+            preview.addClass('open');
+            previewOpener.html('Hide Preview Field');
+        }
+    }
+
+    var svg = d3.select('#preview-svg');
+    var $previewSvg = $('#preview-svg');
+    $previewSvg.resize(resizeRadvisPreview);
+    var radViewSizeX = 300;
+    var radViewSizeY = 300;
+    var radViewScale = 1;
+    var preview_g = svg.append('g').attr('transform', 'translate(' + radViewSizeX / 2 + ',' + radViewSizeY / 2 + ') scale(' + radViewScale + ',' + radViewScale + ')');
+
+    function resizeRadvisPreview() {
+        radViewSizeX = $previewSvg.width();
+        radViewSizeY = $previewSvg.height();
+        radViewScale = Math.min(radViewSizeY, radViewSizeX) / 300;
+        preview_g.attr('transform', 'translate(' + radViewSizeX / 2 + ',' + radViewSizeY / 2 + ') scale(' + radViewScale + ',' + radViewScale + ')');
+        updateRadvisPreview();
+    }
+
+    function updateRadvisPreview() {
+        var usings = usageDimension.find('.item.use .name');
+        var cnt = usings.length;
+        preview_g.html("");
+        var radius = 100;
+        drawCircle(preview_g, 0, 0, radius, radius).attr('fill', 'none').attr('stroke', '#aaa');
+        _.forEach(usings, function (u, i) {
+            var name = $(u).html();
+            var x = Math.sin(i / cnt * Math.PI * 2) * radius;
+            var y = Math.cos(i / cnt * Math.PI * 2) * radius;
+
+            var tx = Math.sin(i / cnt * Math.PI * 2) * (radius + 10);
+            var ty = Math.cos(i / cnt * Math.PI * 2) * (radius + 10);
+            drawCircle(preview_g, x, y, 4).attr('fill', '#fff').attr('stroke', '#aaa').attr('stroke-width', 1);
+            writeText(preview_g, name, tx, ty, -i / cnt * 360).attr('text-anchor', 'middle').attr('font-size', '5px');
+        });
     }
 
     $dimensionNeg.click(function () {

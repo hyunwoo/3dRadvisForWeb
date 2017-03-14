@@ -158,8 +158,7 @@ $(function () {
                     {
                         text: '해당 데이터에는 총 83개의 변인이 있습니다. <br><action>데이터의 변인 정보</action>를 확인 할 수 있습니다.<br> ',
                         action: function () {
-                            __Modal.dimension.open();
-                            __Modal.dimension.injectDataSet({}, __Firebase.CurrentData, __Firebase.CurrentSetting);
+
                         },
                     },
                     {text: '데이터의 크기는 ' + __Formatter.number(data.size) + '입니다. <br><action>데이터를 다운로드</action> 할 수 있습니다.'}
@@ -171,20 +170,23 @@ $(function () {
                 .setGridHeader('#gridDataChildList', {
                     text: 'Dimension Field List', actions: [{
                         icon: 'add', action: async function () {
-                            var dSet = await __Firebase.getUsageDataSetting();
-                            __Modal.dimension.clearAxisList();
-                            // console.log(__Firebase.CurrentData.stats);
-                            // _.forEach(__Firebase.CurrentData.stats, __Modal.dimension.addAxisList);
-                            createCorrGraph('#correlationGraph', dSet.keys, dSet.corr);
-                            __Modal.dimension.open({
-                                title: 'Data Overview',
-                                content: '',
-                                pos: {
-                                    name: 'Update',
-                                    action: function () {
-                                    },
-                                }
-                            });
+                            __Modal.dimension.open();
+                            __Modal.dimension.injectDataSet({}, __Firebase.CurrentData, __Firebase.CurrentSetting);
+                            //
+                            // var dSet = await __Firebase.getUsageDataSetting();
+                            // __Modal.dimension.clearAxisList();
+                            // // console.log(__Firebase.CurrentData.stats);
+                            // // _.forEach(__Firebase.CurrentData.stats, __Modal.dimension.addAxisList);
+                            // createCorrGraph('#correlationGraph', dSet.keys, dSet.corr);
+                            // __Modal.dimension.open({
+                            //     title: 'Data Overview',
+                            //     content: '',
+                            //     pos: {
+                            //         name: 'Update',
+                            //         action: function () {
+                            //         },
+                            //     }
+                            // });
                         },
                     }]
                 });
@@ -260,9 +262,7 @@ $(function () {
                     }];
                     GridSystem.setGridContent('#gridDataChildInfo', `<strong>${d.name}</strong>`);
                 } else GridSystem.setGridContent('#gridDataChildInfo', '선택된 Dimension Field 가 없습니다.<br>분석 하고자 하는 Dimension Field를 선택 해주세요.');
-
                 GridSystem.setGridHeader('#gridDataChildInfo', headerData)
-
             }
         });
         // Overview

@@ -15,7 +15,6 @@ class ParallelCoordinate {
         });
         this.objects = [];
 
-
         this.axisLength = data.axis.length;
         this.axisDestPosition = new Float32Array(this.axisLength * 6);
         this.axisDestColor = new Float32Array(this.axisLength * 6);

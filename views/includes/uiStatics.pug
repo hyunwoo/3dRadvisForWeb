@@ -1,6 +1,7 @@
 //
    Created by hyunwoo on 2017-02-23.
 .nav
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" />
     .logo.i.material-icons(onclick='location.href="/"') whatshot
     .header(onclick='location.href="/"') 3D Radvis
     .rightGroup
@@ -24,36 +25,50 @@
         .actionGroup
             .pos POSITIVE
             .neg NEGATIVE
+#rad-view.open
+    .i.material-icons.handle drag_handle
+    .head 3dRadvis Axis Preview
+    .i.material-icons#preview-closer close
+    svg#preview-svg
 .modalWrapper#modalDimensionFieldMaker
     .modal
         .closer.i.material-icons close
-        .left
-            .title Dimension Field Setting
+        .info.i.material-icons info_outline
+        .usage
+            .header Dimension Field Creator
+            .list#usage-dimension
+        .modal-field
+            .tab
+                .step(for=0).select
+                    .head Field Summary
+                .step(for=1)
+                    .head Dimension Impact
+                .step(for=2)
+                    .head Correlation ScatterPlot
+                .step(for=3)
+                    .head Correlation Network
             .content(page=0).select
                 .header Dimension Field Name
                 input#DFName
-                .header Dimension Field Overview
-                textarea#DFOverview
-                .header Dimension Group with a High Impact
-                .group#DGHighImpact
-                .header Dimension Group with a Medium Impact
-                .group#DGMediumImpact
-                //.header Dimension Group with a none Impact
-                //.group#DGNoneImpact
+                //.header Dimension Field Name
+                //.text 데이터의 변수 중 자동적으로 <strong>3개</strong> 변인의 중요도가 높다고 판단하였습니다.
+                .header Recommend Dimension
+                .group#summary-recommend-dimension
             .content(page=1)
-                .header Dimension Field Overview
                 .list.axis
                     .title
                         .axis name
-                        .value type
+                        .detail -
                         .value mean
                         .value min
                         .value max
-                        .value center
                         .value sigma
+                        .impact Impact Neg
+                        .impact Impact Pos
                 .list.axis#axisListSelector
                     .item
-                        .checkbox.checked.i.material-icons check_box
+                        .check
+                            .i.material-icons check_box
                         .axis background_education_year
                         .value numeric
                         .value 1.3
@@ -61,71 +76,22 @@
                         .value 2.5
                         .value 2.0
                         .value 3.2
+                        .impacts
             .content(page=2)
                 #correlationGraph.correlation-bg
             .content(page=3)
                 #componentNetwork
                 .network#correlationNetwork
-
-        .right
-            .content
-                .step(for=0).select
-                    //.icon.i.material-icons change_history
-                    .head
-                        .index 1
-                        | Overview
-                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                .step(for=1)
-                    //.icon.i.material-icons blur_circular
-                    .head
-                        .index 2
-                        | Axis Info
-                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                .step(for=2)
-                    //.icon.i.material-icons change_history
-                    .head
-                        .index 3
-                        | Correlation ScatterPlot
-                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                .step(for=3)
-                    //.icon.i.material-icons change_history
-                    .head
-                        .index 4
-                        | Correlation Network
-                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                .step(for=4)
-                    //.icon.i.material-icons change_history
-                    .head
-                        .index 5
-                        | Field Summary
-                    .body Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                .action Set Dimension Field
-
-
-        //.footer
-            .pos.i.material-icons navigate_next
-            .neg.i.material-icons navigate_before
+        .footer
+            .action.i.material-icons info
+            .action.right Create
+            .action.right Cancel
+            .action.right#rad-view-opener Show Preview Field
 
 .loader#globalLoader
     .boxLoading
     .text ASDF
 
-//.loader.small
-    svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 100 100')
-        g.anim-0
-            circle(cx='50', cy='50', r='50', fill='#ff5e7C')
-        g.anim-1
-            circle(cx='50', cy='50', r='5', fill='white')
-        g.anim-2
-            circle(cx='75', cy='50', r='5', fill='white')
-            line(x1='25', y1='50', x2='75', y2='50', stroke='white', stroke-width='3')
-        g.anim-3
-            circle(cx='50', cy='25', r='5', fill='white')
-            line(x1='50', y1='25', x2='25', y2='75', stroke='white', stroke-width='3')
-            line(x1='50', y1='25', x2='75', y2='75', stroke='white', stroke-width='3')
-        g.anim-4
-            circle(cx='75', cy='25', r='5', fill='white')
-            line(x1='75', y1='25', x2='25', y2='25', stroke='white', stroke-width='3')
 
 link(rel='stylesheet', href='/stylesheets/uiStatics/uiStatics.css')
 script(src='/uiStaticFunctions/uiStatics.js')

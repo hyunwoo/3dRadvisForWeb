@@ -1,0 +1,35 @@
+/* nav */
+/* tab */
+/* site color */
+/* font size */
+/* font weight */
+/* icon font size */
+/* padding */
+.correlation-bg {
+  width: 100%;
+  height: 100% !important;
+  position: relative; }
+  .correlation-bg .field {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: calc(100% - 100px);
+    height: calc(100% - 100px); }
+    .correlation-bg .field .line {
+      stroke: #dbdbdb; }
+  .correlation-bg .axis {
+    position: absolute;
+    font-size: 9px;
+    font-weight: 400; }
+    .correlation-bg .axis.vertical {
+      left: 0;
+      top: 100px;
+      width: 100px;
+      height: calc(100% - 100px); }
+    .correlation-bg .axis.horizon {
+      left: 100px;
+      top: 0;
+      width: calc(100% - 100px);
+      height: 100px; }
+
+/*# sourceMappingURL=correlation.graph.css.map */

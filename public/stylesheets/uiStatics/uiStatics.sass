@@ -162,7 +162,9 @@ $toast-width-half: $toast-width/2
     .dialog
       @include transformScale(1, 1)
 
-$modal-right-width: 240px
+$modal-right-width: 250px
+$modal-footer-height: 40px
+$content-margin: 15px
 .vis-manipulation
   top: auto !important
   bottom: 0px !important
@@ -173,7 +175,6 @@ $modal-right-width: 240px
   top: 0
   width: 100vw
   height: 100vh
-
   background: rgba(0, 0, 0, .65)
   color: $main-color
   box-sizing: border-box
@@ -181,6 +182,13 @@ $modal-right-width: 240px
   opacity: 0
   pointer-events: none
   transition: all .3s
+  &.open
+    opacity: 1
+    pointer-events: all
+    transition: all .3s
+    .modal
+      transition: all .3s
+      @include transformScale(1, 1)
   .modal
     overflow-y: hidden
     transition: all .3s
@@ -190,7 +198,7 @@ $modal-right-width: 240px
     top: 0
     bottom: 0
     right: 0
-    height: calc(100% - 70px)
+    height: calc(100% - 30px)
     width: calc(100% - 100px)
     background-color: $main-background-color
     margin: auto
@@ -198,48 +206,56 @@ $modal-right-width: 240px
     color: $main-font-color-b2
     border-radius: $modal-border-radius
     box-sizing: border-box
+    .info
+      position: absolute
+      font-size: $icon-font-size-2
+      font-weight: $font-weight-5
+      right: 50px
+      top: 15px
+      cursor: pointer
+      z-index: 1
+      color: #fff
     .closer
       position: absolute
       font-size: $icon-font-size-2
       font-weight: $font-weight-5
-      right: 20px
-      top: 20px
-      color: $main-font-color-b2
+      right: 10px
+      top: 10px
       cursor: pointer
       z-index: 1
+      color: $main-font-color
     &#modalDimensionFieldMaker
       height: 100%
-    .right
-      @include borderLeft($border-color)
-      padding-top: 60px
-      box-sizing: border-box
+    $tab-height: 40px
+    .modal-field
       @include inlineBlock
       height: 100%
-      width: $modal-right-width
-      background: #FAFAFA
+      width: calc(100% - #{$modal-right-width})
+      box-sizing: border-box
       position: relative
-      .content
-        box-sizing: border-box
-        width: 100%
-        height: 100%
-        padding: $padding-default
+      .tab
+        height: $tab-height
+        position: relative
+        //background: #333
+        padding: 0 10px
         .step
-          padding: 25px 0
+          @include inlineBlock
           transition: opacity 0.3s
-          width: 100%
+          height: $tab-height
+          line-height: $tab-height
           box-sizing: border-box
           cursor: pointer
           opacity: .6
+          padding: 0 10px
           .icon
             width: 50px
-            height: 50px
+            height: $tab-height
             margin: 10px
-            line-height: 50px
+            line-height: $tab-height
           .head
-            font-size: $font-size-2
+            @include inlineBlock
+            font-size: $font-size-1
             font-weight: $font-weight-6
-            height: 30px
-            line-height: 30px
             .index
               @include inlineBlock
               margin: 5px 10px 5px 0
@@ -251,7 +267,6 @@ $modal-right-width: 240px
               font-size: $font-size-0
               background-color: $main-color
               color: $main-inv-color
-
           .body
             padding-top: 10px
             margin-bottom: 10px
@@ -260,42 +275,16 @@ $modal-right-width: 240px
             opacity: 1
           &.select
             opacity: 1
-        .action
-          height: 50px
-          width: 100%
-          position: absolute
-          bottom: 0
-          left: 0
-          background-color: $accent-color
-          border-bottom-right-radius: $modal-border-radius
-          text-align: center
-          line-height: 50px
-          color: #fff
-          font-size: $font-size-2
-          cursor: pointer
-          font-weight: $font-weight-4
-          @include borderTop($border-color)
-          &:hover
-            background-color: $accent-hover-color
-    .left
-      @include inlineBlock
-      height: 100%
-      width: calc(100% - #{$modal-right-width})
-      box-sizing: border-box
-      .title
-        position: relative
-        height: 60px
-        line-height: 60px
-        font-size: $font-size-3
-        font-weight: $font-weight-7
-        //background-color: #222
-        text-align: center
-        color: $main-font-color-b2
+            border-bottom: solid 2px $point-color-2
+
       .content
+        overflow-y: hidden
+        overflow-x: hidden
         box-sizing: border-box
-        height: calc(100% - 60px)
-        overflow-y: auto
-        padding: $padding-default
+        height: calc(100% - 80px)
+        padding: 0
+        //padding-left: $padding-default
+        //padding-right: $padding-default
         font-size: $font-size-1
         display: none
         position: relative
@@ -306,66 +295,74 @@ $modal-right-width: 240px
           top: 0
           left: 0
           width: 100%
-
         .header
           font-size: $font-size-1
-          margin: 15px 0 7px
+          margin: 25px $content-margin 15px
           color: $main-font-color-b2
           font-weight: $font-weight-7
+        .text
+          font-size: $font-size-1
+          color: $main-font-color-b2
+          padding: 0 !important
+          margin: 0 15px
         .group
-          margin-bottom: 30px
+          margin: 0 $content-margin 30px
           .item
+            cursor: pointer
             display: inline-block
             margin: 5px 10px 5px 0
-            @include borderAll($border-color)
+            border-radius: 15px
+            box-sizing: border-box
             height: 30px
             line-height: 30px
             font-size: $font-size-1
-            padding: 0 13px
-            background: #888
-            color: #fff
-            &.posHigh
-              background: darken($point-color, 10)
-              color: #fff
-              font-weight: $font-weight-7
-              border: none
-            &.posMid
-              background: $point-color
-              color: #fff
-              font-weight: $font-weight-7
-              border: none
-            &.negMid
-              background: $point-color-2
-              color: #fff
-              font-weight: $font-weight-7
-              border: none
-            &.negHigh
-              background: darken($point-color-2, 10)
-              color: #fff
-              font-weight: $font-weight-7
-              border: none
-
+            padding: 0 10px 0 15px
+            background: #eee
+            font-weight: $font-weight-6
+            color: $main-font-color-b3
+            transition: all 0.2s
+            .i.material-icons
+              box-sizing: border-box
+              width: 20px !important
+              height: 20px
+              font-size: $font-size-3
+              font-weight: $font-weight-4
+              text-align: center
+              line-height: 20px !important
+              color: $main-font-color-b3
+              vertical-align: top
+              margin: 6px 0 5px 5px !important
+              @include rotate(0deg)
+              transition: all 0.2s
+            &.use
+              color: $main-font-color
+              .i.material-icons
+                color: $point-color
+                @include rotate(135deg)
         .network
           box-sizing: border-box
           width: 100%
           height: 100%
-
         &.select
           display: block
         input, textarea
+          box-sizing: border-box
+          margin: 0 $content-margin
+          border: none
           color: $main-font-color-b2
-          width: 100%
+          width: calc(100% - #{$content-margin} * 2)
           resize: none
           outline: none
-          box-sizing: border-box
-          font-size: $font-size-1
+          font-size: $font-size-2
           font-weight: $font-weight-4
-          line-height: $font-size-2
-          @include borderAll($border-color)
-          padding: 10px
+          line-height: $font-size-3
+          //@include borderAll($border-color)
+          border-bottom: solid 1px #ccc
+          padding: 5px
           transition: border .3s
           &:focus, &:active
-            @include borderAll($point-color)
+            border-bottom: solid 1px $point-color
+            //@include borderAll($point-color)
             transition: border .3s
         textarea
           height: 90px
@@ -378,82 +375,246 @@ $modal-right-width: 240px
           color: $main-font-color
           white-space: pre-line
           text-align: justify
-
         .list.axis
+          overflow-x: hidden
           box-sizing: border-box
           background: #fff
           width: 100%
+          $dimension-impact-list-item-height: 40px
           &#axisListSelector
-            max-height: calc(100% - 70px)
+            max-height: calc(100% - #{$modal-footer-height})
             overflow: auto
             position: relative
             &::-webkit-scrollbar
               position: absolute
               right: 0
               width: 2px
-              /* remove scrollbar space */
               background: transparent
-            /* optional: just make scrollbar invisible */
-
-            /* optional: show position indicator in red */
             &::-webkit-scrollbar-thumb
               background: rgba(0, 0, 0, 0.3)
 
-          .item
-            cursor: pointer
           .title, .item
-            padding: 0 10px 0
-            display: table
-            background: #fff
-            box-sizing: border-box
-            height: 30px
-            line-height: 30px
-            width: 100%
             @include borderBottom($border-color)
-            color: $main-font-color-b2
-            font-size: $font-size-0
-            font-weight: $font-weight-4
-            .checkbox, .axis, .value
-
-              display: table-cell
-              vertical-align: middle
-            .value
+            box-sizing: border-box
+            padding: 0 10px
+            .axis, .check
+              @include inlineBlock
+            .value, .impact, .detail
               text-align: center
+              float: right
+            .value
               width: 60px
-            .checkbox
-              width: 25px
-              line-height: 30px
-              cursor: default
-              color: $point-color
-              font-size: $icon-font-size-1
-              &.unchecked
-                color: $main-font-color-b2
-    .footer
-      height: 50px
-      padding: 20px 20px 10px
-      .pos, .neg
-        border-radius: 50%
-        cursor: pointer
-        @include inlineBlock
-        float: right
-        width: 35px
-        height: 35px
-        line-height: 35px
-        background: $point-color
-        color: $main-inv-color
-        font-size: $icon-font-size-2
-        font-weight: $font-weight-4
-        margin-left: 10px
+            .impact
+              width: 80px
+            .axis
+              padding-left: 10px
+            .detail
+              width: 20px
+          .title
+            font-size: $font-size-0
+            font-weight: $font-weight-6
+            padding: 10px
+            .axis
+              padding-left: 30px
+          .item
+            min-height: $dimension-impact-list-item-height
+            line-height: $dimension-impact-list-item-height
+            color: $main-font-color-b3
+            transition: all 0.2s
+            .value, .impact
+              font-size: $font-size-0
+              font-weight: $font-weight-6
+            .axis
+              font-size: $font-size-1
+              font-weight: $font-weight-3
+            .detail, .check
+              cursor: pointer
+              height: $dimension-impact-list-item-height !important
+              line-height: $dimension-impact-list-item-height
+              font-size: $icon-font-size-2
+              @include rotate(0deg)
+              text-align: center
+              .i
+                transition: all 0.1s
+                height: $dimension-impact-list-item-height !important
+                line-height: $dimension-impact-list-item-height
+                font-size: $icon-font-size-2
+                @include rotate(0deg)
+            &.use
+              color: $main-font-color-b1
+              .check
+                .i
+                  color: $point-color
+                  @include rotate(135deg)
+            &[detail='show']
+              .detail
+                .i
+                  color: $point-color
+                  @include rotate(180deg)
+              .impact-field
+                box-sizing: border-box
+                background: #fff
+                position: relative
+                min-height: 40px
+                width: 100%
+                padding: 0 30px 15px
+                .impact-group
+                  box-sizing: border-box
+                  @include inlineBlock
+                  width: 50%
+                  font-size: $font-size-0
+                  .impact-item
+                    font-size: $font-size-0
+                    font-weight: $font-weight-6
+                    border-radius: 12px
+                    height: 24px
+                    line-height: 24px
+                    margin-right: 10px
+                    &.pos
+                      color: $point-color
+                    &.neg
+                      color: $point-color-2
+
+    .usage
+      @include inlineBlock
+      box-sizing: border-box
+      height: calc(100% - #{$modal-footer-height})
+      width: $modal-right-width
+      background: #fff
+      position: relative
+      border-right: solid 1px $border-color
+      .header
+        height: 40px
+        line-height: 40px
+        font-size: $font-size-1
+        background: #fff
+        padding: 0 15px
+        font-weight: $font-weight-6
+        @include borderBottom($border-color)
+      .list
+        box-sizing: border-box
+        height: calc(100% - 40px)
+        @include borderBottom($border-color)
+        overflow-y: auto
+        overflow-x: hidden
+        //background: #f00
+        .item
+          &.use
+            display: block
+          cursor: pointer
+          display: none
+          height: 35px
+          line-height: 35px
+          padding: 0 15px
+          background: #fff
+          box-sizing: border-box
+          @include borderBottom($border-color)
+          .name
+            @include inlineBlock
+          .num
+            font-size: $font-size-0
+            font-weight: $font-weight-6
+            padding-left: 10px
+            float: right
+      .action
+        height: 50px
+        width: 100%
+        position: absolute
+        bottom: 0
+        left: 0
+        background-color: $accent-color
+        border-bottom-right-radius: $modal-border-radius
         text-align: center
+        line-height: 50px
+        color: #fff
+        font-size: $font-size-2
+        cursor: pointer
+        font-weight: $font-weight-4
+        @include borderTop($border-color)
         &:hover
-          background: #00B7FF
+          background-color: lighten($accent-color, 3)
+    .footer
+      @include borderTop($border-color)
+      background: #f0f0f0
+      box-sizing: border-box
+      height: $modal-footer-height
+      line-height: $modal-footer-height
+      position: absolute
+      bottom: 0
+      width: 100%
+      padding: 0 10px
+      .action
+        padding: 0 10px
+        font-weight: $font-weight-6
+        font-size: $font-size-1
+        color: $main-font-color-b2
+        cursor: pointer
+        &:hover
+          color: $main-font-color-b1
+        &.right
+          float: right
+        &.i
+          font-weight: $font-weight-1
+          line-height: $modal-footer-height !important
+          font-size: $font-size-4 !important
+
+$rad-view-size: 300px
+#rad-view
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.42)
+  -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.42)
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.42)
+  color: $main-font-color-b2
+  background: #f0f0f0
+  z-index: 100000
+  opacity: 0
+  pointer-events: none
+  transform: scale(0.5, 0.5)
+  transition: transform 0.15s, opacity 0.15s
+
+  box-sizing: border-box
+  width: $rad-view-size
+  height: $rad-view-size
+  min-width: $rad-view-size
+  min-height: $rad-view-size
+  position: absolute
+  right: 70px
+  bottom: 70px
+  @include borderAll($border-color)
+  svg
+    width: 100%
+    height: 100%
+    position: absolute
+    left: 0
+    top: 0
+    z-index: 1
   &.open
     opacity: 1
+    transform: scale(1, 1)
     pointer-events: all
-    transition: all .3s
-    .modal
-      transition: all .3s
-      @include transformScale(1, 1)
-
-
-
+  .head
+    @include inlineBlock
+    font-size: $font-size-0
+    font-weight: $font-weight-6
+    height: 32px
+    line-height: 32px
+    padding-left: 30px
+    pointer-events: none !important
+  .handle
+    @include inlineBlock
+    height: 20px !important
+    line-height: 20px !important
+    position: absolute
+    left: 2px
+    top: 5px
+    cursor: pointer
+    z-index: 2
+  #preview-closer
+    @include inlineBlock
+    height: 20px !important
+    line-height: 20px !important
+    position: absolute
+    font-size: $font-size-2
+    right: 5px
+    top: 5px
+    cursor: pointer
+    z-index: 2

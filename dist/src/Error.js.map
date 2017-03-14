@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/Error.js"],"names":["Error"],"mappings":";;AAAA;;;;AAIA,SAASA,KAAT,GAAiB,CAEhB","file":"Error.js","sourcesContent":["/**\r\n * Created by hyunwoo on 2017-03-05.\r\n */\r\n\r\nfunction Error() {\r\n\r\n}"]}
