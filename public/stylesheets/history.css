@@ -4,6 +4,7 @@
 /* font size */
 /* font weight */
 /* icon font size */
+/* padding */
 .history {
   width: 800px;
   background: #fff;
@@ -24,8 +25,8 @@
     .history *.item .date {
       width: 150px; }
   .history .header {
-    height: 48px;
-    line-height: 48px;
+    height: 55px;
+    line-height: 55px;
     font-weight: 600;
     font-size: 15px;
     background: #4b4b4b;
@@ -34,7 +35,7 @@
       padding-left: 20px; }
   .history .list {
     overflow-y: auto;
-    height: calc(100vh - 200px - 48px); }
+    height: calc(100vh - 200px - 55px); }
     .history .list .item {
       min-height: 40px;
       line-height: 40px;
