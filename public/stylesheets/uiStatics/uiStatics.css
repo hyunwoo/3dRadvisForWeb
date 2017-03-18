@@ -239,28 +239,36 @@
       display: inline-block;
       vertical-align: top;
       height: 100%;
-      width: calc(100% - 250px);
+      width: calc(100% - 230px);
       box-sizing: border-box;
       position: relative; }
+      .modalWrapper .modal .modal-field .modal-title {
+        color: #333333;
+        line-height: 55px;
+        padding: 0 15px;
+        font-size: 17px;
+        font-weight: 100 !important; }
       .modalWrapper .modal .modal-field .tab {
-        height: 40px;
+        height: 38px;
         position: relative;
-        padding: 0 10px; }
+        padding: 0 10px;
+        border-bottom: solid 1px #eee; }
         .modalWrapper .modal .modal-field .tab .step {
           display: inline-block;
           vertical-align: top;
           transition: opacity 0.3s;
-          height: 40px;
-          line-height: 40px;
+          height: 38px;
+          line-height: 38px;
           box-sizing: border-box;
           cursor: pointer;
-          opacity: .6;
-          padding: 0 10px; }
+          opacity: .4;
+          padding: 0 20px;
+          color: #0188E5; }
           .modalWrapper .modal .modal-field .tab .step .icon {
             width: 50px;
-            height: 40px;
+            height: 38px;
             margin: 10px;
-            line-height: 40px; }
+            line-height: 38px; }
           .modalWrapper .modal .modal-field .tab .step .head {
             display: inline-block;
             vertical-align: top;
@@ -275,18 +283,18 @@
               text-align: center;
               width: 20px !important;
               border-radius: 50%;
-              font-size: 11px;
+              font-size: 12px;
               background-color: #4b4b4b;
               color: #fff; }
           .modalWrapper .modal .modal-field .tab .step .body {
             padding-top: 10px;
             margin-bottom: 10px;
-            font-size: 11px; }
+            font-size: 12px; }
           .modalWrapper .modal .modal-field .tab .step:hover {
             opacity: 1; }
           .modalWrapper .modal .modal-field .tab .step.select {
             opacity: 1;
-            border-bottom: solid 2px #ff5e7C; }
+            border-bottom: solid 2px #0188E5; }
       .modalWrapper .modal .modal-field .content {
         overflow-y: hidden;
         overflow-x: hidden;
@@ -304,8 +312,8 @@
           left: 0;
           width: 100%; }
         .modalWrapper .modal .modal-field .content .header {
-          font-size: 13px;
-          margin: 25px 15px 15px;
+          font-size: 12px;
+          margin: 25px 15px 10px;
           color: #666666;
           font-weight: 700; }
         .modalWrapper .modal .modal-field .content .text {
@@ -318,28 +326,28 @@
           .modalWrapper .modal .modal-field .content .group .item {
             cursor: pointer;
             display: inline-block;
-            margin: 5px 10px 5px 0;
-            border-radius: 15px;
+            margin: 4px 10px 4px 0;
+            border-radius: 16px;
             box-sizing: border-box;
-            height: 30px;
-            line-height: 30px;
+            height: 33px;
+            line-height: 33px;
             font-size: 13px;
             padding: 0 10px 0 15px;
             background: #eee;
-            font-weight: 600;
+            font-weight: 400;
             color: #999999;
             transition: all 0.2s; }
             .modalWrapper .modal .modal-field .content .group .item .i.material-icons {
               box-sizing: border-box;
               width: 20px !important;
               height: 20px;
-              font-size: 17px;
+              font-size: 22px;
               font-weight: 400;
               text-align: center;
               line-height: 20px !important;
               color: #999999;
               vertical-align: top;
-              margin: 6px 0 5px 5px !important;
+              margin: 4px 0 5px 5px !important;
               -webkit-transform: rotate(0deg);
               -moz-transform: rotate(0deg);
               -o-transform: rotate(0deg);
@@ -364,7 +372,6 @@
         .modalWrapper .modal .modal-field .content input, .modalWrapper .modal .modal-field .content textarea {
           box-sizing: border-box;
           margin: 0 15px;
-          border: none;
           color: #666666;
           width: calc(100% - 15px * 2);
           resize: none;
@@ -372,18 +379,18 @@
           font-size: 15px;
           font-weight: 400;
           line-height: 17px;
-          border-bottom: solid 1px #ccc;
-          padding: 5px;
+          border: solid 1px #ccc;
+          padding: 10px;
           transition: border .3s; }
           .modalWrapper .modal .modal-field .content input:focus, .modalWrapper .modal .modal-field .content input:active, .modalWrapper .modal .modal-field .content textarea:focus, .modalWrapper .modal .modal-field .content textarea:active {
-            border-bottom: solid 1px #0188E5;
+            border: solid 1px #0188E5;
             transition: border .3s; }
         .modalWrapper .modal .modal-field .content textarea {
           height: 90px; }
         .modalWrapper .modal .modal-field .content .desc {
           padding: 10px;
           width: calc(100% - 20px);
-          font-size: 11px;
+          font-size: 12px;
           line-height: 16px;
           font-weight: 400;
           color: #000;
@@ -424,26 +431,26 @@
             .modalWrapper .modal .modal-field .content .list.axis .title .detail, .modalWrapper .modal .modal-field .content .list.axis .item .detail {
               width: 20px; }
           .modalWrapper .modal .modal-field .content .list.axis .title {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
-            padding: 10px; }
+            padding: 12px 10px 11px 10px; }
             .modalWrapper .modal .modal-field .content .list.axis .title .axis {
               padding-left: 30px; }
           .modalWrapper .modal .modal-field .content .list.axis .item {
-            min-height: 40px;
-            line-height: 40px;
+            min-height: 37px;
+            line-height: 37px;
             color: #999999;
             transition: all 0.2s; }
             .modalWrapper .modal .modal-field .content .list.axis .item .value, .modalWrapper .modal .modal-field .content .list.axis .item .impact {
-              font-size: 11px;
+              font-size: 12px;
               font-weight: 600; }
             .modalWrapper .modal .modal-field .content .list.axis .item .axis {
-              font-size: 13px;
+              font-size: 12px;
               font-weight: 300; }
             .modalWrapper .modal .modal-field .content .list.axis .item .detail, .modalWrapper .modal .modal-field .content .list.axis .item .check {
               cursor: pointer;
-              height: 40px !important;
-              line-height: 40px;
+              height: 37px !important;
+              line-height: 37px;
               font-size: 19px;
               -webkit-transform: rotate(0deg);
               -moz-transform: rotate(0deg);
@@ -453,8 +460,8 @@
               text-align: center; }
               .modalWrapper .modal .modal-field .content .list.axis .item .detail .i, .modalWrapper .modal .modal-field .content .list.axis .item .check .i {
                 transition: all 0.1s;
-                height: 40px !important;
-                line-height: 40px;
+                height: 37px !important;
+                line-height: 37px;
                 font-size: 19px;
                 -webkit-transform: rotate(0deg);
                 -moz-transform: rotate(0deg);
@@ -489,9 +496,9 @@
                 display: inline-block;
                 vertical-align: top;
                 width: 50%;
-                font-size: 11px; }
+                font-size: 12px; }
                 .modalWrapper .modal .modal-field .content .list.axis .item[detail='show'] .impact-field .impact-group .impact-item {
-                  font-size: 11px;
+                  font-size: 12px;
                   font-weight: 600;
                   border-radius: 12px;
                   height: 24px;
@@ -505,18 +512,18 @@
       display: inline-block;
       vertical-align: top;
       box-sizing: border-box;
-      height: calc(100% - 40px);
-      width: 250px;
-      background: #fff;
+      height: 100%;
+      width: 230px;
+      background: #FAFAFA;
       position: relative;
       border-right: solid 1px #dbdbdb; }
       .modalWrapper .modal .usage .header {
-        height: 40px;
-        line-height: 40px;
+        height: 55px;
+        line-height: 55px;
         font-size: 13px;
-        background: #fff;
+        color: #0188E5;
         padding: 0 15px;
-        font-weight: 600;
+        font-weight: 400;
         border-bottom: solid 1px #dbdbdb; }
       .modalWrapper .modal .usage .list {
         box-sizing: border-box;
@@ -527,19 +534,20 @@
         .modalWrapper .modal .usage .list .item {
           cursor: pointer;
           display: none;
-          height: 35px;
-          line-height: 35px;
+          height: 38px;
+          line-height: 38px;
           padding: 0 15px;
-          background: #fff;
+          background: #FAFAFA;
           box-sizing: border-box;
-          border-bottom: solid 1px #dbdbdb; }
+          border-bottom: solid 1px #E8E8E8; }
           .modalWrapper .modal .usage .list .item.use {
             display: block; }
           .modalWrapper .modal .usage .list .item .name {
+            font-size: 12px;
             display: inline-block;
             vertical-align: top; }
           .modalWrapper .modal .usage .list .item .num {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             padding-left: 10px;
             float: right; }
@@ -562,22 +570,23 @@
           background-color: #ef6e5d; }
     .modalWrapper .modal .footer {
       border-top: solid 1px #dbdbdb;
-      background: #f0f0f0;
+      background: #212121;
       box-sizing: border-box;
       height: 40px;
       line-height: 40px;
       position: absolute;
       bottom: 0;
-      width: 100%;
+      right: 0;
+      width: calc(100% - 230px);
       padding: 0 10px; }
       .modalWrapper .modal .footer .action {
         padding: 0 10px;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 13px;
-        color: #666666;
+        color: #eee;
         cursor: pointer; }
         .modalWrapper .modal .footer .action:hover {
-          color: #333333; }
+          color: #fff; }
         .modalWrapper .modal .footer .action.right {
           float: right; }
         .modalWrapper .modal .footer .action.i {
@@ -619,7 +628,7 @@
   #rad-view .head {
     display: inline-block;
     vertical-align: top;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     height: 32px;
     line-height: 32px;

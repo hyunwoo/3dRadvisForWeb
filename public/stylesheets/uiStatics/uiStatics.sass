@@ -162,7 +162,7 @@ $toast-width-half: $toast-width/2
     .dialog
       @include transformScale(1, 1)
 
-$modal-right-width: 250px
+$modal-right-width: 230px
 $modal-footer-height: 40px
 $content-margin: 15px
 .vis-manipulation
@@ -226,18 +226,26 @@ $content-margin: 15px
       color: $main-font-color
     &#modalDimensionFieldMaker
       height: 100%
-    $tab-height: 40px
+    $tab-height: 38px
     .modal-field
       @include inlineBlock
       height: 100%
       width: calc(100% - #{$modal-right-width})
       box-sizing: border-box
       position: relative
+      .modal-title
+        color: $main-font-color-b1
+        line-height: 55px
+        padding: 0 15px
+        font-size: $font-size-3
+        font-weight: $font-weight-1 !important
+
       .tab
         height: $tab-height
         position: relative
         //background: #333
         padding: 0 10px
+        border-bottom: solid 1px #eee
         .step
           @include inlineBlock
           transition: opacity 0.3s
@@ -245,8 +253,9 @@ $content-margin: 15px
           line-height: $tab-height
           box-sizing: border-box
           cursor: pointer
-          opacity: .6
-          padding: 0 10px
+          opacity: .4
+          padding: 0 20px
+          color: $point-color
           .icon
             width: 50px
             height: $tab-height
@@ -275,7 +284,7 @@ $content-margin: 15px
             opacity: 1
           &.select
             opacity: 1
-            border-bottom: solid 2px $point-color-2
+            border-bottom: solid 2px $point-color
 
       .content
         overflow-y: hidden
@@ -296,8 +305,8 @@ $content-margin: 15px
           left: 0
           width: 100%
         .header
-          font-size: $font-size-1
-          margin: 25px $content-margin 15px
+          font-size: $font-size-0
+          margin: 25px $content-margin 10px
           color: $main-font-color-b2
           font-weight: $font-weight-7
         .text
@@ -310,28 +319,28 @@ $content-margin: 15px
           .item
             cursor: pointer
             display: inline-block
-            margin: 5px 10px 5px 0
-            border-radius: 15px
+            margin: 4px 10px 4px 0
+            border-radius: 16px
             box-sizing: border-box
-            height: 30px
-            line-height: 30px
+            height: 33px
+            line-height: 33px
             font-size: $font-size-1
             padding: 0 10px 0 15px
             background: #eee
-            font-weight: $font-weight-6
+            font-weight: $font-weight-4
             color: $main-font-color-b3
             transition: all 0.2s
             .i.material-icons
               box-sizing: border-box
               width: 20px !important
               height: 20px
-              font-size: $font-size-3
+              font-size: $font-size-4
               font-weight: $font-weight-4
               text-align: center
               line-height: 20px !important
               color: $main-font-color-b3
               vertical-align: top
-              margin: 6px 0 5px 5px !important
+              margin: 4px 0 5px 5px !important
               @include rotate(0deg)
               transition: all 0.2s
             &.use
@@ -348,7 +357,6 @@ $content-margin: 15px
         input, textarea
           box-sizing: border-box
           margin: 0 $content-margin
-          border: none
           color: $main-font-color-b2
           width: calc(100% - #{$content-margin} * 2)
           resize: none
@@ -357,11 +365,11 @@ $content-margin: 15px
           font-weight: $font-weight-4
           line-height: $font-size-3
           //@include borderAll($border-color)
-          border-bottom: solid 1px #ccc
-          padding: 5px
+          border: solid 1px #ccc
+          padding: 10px
           transition: border .3s
           &:focus, &:active
-            border-bottom: solid 1px $point-color
+            border: solid 1px $point-color
             //@include borderAll($point-color)
             transition: border .3s
         textarea
@@ -380,7 +388,7 @@ $content-margin: 15px
           box-sizing: border-box
           background: #fff
           width: 100%
-          $dimension-impact-list-item-height: 40px
+          $dimension-impact-list-item-height: 37px
           &#axisListSelector
             max-height: calc(100% - #{$modal-footer-height})
             overflow: auto
@@ -413,7 +421,7 @@ $content-margin: 15px
           .title
             font-size: $font-size-0
             font-weight: $font-weight-6
-            padding: 10px
+            padding: 12px 10px 11px 10px
             .axis
               padding-left: 30px
           .item
@@ -425,7 +433,7 @@ $content-margin: 15px
               font-size: $font-size-0
               font-weight: $font-weight-6
             .axis
-              font-size: $font-size-1
+              font-size: $font-size-0
               font-weight: $font-weight-3
             .detail, .check
               cursor: pointer
@@ -478,18 +486,18 @@ $content-margin: 15px
     .usage
       @include inlineBlock
       box-sizing: border-box
-      height: calc(100% - #{$modal-footer-height})
+      height: 100%
       width: $modal-right-width
-      background: #fff
+      background: #FAFAFA
       position: relative
       border-right: solid 1px $border-color
       .header
-        height: 40px
-        line-height: 40px
+        height: 55px
+        line-height: 55px
         font-size: $font-size-1
-        background: #fff
+        color: $point-color
         padding: 0 15px
-        font-weight: $font-weight-6
+        font-weight: $font-weight-4
         @include borderBottom($border-color)
       .list
         box-sizing: border-box
@@ -503,13 +511,14 @@ $content-margin: 15px
             display: block
           cursor: pointer
           display: none
-          height: 35px
-          line-height: 35px
+          height: 38px
+          line-height: 38px
           padding: 0 15px
-          background: #fff
+          background: #FAFAFA
           box-sizing: border-box
-          @include borderBottom($border-color)
+          @include borderBottom(#E8E8E8)
           .name
+            font-size: $font-size-0
             @include inlineBlock
           .num
             font-size: $font-size-0
@@ -535,22 +544,23 @@ $content-margin: 15px
           background-color: lighten($accent-color, 3)
     .footer
       @include borderTop($border-color)
-      background: #f0f0f0
+      background: #212121
       box-sizing: border-box
       height: $modal-footer-height
       line-height: $modal-footer-height
       position: absolute
       bottom: 0
-      width: 100%
+      right: 0
+      width: calc(100% - #{$modal-right-width})
       padding: 0 10px
       .action
         padding: 0 10px
-        font-weight: $font-weight-6
+        font-weight: $font-weight-4
         font-size: $font-size-1
-        color: $main-font-color-b2
+        color: #eee
         cursor: pointer
         &:hover
-          color: $main-font-color-b1
+          color: #fff
         &.right
           float: right
         &.i
