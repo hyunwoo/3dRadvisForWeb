@@ -9,7 +9,6 @@
 // Basket Line Segment : Flex Length
 // Node BufferGeometry : Static Length **
 
-// ** ���Ͽ� ������ �и��Ѵ� **
 
 class RadvisController {
     constructor(element, data) {
@@ -344,6 +343,90 @@ class RadvisController {
 let __RadvisController;
 
 
+$(() => {
+    __UIStatic.Loader.open('Radvis를 생성중입니다.');
+})
+__Firebase.addAuthChangeFunction(async() => {
+    $.cookie.json = true;
+    let dimensions = $.cookie('dimensionList');
+    let key = $.cookie('dataKey');
+
+    __UIStatic.Loader.open('데이터를 다운로드 받고 있습니다.<br> key : ' + key);
+
+    // key = "";
+    if (key == "" || _.isNil(key)) {
+        $.get('/data/credos_testing2.csv', (d) => {
+            __data = new DataSet(d);
+            createRadvis();
+        })
+    }
+    else {
+        var raw = await __Firebase.getRawData(key.replace(/"/gi, ''));
+        __data = new DataSet(raw);
+
+        __UIStatic.Loader.open('사용자 선택 데이터를 적용중입니다.');
+        setTimeout(() => {
+
+            _.forEach(dimensions, (d, i) => {
+                let src = __data.findAxis(d);
+                let dst = __data.findAxisByIndex(i);
+                dst.index = src.index;
+                src.index = i;
+                src.active = true;
+            });
+
+            createRadvis();
+            __RadvisController.adjustAxis();
+
+            __UIStatic.Loader.open('Radvis의 생성을 완료하고 있습니다.');
+            setTimeout(() => {
+                __UIStatic.Loader.close();
+            }, 2000);
+        }, 2000);
+    }
+});
+
+
 function createRadvis() {
+    console.log('create side tab');
+    __UI.SideTab.push({
+        Type: 'Button', Name: 'Home', Icon: 'home', AppendClass: 'overview',
+    });
+    __UI.SideTab.push({
+        Type: 'separater', Text: 'Clustering'
+    });
+    __UI.SideTab.push({
+        Type: 'Button',
+        Name: 'Make Cluster',
+        Icon: 'bubble_chart',
+        Tabs: {
+            // Usage: "createAxisUsage",
+            // Geometry: 'createAxisGeometry',
+        }
+    });
+    //
+    __UI.SideTab.push({
+        Type: 'separater', Text: 'Global Setting'
+    });
+    __UI.SideTab.push({
+        Type: 'Button',
+        Name: 'Axis',
+        Icon: 'view_week',
+        Tabs: {
+            Usage: "createAxisUsage",
+            Geometry: 'createAxisGeometry',
+        }
+    });
+
+    __UI.SideTab.push({
+        Type: 'Button',
+        Name: 'Node',
+        Icon: 'toll',
+        Tabs: {
+            Geometry: 'createNodeGeometry',
+        }
+    });
+    __UI.createSideTab();
+
     __RadvisController = new RadvisController('#', __data);
 }

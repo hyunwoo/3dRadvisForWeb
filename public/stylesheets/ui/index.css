@@ -76,7 +76,7 @@
           .page .grid .cell .contents .item:hover {
             text-decoration: underline; }
           .page .grid .cell .contents .item small {
-            font-size: 11px;
+            font-size: 12px;
             color: #999999; }
         .page .grid .cell .contents .addition-info {
           width: 100%;
@@ -105,7 +105,7 @@
               .page .grid .cell .contents .addition-info .desc action:hover {
                 text-decoration: underline; }
           .page .grid .cell .contents .addition-info .desc-small {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 400;
             color: #999999; }
             .page .grid .cell .contents .addition-info .desc-small action {

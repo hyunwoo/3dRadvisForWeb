@@ -5,7 +5,7 @@
 let __data;
 class DataAxis {
     constructor(name, index, stats) {
-        this.active = true;
+        this.active = false;
         this.name = name;
         this.spacing = Setting.Radvis.Axis.Geometry.spacing.value;
         this.spacing_center = Setting.Radvis.Axis.Geometry.spacing_center.value;
@@ -27,7 +27,6 @@ class DataSet {
         if (rows[rows.length - 1] == '')
             rows = _.dropRight(rows);
         this.keys = rows[0].split(',');
-
         // this.keys = _.take(rows[0].split(','), 15);
         this.raw = _.map(rows, function (row) {
             return row.split(',');
@@ -84,7 +83,6 @@ class DataSet {
         });
     }
 
-
     getSortedAxis() {
         return _.sortBy(this.axis, function (axis) {
             return axis.index;
@@ -97,6 +95,11 @@ class DataSet {
         })
     }
 
+    findAxisByIndex(index) {
+        return _.find(this.axis, function (axis) {
+            return axis.index == index;
+        })
+    }
 
     static TransposData(matrix) {
         return _.map(matrix[0], function (col, i) {
@@ -108,18 +111,5 @@ class DataSet {
 }
 
 
-function LoadByWorker() {
-    var i = 0;
-    self.onmessage = function (event) {
-        postMessage("Hello " + event.data, ['/']);
-    };
-
-    for (i = 0; i < 5; i++) {
-        postMessage(i, ['/']);
-    }
-    postMessage("Finished", ['/']);
-}
-
-LoadByWorker();
 
 

@@ -6,7 +6,7 @@ let Setting = {
         Height: 800,
         Radius: 400,
         NodeSize: 10,
-        NodeScale: 1.5,
+        NodeScale: 1.1,
         Background: 0xffffff,
         Node: {
             Geometry: { // component
@@ -77,7 +77,7 @@ let Setting = {
     },
 
     Test: {
-        AxisLimit: true,
+        AxisLimit: false,
         AxisLimitCount: 15,
     },
 

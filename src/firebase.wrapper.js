@@ -37,6 +37,7 @@ let __Firebase = new function () {
     let callbackDimensions = {};
     let DataList = this.DataList = {};
     this.CurrentData = {};
+    this.CurrentDataKey = '';
     this.CurrentSetting = {};
     this.DimensionFieldList = {};
 
@@ -48,7 +49,7 @@ let __Firebase = new function () {
 
         var rawDataReceiver = await fb.database().ref(that.user.uid + '/raw/' + d._id).once('value');
         that.CurrentData = new DataSet(rawDataReceiver.val());
-
+        that.CurrentDataKey = d._id;
         var settingDataReceiver = await fb.database().ref(that.user.uid + '/setting/' + d._id).once('value');
         that.CurrentSetting = settingDataReceiver.val();
         callback(rawDataReceiver.val());
@@ -97,6 +98,11 @@ let __Firebase = new function () {
 
     };
 
+    /**
+     * @param field : object
+     *      @name : string
+     *      @dimensionList : list //TODO will Change
+     */
     this.addDimensionField = function (field) {
         const key = DBRefDimensionList.push().key;
         let data = {};
@@ -238,6 +244,12 @@ let __Firebase = new function () {
         }
     };
 
+
+    this.getRawData = async function (key, callback) {
+        console.log('ref', that.user.uid + '/raw/' + key);
+        let a = await fb.database().ref(that.user.uid + '/raw/' + key).once('value');
+        return a.val();
+    };
 
     this.getDataContent = function (key) {
         if (_.isNil(that.user)) {

@@ -267,47 +267,4 @@ var __UI = {
         return $item;
     }
 };
-
-$(function () {});
-
-(function () {
-
-    __UI.SideTab.push({
-        Type: 'Button', Name: 'Home', Icon: 'home', AppendClass: 'overview'
-    });
-    __UI.SideTab.push({
-        Type: 'separater', Text: 'Clustering'
-    });
-    __UI.SideTab.push({
-        Type: 'Button',
-        Name: 'Make Cluster',
-        Icon: 'bubble_chart',
-        Tabs: {
-            // Usage: "createAxisUsage",
-            // Geometry: 'createAxisGeometry',
-        }
-    });
-    //
-    __UI.SideTab.push({
-        Type: 'separater', Text: 'Global Setting'
-    });
-    __UI.SideTab.push({
-        Type: 'Button',
-        Name: 'Axis',
-        Icon: 'view_week',
-        Tabs: {
-            Usage: "createAxisUsage",
-            Geometry: 'createAxisGeometry'
-        }
-    });
-
-    __UI.SideTab.push({
-        Type: 'Button',
-        Name: 'Node',
-        Icon: 'toll',
-        Tabs: {
-            Geometry: 'createNodeGeometry'
-        }
-    });
-})();
 //# sourceMappingURL=tab.side.js.map

@@ -17,8 +17,6 @@ const __Modal = new function () {
     this.dimension = {};
     var summaryUsageDimension = $('#summary-recommend-dimension');
     var usageDimension = $('#usage-dimension');
-
-
     var powers = [];
     var usingDimensions = {};
 
@@ -112,7 +110,6 @@ const __Modal = new function () {
             $(this).addClass('select');
             $dimension.find('.modal-field .content[page=' + $(this).attr("for") + ']').addClass('select');
         });
-
 
         $('#DFName').focusout(() => {
             // TODO Save Name TO FB
@@ -208,7 +205,6 @@ const __Modal = new function () {
             updateRadvisPreview();
         };
 
-
         this.open = function (opt) {
             $dimension.addClass('open');
             $dimensionPos.unbind();
@@ -228,9 +224,29 @@ const __Modal = new function () {
 
         function clearAxisList() {
             $dimension.find('#axisListSelector').empty();
-        };
+        }
 
-
+        $('#action-create-dimension-field').click(() => {
+            let useDimension = _.map($('#usage-dimension').find('.item._axis.use'), (d) => {
+                return $(d).attr('using');
+            });
+            __Firebase.addDimensionField({
+                name: 'Dimension Count' + useDimension.length,
+                dimensionList: useDimension,
+            });
+            dimensionModal.close();
+            return;
+            __UIStatic.Dialog.open({
+                title: 'Radvis 를 만듭니다.',
+                text: '현재 선택되어 있는 변인들이 3D Radvis의 축이 됩니다.',
+                pos: {
+                    name: 'Radvis 실행',
+                    action: () => {
+                    }
+                }
+            });
+            console.log(useDimension);
+        })
     }
 
 

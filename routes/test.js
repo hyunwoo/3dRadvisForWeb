@@ -12,4 +12,8 @@ router.get('/ui', function (req, res) {
     res.render('test_ui')
 });
 
+router.get('/joongang_alcohol', function (req, res) {
+    res.render('joongang_alcohol');
+});
+
 module.exports = router;

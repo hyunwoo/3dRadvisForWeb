@@ -19,7 +19,6 @@ var __Modal = new function () {
     this.dimension = {};
     var summaryUsageDimension = $('#summary-recommend-dimension');
     var usageDimension = $('#usage-dimension');
-
     var powers = [];
     var usingDimensions = {};
 
@@ -199,7 +198,28 @@ var __Modal = new function () {
 
         function clearAxisList() {
             $dimension.find('#axisListSelector').empty();
-        };
+        }
+
+        $('#action-create-dimension-field').click(function () {
+            var useDimension = _.map($('#usage-dimension').find('.item._axis.use'), function (d) {
+                return $(d).attr('using');
+            });
+            __Firebase.addDimensionField({
+                name: 'Dimension Count' + useDimension.length,
+                dimensionList: useDimension
+            });
+            dimensionModal.close();
+            return;
+            __UIStatic.Dialog.open({
+                title: 'Radvis 를 만듭니다.',
+                text: '현재 선택되어 있는 변인들이 3D Radvis의 축이 됩니다.',
+                pos: {
+                    name: 'Radvis 실행',
+                    action: function action() {}
+                }
+            });
+            console.log(useDimension);
+        });
     }
 
     // PREVIEW

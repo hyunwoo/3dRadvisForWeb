@@ -249,6 +249,9 @@ $(function () {
                                 pos: {
                                     name: 'Start Analysis',
                                     action: () => {
+                                        $.cookie.json = true;
+                                        $.cookie('dimensionList', d.dimensionList);
+                                        $.cookie('dataKey', __Firebase.CurrentDataKey);
                                         window.location = '/testing';
                                     }
                                 },

@@ -38,6 +38,7 @@ var __Firebase = new function () {
     var callbackDimensions = {};
     var DataList = this.DataList = {};
     this.CurrentData = {};
+    this.CurrentDataKey = '';
     this.CurrentSetting = {};
     this.DimensionFieldList = {};
 
@@ -48,7 +49,7 @@ var __Firebase = new function () {
 
         var rawDataReceiver = await fb.database().ref(that.user.uid + '/raw/' + d._id).once('value');
         that.CurrentData = new DataSet(rawDataReceiver.val());
-
+        that.CurrentDataKey = d._id;
         var settingDataReceiver = await fb.database().ref(that.user.uid + '/setting/' + d._id).once('value');
         that.CurrentSetting = settingDataReceiver.val();
         callback(rawDataReceiver.val());
@@ -95,6 +96,11 @@ var __Firebase = new function () {
         return a.val();
     };
 
+    /**
+     * @param field : object
+     *      @name : string
+     *      @dimensionList : list //TODO will Change
+     */
     this.addDimensionField = function (field) {
         var key = DBRefDimensionList.push().key;
         var data = {};
@@ -224,6 +230,12 @@ var __Firebase = new function () {
             __UIStatic.Toast.open("Auth Failed");
             return;
         }
+    };
+
+    this.getRawData = async function (key, callback) {
+        console.log('ref', that.user.uid + '/raw/' + key);
+        var a = await fb.database().ref(that.user.uid + '/raw/' + key).once('value');
+        return a.val();
     };
 
     this.getDataContent = function (key) {

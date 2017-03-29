@@ -5,22 +5,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * Created by hyunwoo on 2017-02-15.
+ * Created by hyunwoo on 2017-03-21.
  */
 
-var __data = void 0;
-
-var DataAxis = function DataAxis(name, index, stats) {
-    _classCallCheck(this, DataAxis);
-
-    this.active = false;
-    this.name = name;
-    this.spacing = Setting.Radvis.Axis.Geometry.spacing.value;
-    this.spacing_center = Setting.Radvis.Axis.Geometry.spacing_center.value;
-    this.uniqueIndex = this.index = index;
-    this.stats = stats;
-    this.power = Setting.Radvis.Axis.Geometry.power.value;
-};
+var _ = require('lodash');
+var pcorr = require('compute-pcorr');
 
 var DataSet = function () {
     function DataSet(csv, mode) {
@@ -61,22 +50,11 @@ var DataSet = function () {
                     name: d[0],
                     //value: values,
                     min: _.min(values),
-                    max: _.max(values),
-                    // variance: _.variance(values),
-                    sigma: _.stdDeviation(values),
-                    median: _.median(values),
-                    mean: _.average(values)
+                    max: _.max(values)
                 };
                 numeric[d[0]] = values;
-                // FOR TEST
-                if (Setting.Test.AxisLimit) {
-                    if (currentInjectAxisCount < Setting.Test.AxisLimitCount) {
-                        numericKeys.push(d[0]);
-                        currentInjectAxisCount++;
-                    }
-                } else numericKeys.push(d[0]);
+                numericKeys.push(d[0]);
             });
-            console.log(numericKeys);
 
             this.numericNodes = [];
             for (var i = 0; i < numeric[numericKeys[0]].length; i++) {
@@ -86,10 +64,6 @@ var DataSet = function () {
                 });
                 this.numericNodes.push(out);
             }
-
-            this.axis = _.map(this.numericKeys, function (k, i) {
-                return new DataAxis(k, i, stats[k]);
-            });
         }
     }, {
         key: 'getSortedAxis',
@@ -105,13 +79,6 @@ var DataSet = function () {
                 return axis.name == axisName;
             });
         }
-    }, {
-        key: 'findAxisByIndex',
-        value: function findAxisByIndex(index) {
-            return _.find(this.axis, function (axis) {
-                return axis.index == index;
-            });
-        }
     }], [{
         key: 'TransposData',
         value: function TransposData(matrix) {
@@ -125,4 +92,78 @@ var DataSet = function () {
 
     return DataSet;
 }();
-//# sourceMappingURL=radvis.data.js.map
+
+var Iconv = require('iconv').Iconv;
+var iconv = new Iconv('EUC-KR', 'UTF-8//TRANSLIT//IGNORE');
+var reviconv = new Iconv('UTF-8//TRANSLIT//IGNORE', 'EUC-KR//TRANSLIT//IGNORE');
+var fs = require('fs');
+var d = iconv.convert(fs.readFileSync('./joongang_alcohol_merged_corr.csv')).toString('UTF-8');
+
+var dset = new DataSet(d.toString());
+
+var surveyKeys = ['BDI', 'BAI', 'MAST', 'AUQ-K1', 'VAS-A1', 'FTND', 'VAS_S1', 'AUQ-K2', 'VAS-A2', 'VAS-S2', '입원환자', 'NS_원', 'NS_T', 'NS_백', 'HA_원', 'HA_T', 'HA_백', 'RD_원', 'RD_T', 'RD_백', 'P_원', 'P_T', 'P_백', 'NS1', 'NS2', 'NS3', 'NS4', 'HA1', 'HA2', 'HA3', 'HA4', 'RD1', 'RD2', 'RD3', 'RD4', 'P1', 'P2', 'P3', 'P4'];
+
+var testKeys = dset.numericKeys;
+_.forEach(surveyKeys, function (k) {
+    testKeys = _.without(testKeys, k);
+});
+// console.log(surveyKeys)
+// console.log(testKeys)
+
+var result = {};
+var invResult = {};
+_.forEach(surveyKeys, function (td) {
+    var corr = _.map(testKeys, function (d) {
+        return {
+            name: d,
+            corr: pcorr([dset.numeric[d], dset.numeric[td]])[0][1]
+        };
+    });
+    // corr = _.filter(corr, (d) => {
+    //     return Math.abs(d.corr) > 0.3
+    // });
+    corr = _.sortBy(corr, function (d) {
+        return -Math.abs(d.corr);
+    });
+
+    corr = _.take(corr, 10);
+
+    result[td] = corr;
+});
+
+var csv = 'source,target,corr\n';
+// console.log(result);
+_.mapKeys(result, function (v, k) {
+    _.forEach(v, function (vv) {
+        csv += k + ',' + vv.name + ',' + vv.corr + '\n';
+    });
+});
+fs.writeFileSync('./corrs.csv', reviconv.convert(csv));
+
+//
+// _.forEach(testKeys, (td) => {
+//     var corr = _.map(surveyKeys, (d) => {
+//         return {
+//             name: d,
+//             corr: pcorr([dset.numeric[d],
+//                 dset.numeric[td]])
+//                 [0][1],
+//         }
+//     });
+//     // corr = _.filter(corr, (d) => {
+//     //     return Math.abs(d.corr) > 0.3
+//     // });
+//     corr = _.sortBy(corr, (d) => {
+//         return -Math.abs(d.corr)
+//     });
+//
+//     corr = _.take(corr, 10);
+//     invResult[td] = corr;
+// });
+/*
+ fs.writeFileSync('../public/data/joongang_alcohol.js',
+ `var surveyKeys=${JSON.stringify(surveyKeys)};` +
+ `var testKeys=${JSON.stringify(testKeys)};` +
+ `var corrs=${JSON.stringify(result)};` +
+ `var invCorrs=${JSON.stringify(invResult)};`);*/
+//# sourceMappingURL=serve_data_testing.js.map
